@@ -10,4 +10,16 @@ extension PaddingExtension on PaddingEnum {
 
   // EdgeInsets Symetric Vertical
   EdgeInsets paddingVertical() => EdgeInsets.symmetric(vertical: padding);
+
+  // EdgeInsets Only Top
+  EdgeInsets paddingOnlyTop() => EdgeInsets.only(top: padding);
+
+  // EdgeInsets Only Bottom
+  EdgeInsets paddingOnlyBottom() => EdgeInsets.only(bottom: padding);
+
+  // EdgeInsets Only Left
+  EdgeInsets paddingOnlyLeft() => EdgeInsets.only(left: padding);
+
+  // EdgeInsets Only Right
+  EdgeInsets paddingOnlyRight() => EdgeInsets.only(right: padding);
 }
