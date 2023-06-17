@@ -5,7 +5,7 @@ import '../colors/app_colors.dart';
 class AppDarkTheme {
   AppDarkTheme._();
 
-  static final ThemeData dark = ThemeData(
+  static final ThemeData darkTheme = ThemeData(
     colorScheme: _colorScheme,
   );
 

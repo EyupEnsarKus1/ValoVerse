@@ -4,7 +4,7 @@ import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 class AppLightTheme {
   AppLightTheme._();
 
-  static ThemeData appThemeLight = ThemeData(
+  static ThemeData lightTheme = ThemeData(
     colorScheme: _colorScheme,
   );
 
