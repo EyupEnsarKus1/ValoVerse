@@ -38,6 +38,7 @@ class AppColors {
   static const onSurfaceColor = Color(0xff000000);
   static const onBackgroundColor = Color(0xffffffff);
   static const onErrorColor = Color(0xffffffff);
+  static const brightnessLight = Brightness.light;
 
 // Color Scheme Dark
 
@@ -53,4 +54,5 @@ class AppColors {
   static const darkOnSurfaceColor = Color(0xffe2e2e6);
   static const darkOnBackgroundColor = Color(0xffe2e2e6);
   static const darkOnErrorColor = Color(0xff690005);
+  static const brightnessDark = Brightness.dark;
 }
