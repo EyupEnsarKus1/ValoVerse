@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 
-enum FontsEnum {
-  rubik('Rubik'),
-  archivo('Archivo'),
-  roboto('Roboto');
-
-  final String fontName;
-
-  const FontsEnum(this.fontName);
+class AppFonts {
+  static const String rubik = 'Rubik';
+  static const String archivo = 'Archivo';
+  static const String roboto = 'Roboto';
 }
 
 class AppSizes {
