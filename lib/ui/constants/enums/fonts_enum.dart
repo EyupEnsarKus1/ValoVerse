@@ -26,10 +26,12 @@ class AppSizes {
   static const headlineLarge = 32.0;
 }
 
-enum FontWeightEnum {
-  bold(FontWeight.bold),
-  normal(FontWeight.normal);
+class CWeights {
+  CWeights._();
 
-  final FontWeight fontWeight;
-  const FontWeightEnum(this.fontWeight);
+  static const FontWeight veryLow = FontWeight.w200;
+  static const FontWeight low = FontWeight.w300;
+  static const FontWeight normal = FontWeight.w400;
+  static const FontWeight bold = FontWeight.w500;
+  static const FontWeight veryBold = FontWeight.w600;
 }

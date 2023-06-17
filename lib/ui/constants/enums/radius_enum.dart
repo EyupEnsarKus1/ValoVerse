@@ -1,9 +1,9 @@
 enum RadiusEnum {
-  radiusLowest(8.0),
-  radiusLow(12.0),
-  radiusNormal(16.0),
-  radiusHigh(24.0),
-  radiusHighest(32.0);
+  lowest(8.0),
+  low(12.0),
+  normal(16.0),
+  high(24.0),
+  highest(32.0);
 
   final double radius;
   const RadiusEnum(this.radius);

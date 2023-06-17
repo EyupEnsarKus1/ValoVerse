@@ -1,9 +1,9 @@
 enum PaddingEnum {
-  paddingLowest(4.0),
-  paddingLow(8.0),
-  paddingNormal(12.0),
-  paddingHigh(16.0),
-  paddingHighest(32.0);
+  lowest(4.0),
+  low(8.0),
+  normal(12.0),
+  high(16.0),
+  highest(32.0);
 
   final double padding;
 
