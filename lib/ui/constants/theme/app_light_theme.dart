@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valorant_wiki_app/constants/colors/app_colors.dart';
+import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 
 class AppLightTheme {
   AppLightTheme._();

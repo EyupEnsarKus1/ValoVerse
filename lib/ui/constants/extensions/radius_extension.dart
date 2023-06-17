@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valorant_wiki_app/constants/enums/radius_enum.dart';
+
+import '../enums/radius_enum.dart';
 
 extension RadiusExtension on RadiusEnum {
   // BorderRadius Circular

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:valorant_wiki_app/constants/enums/fonts_enum.dart';
+
+import '../enums/fonts_enum.dart';
 
 extension TextStyleExtension on FontsEnum {
   // Custom Text Style With Color
-  TextStyle textStyleWithColor(
-          double fontSize, FontWeight fontWeight, Color color) =>
-      TextStyle(
+  TextStyle textStyleWithColor(double fontSize, FontWeight fontWeight, Color color) => TextStyle(
         fontFamily: fontName,
         fontSize: fontSize.sp,
         fontWeight: fontWeight,
