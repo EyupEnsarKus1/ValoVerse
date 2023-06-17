@@ -7,6 +7,5 @@ extension RadiusExtension on RadiusEnum {
   BorderRadius borderRadiusCircular() => BorderRadius.circular(radius.sp);
 
   // BorderRadius All
-  BorderRadius borderRadiusAll() =>
-      BorderRadius.all(Radius.circular(radius.sp));
+  BorderRadius borderRadiusAll() => BorderRadius.all(Radius.circular(radius.sp));
 }

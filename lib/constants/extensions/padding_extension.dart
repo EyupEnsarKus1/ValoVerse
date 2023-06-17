@@ -7,8 +7,7 @@ extension PaddingExtension on PaddingEnum {
   EdgeInsets paddingAll() => EdgeInsets.all(padding.sp);
 
   // EdgeInsets Symetric Horizontal
-  EdgeInsets paddingHorizontal() =>
-      EdgeInsets.symmetric(horizontal: padding.sp);
+  EdgeInsets paddingHorizontal() => EdgeInsets.symmetric(horizontal: padding.sp);
 
   // EdgeInsets Symetric Vertical
   EdgeInsets paddingVertical() => EdgeInsets.symmetric(vertical: padding.sp);
