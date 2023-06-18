@@ -18,7 +18,6 @@ dependencies:
   flutter_bloc: ^8.1.3
   bloc: ^8.1.2
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -33,6 +32,9 @@ flutter:
     - assets/images/
 
   fonts:
+    - family: Valorant
+      fonts:
+        - asset: assets/fonts/valorant/Valorant-Font.ttf
     - family: Archivo
       fonts:
         - asset: assets/fonts/archivo/Archivo-Italic-VariableFont_wdth,wght.ttf
@@ -53,4 +55,3 @@ flutter:
           weight: 700
         - asset: assets/fonts/roboto/Roboto-Black.ttf
           weight: 900
-
