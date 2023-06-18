@@ -5,9 +5,11 @@ class AppFonts {
   static const String rubik = 'Rubik';
   static const String archivo = 'Archivo';
   static const String roboto = 'Roboto';
+  static const String valorant = 'Valorant';
 }
 
 class AppSizes {
+  AppSizes.init();
   static double bodySmall = AppSizeConstants.bodySmall.sp;
   static double bodyMedium = AppSizeConstants.bodyMedium.sp;
   static double bodyLarge = AppSizeConstants.bodyLarge.sp;
@@ -38,8 +40,8 @@ class AppSizeConstants {
   static const double headlineLarge = 32.0;
 }
 
-class CWeights {
-  CWeights._();
+class AppWeights {
+  AppWeights._();
 
   static const FontWeight veryLow = FontWeight.w200;
   static const FontWeight low = FontWeight.w300;
