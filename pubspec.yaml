@@ -25,6 +25,18 @@ dev_dependencies:
 
   flutter_lints: ^2.0.1
 
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/red_typo_ic.png
+  color_dark: "#0F1923"
+  image_dark: assets/images/red_typo_ic.png
+
+  android_12:
+    image: assets/images/red_typo_ic.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/images/red_typo_ic.png
+    icon_background_color_dark: "#0F1923"
+
 flutter:
   uses-material-design: true
 

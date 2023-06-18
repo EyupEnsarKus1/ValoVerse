@@ -42,12 +42,12 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "İsmail Yüksek",
+              "Valorant",
               style: TextStyle(
                 color: AppColors.primaryColor,
                 fontSize: AppSizes.headlineLarge,
                 fontWeight: AppWeights.veryBold,
-                fontFamily: AppFonts.rubik,
+                fontFamily: AppFonts.valorant,
               ),
             )
           ],
