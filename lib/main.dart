@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/fonts_enum.dart';
-import 'package:valorant_wiki_app/ui/constants/theme/dark_theme.dart';
-import 'package:valorant_wiki_app/ui/constants/theme/light_theme.dart';
+
+import 'bloc/theme_cubit/theme_cubit.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,21 +13,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      builder: (context, child) {
-        final mediaQueryData = MediaQuery.of(context);
-        ScreenUtil.init(context);
-        AppSizes.init();
-        return MediaQuery(
-          data: mediaQueryData,
-          child: child!,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
+      ],
+      child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
+        return MaterialApp(
+          builder: (context, child) {
+            final mediaQueryData = MediaQuery.of(context);
+            ScreenUtil.init(context);
+            AppSizes.init();
+            return MediaQuery(
+              data: mediaQueryData,
+              child: child!,
+            );
+          },
+          title: 'ValorantWikiApp',
+          debugShowCheckedModeBanner: false,
+          theme: state.themeData,
+          home: HomePage(),
         );
-      },
-      title: 'ValorantWikiApp',
-      debugShowCheckedModeBanner: false,
-      theme: AppLightTheme.lightTheme,
-      darkTheme: AppDarkTheme.darkTheme,
-      home: HomePage(),
+      }),
     );
   }
 }
@@ -38,20 +45,28 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Valorant",
-              style: TextStyle(
-                color: AppColors.primaryColor,
-                fontSize: AppSizes.headlineLarge,
-                fontWeight: AppWeights.veryBold,
-                fontFamily: AppFonts.valorant,
+        child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
+          final themeCubit = context.read<ThemeCubit>();
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Valorant",
+                style: TextStyle(
+                  color: AppColors.primaryColor,
+                  fontSize: AppSizes.headlineLarge,
+                  fontWeight: AppWeights.veryBold,
+                  fontFamily: AppFonts.valorant,
+                ),
               ),
-            )
-          ],
-        ),
+              ElevatedButton(
+                  onPressed: () {
+                    themeCubit.setTheme();
+                  },
+                  child: Text("Temayı değiştir")),
+            ],
+          );
+        }),
       ),
     );
   }
