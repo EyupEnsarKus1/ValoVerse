@@ -1,33 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-enum FontsEnum {
-  rubik('Rubik'),
-  archivo('Archivo'),
-  roboto('Roboto');
-
-  final String fontName;
-
-  const FontsEnum(this.fontName);
+class AppFonts {
+  static const String rubik = 'Rubik';
+  static const String archivo = 'Archivo';
+  static const String roboto = 'Roboto';
+  static const String valorant = 'Valorant';
 }
 
 class AppSizes {
-  AppSizes._();
-  static const bodySmall = 12.0;
-  static const bodyMedium = 14.0;
-  static const bodyLarge = 16.0;
-  static const labelSmall = 11.0;
-  static const labelMedium = 12.0;
-  static const labelLarge = 14.0;
-  static const titleSmall = 14.0;
-  static const titleMedium = 16.0;
-  static const titleLarge = 22.0;
-  static const headlineSmall = 24.0;
-  static const headlineMedium = 28.0;
-  static const headlineLarge = 32.0;
+  AppSizes.init();
+  static double bodySmall = AppSizeConstants.bodySmall.sp;
+  static double bodyMedium = AppSizeConstants.bodyMedium.sp;
+  static double bodyLarge = AppSizeConstants.bodyLarge.sp;
+  static double labelSmall = AppSizeConstants.labelSmall.sp;
+  static double labelMedium = AppSizeConstants.labelMedium.sp;
+  static double labelLarge = AppSizeConstants.labelLarge.sp;
+  static double titleSmall = AppSizeConstants.titleSmall.sp;
+  static double titleMedium = AppSizeConstants.titleMedium.sp;
+  static double titleLarge = AppSizeConstants.titleLarge.sp;
+  static double headlineSmall = AppSizeConstants.headlineSmall.sp;
+  static double headlineMedium = AppSizeConstants.headlineMedium.sp;
+  static double headlineLarge = AppSizeConstants.headlineLarge.sp;
 }
 
-class CWeights {
-  CWeights._();
+class AppSizeConstants {
+  AppSizeConstants._();
+  static const double bodySmall = 12.0;
+  static const double bodyMedium = 14.0;
+  static const double bodyLarge = 16.0;
+  static const double labelSmall = 11.0;
+  static const double labelMedium = 12.0;
+  static const double labelLarge = 14.0;
+  static const double titleSmall = 14.0;
+  static const double titleMedium = 16.0;
+  static const double titleLarge = 22.0;
+  static const double headlineSmall = 24.0;
+  static const double headlineMedium = 28.0;
+  static const double headlineLarge = 32.0;
+}
+
+class AppWeights {
+  AppWeights._();
 
   static const FontWeight veryLow = FontWeight.w200;
   static const FontWeight low = FontWeight.w300;

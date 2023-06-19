@@ -7,6 +7,7 @@ class AppDarkTheme {
 
   static final ThemeData darkTheme = ThemeData(
     colorScheme: _colorScheme,
+    scaffoldBackgroundColor: AppColors.blue,
   );
 
   static ColorScheme get _colorScheme => const ColorScheme(
