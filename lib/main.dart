@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/fonts_enum.dart';
 
@@ -43,11 +44,23 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
-          final themeCubit = context.read<ThemeCubit>();
-          return Column(
+    return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
+      final themeCubit = context.read<ThemeCubit>();
+      return Scaffold(
+        appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {
+                themeCubit.setTheme();
+              },
+              icon: const Icon(
+                MaterialIcons.brightness_5,
+              ),
+            ),
+          ],
+        ),
+        body: Center(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
@@ -59,15 +72,10 @@ class HomePage extends StatelessWidget {
                   fontFamily: AppFonts.valorant,
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    themeCubit.setTheme();
-                  },
-                  child: Text("Temayı değiştir")),
             ],
-          );
-        }),
-      ),
-    );
+          ),
+        ),
+      );
+    });
   }
 }
