@@ -46,33 +46,37 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
       final themeCubit = context.read<ThemeCubit>();
-      return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {
-                themeCubit.setTheme();
-              },
-              icon: const Icon(
-                MaterialIcons.brightness_5,
-              ),
-            ),
-          ],
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Valorant",
-                style: TextStyle(
-                  color: AppColors.primaryColor,
-                  fontSize: AppSizes.headlineLarge,
-                  fontWeight: AppWeights.veryBold,
-                  fontFamily: AppFonts.valorant,
+      return SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () {
+                  themeCubit.setTheme();
+                },
+                icon: Icon(
+                  MaterialIcons.brightness_3,
+                  color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.primaryColor,
                 ),
               ),
             ],
+            centerTitle: true,
+            title: Text(
+              "Valorant",
+              style: TextStyle(
+                color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.primaryColor,
+                fontSize: AppSizes.headlineMedium,
+                fontWeight: AppWeights.veryBold,
+                fontFamily: AppFonts.valorant,
+              ),
+            ),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [],
+            ),
           ),
         ),
       );
