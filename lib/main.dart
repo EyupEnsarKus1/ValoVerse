@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/fonts_enum.dart';
 
@@ -43,31 +44,42 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
-          final themeCubit = context.read<ThemeCubit>();
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Valorant",
-                style: TextStyle(
-                  color: AppColors.primaryColor,
-                  fontSize: AppSizes.headlineLarge,
-                  fontWeight: AppWeights.veryBold,
-                  fontFamily: AppFonts.valorant,
+    return BlocBuilder<ThemeCubit, ThemeState>(builder: (context, state) {
+      final themeCubit = context.read<ThemeCubit>();
+      return SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () {
+                  themeCubit.setTheme();
+                },
+                icon: Icon(
+                  MaterialIcons.brightness_3,
+                  color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.primaryColor,
                 ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    themeCubit.setTheme();
-                  },
-                  child: Text("Temayı değiştir")),
             ],
-          );
-        }),
-      ),
-    );
+            centerTitle: true,
+            title: Text(
+              "Valorant",
+              style: TextStyle(
+                color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.primaryColor,
+                fontSize: AppSizes.headlineMedium,
+                fontWeight: AppWeights.veryBold,
+                fontFamily: AppFonts.valorant,
+              ),
+            ),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [],
+            ),
+          ),
+        ),
+      );
+    });
   }
 }
