@@ -15,6 +15,8 @@ dependencies:
   flutter_screenutil: ^5.7.0
   flutter_native_splash: ^2.2.19
   flutter_vector_icons: ^2.0.0
+  http: ^0.13.6
+
 
   # State Management
   flutter_bloc: ^8.1.3
