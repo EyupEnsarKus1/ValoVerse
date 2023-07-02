@@ -6,16 +6,16 @@ class ApiResponse<T> {
   ResponseType type;
   T? data;
 
-  ApiResponse({required this.type, required this.data});
+  ApiResponse({required this.type, this.data});
 }
 
 class ApiResponseHandler {
-  static ApiResponse<T> handleResponse<T>(
+  static ApiResponse<T?> handleResponse<T>(
     http.Response response, {
-    required T Function(http.Response response) onSuccess,
-    required ApiResponse<T> Function(http.Response response) onError,
+    required T Function(http.Response) onSuccess,
+    required ApiResponse<T?> Function(http.Response) onError,
   }) {
-    if (response.statusCode == 200) {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
       return ApiResponse(
         type: ResponseType.success,
         data: onSuccess(response),
@@ -32,53 +32,66 @@ class ApiService {
   ApiService({required this.baseUrl});
 
   // Get request
-  Future<http.Response> get(String endpoint, {Map<String, String>? headers}) async {
-    final response = await http.get(
-      Uri.parse('$baseUrl/$endpoint'),
-      headers: headers,
-    );
-
-    return response;
+  Future<ApiResponse<T?>> get<T>(
+    String endpoint,
+    T Function(dynamic data) fromJson, {
+    Map<String, String>? headers,
+  }) async {
+    final response = await http.get(Uri.parse('$baseUrl/$endpoint'), headers: headers);
+    return _processResponse(response, fromJson);
   }
 
   // Post request
-  Future<dynamic> post(String endpoint, {dynamic body, Map<String, String>? headers}) async {
+  Future<ApiResponse<T?>> post<T>(
+    String endpoint,
+    T Function(dynamic data) fromJson, {
+    dynamic body,
+    Map<String, String>? headers,
+  }) async {
     final response = await http.post(
       Uri.parse('$baseUrl/$endpoint'),
       body: jsonEncode(body),
       headers: headers,
     );
 
-    return _processResponse(response);
+    return _processResponse(response, fromJson);
   }
 
   // Put request
-  Future<dynamic> put(String endpoint, {dynamic body, Map<String, String>? headers}) async {
+  Future<ApiResponse<T?>> put<T>(String endpoint, T Function(dynamic data) fromJson, {dynamic body, Map<String, String>? headers}) async {
     final response = await http.put(
       Uri.parse('$baseUrl/$endpoint'),
       body: jsonEncode(body),
       headers: headers,
     );
 
-    return _processResponse(response);
+    return _processResponse(response, fromJson);
   }
 
   // Delete request
-  Future<dynamic> delete(String endpoint, {Map<String, String>? headers}) async {
+  Future<ApiResponse<T?>> delete<T>(String endpoint, T Function(dynamic data) fromJson, {Map<String, String>? headers}) async {
     final response = await http.delete(
       Uri.parse('$baseUrl/$endpoint'),
       headers: headers,
     );
 
-    return _processResponse(response);
+    return _processResponse(response, fromJson);
   }
 
-  dynamic _processResponse(http.Response response) {
-    if (response.statusCode == 200) {
-      return jsonDecode(response.body);
-    } else {
-      throw Exception('Failed to load');
-    }
+  ApiResponse<T?> _processResponse<T>(http.Response response, T Function(dynamic data) fromJson) {
+    return ApiResponseHandler.handleResponse<T?>(
+      response,
+      onSuccess: (response) {
+        dynamic data = jsonDecode(utf8.decode(response.bodyBytes));
+        return fromJson(data);
+      },
+      onError: (response) {
+        return ApiResponse<T>(
+          type: ResponseType.error,
+          data: null,
+        );
+      },
+    );
   }
 }
 
