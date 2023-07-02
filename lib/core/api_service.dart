@@ -6,7 +6,7 @@ class ApiResponse<T> {
   ResponseType type;
   T? data;
 
-  ApiResponse({required this.type, this.data});
+  ApiResponse({required this.type, required this.data});
 }
 
 class ApiResponseHandler {
@@ -32,13 +32,13 @@ class ApiService {
   ApiService({required this.baseUrl});
 
   // Get request
-  Future<dynamic> get(String endpoint, {Map<String, String>? headers}) async {
+  Future<http.Response> get(String endpoint, {Map<String, String>? headers}) async {
     final response = await http.get(
       Uri.parse('$baseUrl/$endpoint'),
       headers: headers,
     );
 
-    return _processResponse(response);
+    return response;
   }
 
   // Post request
