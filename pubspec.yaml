@@ -16,6 +16,7 @@ dependencies:
   flutter_native_splash: ^2.2.19
   flutter_vector_icons: ^2.0.0
   http: ^0.13.6
+  shimmer: ^3.0.0
 
 
   # State Management

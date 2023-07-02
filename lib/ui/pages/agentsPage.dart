@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
 import '../../bloc/agents_bloc/agents_event.dart';
 import '../../repositories/agents_repository/agents_repo.dart';
@@ -23,8 +24,17 @@ class AgentsPage extends StatelessWidget {
         body: BlocBuilder<AgentsBloc, AgentsState>(
           builder: (context, state) {
             if (state is AgentsLoadingState) {
-              return Center(
-                child: CircularProgressIndicator(),
+              return ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return ShimmerBox(
+                    width: 100,
+                    height: 100,
+                    borderRadius: 8.0,
+                  );
+                },
               );
             } else if (state is AgentsLoadedState) {
               return ListView.builder(
