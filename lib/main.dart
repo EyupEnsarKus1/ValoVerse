@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/fonts_enum.dart';
+import 'package:valorant_wiki_app/ui/pages/agentsPage.dart';
 
 import 'bloc/theme_cubit/theme_cubit.dart';
 
@@ -75,7 +76,13 @@ class HomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [],
+              children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => AgentsPage()));
+                    },
+                    child: Text(""))
+              ],
             ),
           ),
         ),
