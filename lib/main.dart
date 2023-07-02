@@ -1,14 +1,26 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/fonts_enum.dart';
+import 'package:valorant_wiki_app/ui/constants/localization/localization_constants.dart';
 import 'package:valorant_wiki_app/ui/pages/agentsPage.dart';
 
 import 'bloc/theme_cubit/theme_cubit.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      path: LocalizationConstants.path,
+      supportedLocales: LocalizationConstants.supportedLocales,
+      child: const MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -33,6 +45,9 @@ class MyApp extends StatelessWidget {
           title: 'ValorantWikiApp',
           debugShowCheckedModeBanner: false,
           theme: state.themeData,
+          locale: context.locale,
+          supportedLocales: context.supportedLocales,
+          localizationsDelegates: context.localizationDelegates,
           home: HomePage(),
         );
       }),
@@ -57,7 +72,9 @@ class HomePage extends StatelessWidget {
                 },
                 icon: Icon(
                   MaterialIcons.brightness_3,
-                  color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.primaryColor,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? AppColors.blue
+                      : AppColors.primaryColor,
                 ),
               ),
             ],
@@ -65,7 +82,9 @@ class HomePage extends StatelessWidget {
             title: Text(
               "Valorant",
               style: TextStyle(
-                color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.primaryColor,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? AppColors.blue
+                    : AppColors.primaryColor,
                 fontSize: AppSizes.headlineMedium,
                 fontWeight: AppWeights.veryBold,
                 fontFamily: AppFonts.valorant,
@@ -78,10 +97,12 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => AgentsPage()));
-                    },
-                    child: Text(""))
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => AgentsPage()));
+                  },
+                  child: Text(""),
+                ),
               ],
             ),
           ),

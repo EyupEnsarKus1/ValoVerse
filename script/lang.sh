@@ -1,0 +1,1 @@
+flutter pub run --no-sound-null-safety easy_localization:generate -O lib/core/ -f keys -o locale_keys.g.dart -S assets/lang

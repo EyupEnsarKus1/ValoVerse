@@ -1,0 +1,84 @@
+{
+  "appTitle": "Valorant Wiki",
+  "settings": "Ayarlar",
+  "language": "Dil",
+  "back": "Geri",
+  "theme": "Tema",
+  "lightTheme": "Aydınlık Tema",
+  "darkTheme": "Koyu Tema",
+  "tr": "Türkçe",
+  "en": "English",
+
+  "home": {
+    "agents": "Ajanlar",
+    "maps": "Haritalar",
+    "gunBuddies": "Silah Uğurları",
+    "weapons": "Silahlar",
+    "bundles": "Silah Setleri",
+    "tiers": "Rekabetçi Aşamaları",
+    "gears": "Ekipmanlar",
+    "playerCards": "Oyuncu Kartları",
+    "sprays": "Spreyler"
+  },
+
+  "agents": {
+    "agentId": "Ajan ID",
+    "agentName": "Ajan Adı",
+    "role": "Ajanın Rolü",
+    "agentCountry": "Ajanın Ülkesi",
+    "description": "Açıklama",
+    "abilities": "Yetenekler",
+    "ability1": "Yetenek 1",
+    "ability2": "Yetenek 2",
+    "ability3": "Yetenek 3",
+    "ultimate": "Ulti"
+  },
+
+  "maps": {
+    "mapName": "Harita Adı",
+    "mapCoordinates": "Harita Koordinatları"
+  },
+
+  "gunBuddies": {
+    "buddyName": "Uğur Adı"
+  },
+
+  "weapons": {
+    "weaponName": "Silah Adı",
+    "weaponCategory": "Kategori",
+    "weaponStats": "Silah İstatistikleri",
+    "fireRate": "Atış Hızı",
+    "magazineSize": "Şarjör Kapasitesi",
+    "equipTime": "Kuşanma Hızı",
+    "reloadTime": "Şarjör Değiştirme Hızı",
+    "rangeStartsMeter": "Başlangıç Menzili",
+    "rangeEndsMeter": "Bitiş Menzili",
+    "headDamage": "Kafa Hasarı",
+    "bodyDamage": "Vücut Hasarı",
+    "legDamage": "Bacak Hasarı",
+    "weaponSkins": "Silah Kaplamaları",
+    "weaponCost": "Silah Ücreti"
+  },
+
+  "gears": {
+    "gearName": "Ekipman Adı",
+    "gearCost": "Ekipman Ücreti",
+    "gearCategory": "Ekipman Kategorisi"
+  },
+
+  "bundles": {
+    "bundleName": "Kaplama Seti Adı"
+  },
+
+  "tiers": {
+    "tierName": "Rekabetçi Aşama Adı"
+  },
+
+  "sprays": {
+    "sprayName": "Sprey Adı"
+  },
+
+  "playerCards": {
+    "playerCardName": "Oyuncu Kart Adı"
+  }
+}
