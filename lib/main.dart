@@ -2,13 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/theme_cubit/theme_cubit.dart';
-import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
-import 'package:valorant_wiki_app/ui/constants/enums/fonts_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/localization/localization_constants.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/pages/agentsPage.dart';
 
 import 'core/locale_keys.g.dart';
@@ -82,81 +80,31 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          actions: [
-            Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    final langCubit = BlocProvider.of<LangCubit>(context);
-                    langCubit.setTurkish();
-                  },
-                  icon: Text('tr'),
-                ),
-                IconButton(
-                  onPressed: () {
-                    final langCubit = BlocProvider.of<LangCubit>(context);
-                    langCubit.setEnglish();
-                  },
-                  icon: Text('en'),
-                ),
-              ],
-            ),
-            IconButton(
+    return Scaffold(
+      appBar: CustomAppBar(
+        title: LocaleKeys.appTitle.translate,
+        leading: IconButton(onPressed: () {}, icon: Icon(Icons.map)),
+        actionWidget: Icon(Icons.apps_outage),
+        showActionIcon: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(LocaleKeys.agents_abilities.translate),
+            ElevatedButton(
               onPressed: () {
-                final themeCubit = BlocProvider.of<ThemeCubit>(context);
-                themeCubit.setTheme();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AgentsPage(),
+                  ),
+                );
               },
-              icon: Icon(
-                MaterialIcons.brightness_3,
-                color: BlocProvider.of<ThemeCubit>(context)
-                            .state
-                            .themeData
-                            .brightness ==
-                        Brightness.light
-                    ? AppColors.blue
-                    : AppColors.primaryColor,
-              ),
+              child: Text(""),
             ),
           ],
-          centerTitle: true,
-          title: Text(
-            "Valorant",
-            style: TextStyle(
-              color: BlocProvider.of<ThemeCubit>(context)
-                          .state
-                          .themeData
-                          .brightness ==
-                      Brightness.light
-                  ? AppColors.blue
-                  : AppColors.primaryColor,
-              fontSize: AppSizes.headlineMedium,
-              fontWeight: AppWeights.veryBold,
-              fontFamily: AppFonts.valorant,
-            ),
-          ),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(LocaleKeys.agents_abilities.translate),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => AgentsPage(),
-                    ),
-                  );
-                },
-                child: Text(""),
-              ),
-            ],
-          ),
         ),
       ),
     );
