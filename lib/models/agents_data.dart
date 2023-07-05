@@ -11,8 +11,8 @@ class AgentsData {
   String? killfeedPortrait;
   String? background;
   String? assetPath;
-  _Role? role;
-  List<_Abilities>? abilities;
+  Role? role;
+  List<Abilities>? abilities;
 
   AgentsData({
     this.uuid,
@@ -45,8 +45,8 @@ class AgentsData {
       killfeedPortrait: json["killfeedPortrait"],
       background: json["background"],
       assetPath: json["assetPath"],
-      role: json["role"] != null ? _Role.fromJson(json["role"]) : null,
-      abilities: json["abilities"] == null ? [] : (json["abilities"] as List).map((e) => _Abilities.fromJson(e)).toList(),
+      role: json["role"] != null ? Role.fromJson(json["role"]) : null,
+      abilities: json["abilities"] == null ? [] : (json["abilities"] as List).map((e) => Abilities.fromJson(e)).toList(),
     );
   }
   Map<String, dynamic> toJSON() => {
@@ -67,17 +67,17 @@ class AgentsData {
       };
 }
 
-class _Role {
+class Role {
   String? uuid;
   String? displayName;
   String? description;
   String? displayIcon;
   String? assetPath;
 
-  _Role({this.uuid, this.displayName, this.description, this.displayIcon, this.assetPath});
+  Role({this.uuid, this.displayName, this.description, this.displayIcon, this.assetPath});
 
-  factory _Role.fromJson(Map<String, dynamic> json) {
-    return _Role(
+  factory Role.fromJson(Map<String, dynamic> json) {
+    return Role(
       uuid: json["uuid"],
       displayName: json["displayName"],
       description: json["description"],
@@ -94,16 +94,16 @@ class _Role {
       };
 }
 
-class _Abilities {
+class Abilities {
   String? slot;
   String? displayName;
   String? description;
   String? displayIcon;
 
-  _Abilities({this.slot, this.displayName, this.description, this.displayIcon});
+  Abilities({this.slot, this.displayName, this.description, this.displayIcon});
 
-  factory _Abilities.fromJson(Map<String, dynamic> json) {
-    return _Abilities(
+  factory Abilities.fromJson(Map<String, dynamic> json) {
+    return Abilities(
       slot: json['slot'],
       displayName: json['displayName'],
       description: json['description'],
