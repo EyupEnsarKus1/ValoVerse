@@ -83,9 +83,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: LocaleKeys.appTitle.translate,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.map)),
-        actionWidget: Icon(Icons.apps_outage),
-        showActionIcon: true,
       ),
       body: Center(
         child: Column(
