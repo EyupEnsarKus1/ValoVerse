@@ -16,7 +16,10 @@ dependencies:
   flutter_native_splash: ^2.2.19
   flutter_vector_icons: ^2.0.0
   http: ^0.13.6
+  shimmer: ^3.0.0
 
+  # Localization
+  easy_localization: ^3.0.2
 
   # State Management
   flutter_bloc: ^8.1.3
@@ -46,6 +49,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/lang/
 
   fonts:
     - family: Valorant

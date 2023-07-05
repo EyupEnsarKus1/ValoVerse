@@ -1,0 +1,84 @@
+{
+  "appTitle": "Valorant Wiki",
+  "settings": "Settings",
+  "language": "Language",
+  "back": "Back",
+  "theme": "Theme",
+  "lightTheme": "Light Theme",
+  "darkTheme": "Dark Theme",
+  "tr": "Turkish",
+  "en": "English",
+
+  "home": {
+    "agents": "Agents",
+    "maps": "Maps",
+    "gunBuddies": "Gun Buddies",
+    "weapons": "Weapons",
+    "bundles": "Bundles",
+    "tiers": "Competitive Tiers",
+    "gears": "Gears",
+    "playerCards": "Player Cards",
+    "sprays": "Sprays"
+  },
+
+  "agents": {
+    "agentId": "Agent ID",
+    "agentName": "Agent Name",
+    "role": "Agent Role",
+    "agentCountry": "Agent Country",
+    "description": "Description",
+    "abilities": "Abilities",
+    "ability1": "Ability 1",
+    "ability2": "Ability 2",
+    "ability3": "Ability 3",
+    "ultimate": "Ult"
+  },
+
+  "maps": {
+    "mapName": "Map Name",
+    "mapCoordinates": "Map Coordinates"
+  },
+
+  "gunBuddies": {
+    "buddyName": "Gun Buddy Name"
+  },
+
+  "weapons": {
+    "weaponName": "Weapon Name",
+    "weaponCategory": "Category",
+    "weaponStats": "Weapon Stats",
+    "fireRate": "Fire Rate",
+    "magazineSize": "Magazine Size",
+    "equipTime": "Equip Time",
+    "reloadTime": "Reload Time",
+    "rangeStartsMeter": "Range Starts",
+    "rangeEndsMeter": "Range Ends",
+    "headDamage": "Head Damage",
+    "bodyDamage": "Body Damage",
+    "legDamage": "Leg Damage",
+    "weaponSkins": "Weapon Skins",
+    "weaponCost": "Weapon Cost"
+  },
+
+  "gears": {
+    "gearName": "Gear Name",
+    "gearCost": "Gear Cost",
+    "gearCategory": "Gear Category"
+  },
+
+  "bundles": {
+    "bundleName": "Bundle Name"
+  },
+
+  "tiers": {
+    "tierName": "Tier Name"
+  },
+
+  "sprays": {
+    "sprayName": "Spray Name"
+  },
+
+  "playerCards": {
+    "playerCardName": "Player Card Name"
+  }
+}
