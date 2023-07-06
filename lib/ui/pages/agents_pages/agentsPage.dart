@@ -5,8 +5,8 @@ import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
-import '../../bloc/agents_bloc/agents_event.dart';
-import '../../repositories/agents_repository/agents_repo.dart';
+import '../../../bloc/agents_bloc/agents_event.dart';
+import '../../../repositories/agents_repository/agents_repo.dart';
 
 AgentsRepo agentsRepo = AgentsRepo();
 

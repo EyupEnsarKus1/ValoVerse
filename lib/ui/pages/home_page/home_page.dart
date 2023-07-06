@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 
-import '../custom_widgets/custom_card.dart';
+import 'home_page_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

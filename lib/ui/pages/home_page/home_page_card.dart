@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/radius_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
 
-import '../constants/colors/app_colors.dart';
-import '../constants/styles/fonts.dart';
-import '../constants/styles/styles.dart';
+import '../../constants/colors/app_colors.dart';
+import '../../constants/styles/fonts.dart';
+import '../../constants/styles/styles.dart';
 
 class HomePageCard extends StatelessWidget {
   final String title;
