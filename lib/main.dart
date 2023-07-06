@@ -6,6 +6,7 @@ import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/theme_cubit/theme_cubit.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/localization/localization_constants.dart';
+import 'package:valorant_wiki_app/ui/constants/styles/styles.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/pages/agentsPage.dart';
 
@@ -89,7 +90,10 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(LocaleKeys.agents_abilities.translate),
+            Text(
+              LocaleKeys.agents_abilities.translate,
+              style: titleNormalTextStyle(),
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
