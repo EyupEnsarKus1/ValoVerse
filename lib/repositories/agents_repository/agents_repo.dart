@@ -4,7 +4,8 @@ import 'package:valorant_wiki_app/repositories/agents_repository/generic_agents_
 import '../../core/api_service.dart';
 
 class AgentsRepo implements GenericAgentsRepository {
-  final ApiService apiService = ApiService(baseUrl: "https://valorant-api.com/v1");
+  final ApiService apiService =
+      ApiService(baseUrl: "https://valorant-api.com/v1");
 
   @override
   Future<AgentsData> getAgentsById(String id) async {
@@ -22,9 +23,12 @@ class AgentsRepo implements GenericAgentsRepository {
 
   @override
   Future<List<AgentsData>> getAllAgents() async {
-    final ApiResponse<List<AgentsData>?> response = await apiService.get<List<AgentsData>>(
+    final ApiResponse<List<AgentsData>?> response =
+        await apiService.get<List<AgentsData>>(
       'agents',
-      (data) => (data['data'] as List).map((agent) => AgentsData.fromJson(agent as Map<String, dynamic>)).toList(),
+      (data) => (data['data'] as List)
+          .map((agent) => AgentsData.fromJson(agent as Map<String, dynamic>))
+          .toList(),
     );
 
     if (response.type == ResponseType.success && response.data != null) {

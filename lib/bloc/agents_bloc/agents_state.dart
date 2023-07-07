@@ -13,7 +13,5 @@ class AgentsLoadedState implements AgentsState {
 class AgentsErrorState implements AgentsState {
   final String errorMessage;
 
-  AgentsErrorState({
-    required this.errorMessage,
-  });
+  AgentsErrorState({required this.errorMessage});
 }

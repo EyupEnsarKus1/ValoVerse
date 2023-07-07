@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/core/locale_keys.g.dart';
+import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 
 import 'home_page_card.dart';
@@ -9,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: "Ana Sayfa"),
+      appBar: CustomAppBar(title: LocaleKeys.homePage.translate),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
@@ -21,9 +23,7 @@ class HomePage extends StatelessWidget {
                 itemCount: DataTypes.values.length,
                 itemBuilder: (context, index) {
                   final DataTypes data = DataTypes.values[index];
-                  return HomePageCard(
-                    title: data._title,
-                  );
+                  return HomePageCard(title: data._title);
                 }),
           ],
         ),
@@ -46,19 +46,19 @@ extension DataTypesExtension on DataTypes {
   String get _title {
     switch (this) {
       case DataTypes.agents:
-        return "Ajanlar";
+        return LocaleKeys.home_agents.translate;
       case DataTypes.weapons:
-        return "Silahlar";
+        return LocaleKeys.home_weapons.translate;
       case DataTypes.ranks:
-        return "Rütbeler";
+        return LocaleKeys.home_tiers.translate;
       case DataTypes.sprays:
-        return "Spreyler";
+        return LocaleKeys.home_sprays.translate;
       case DataTypes.playerCards:
-        return "Oyuncu Kartları";
+        return LocaleKeys.home_playerCards.translate;
       case DataTypes.maps:
-        return "Haritalar";
+        return LocaleKeys.home_maps.translate;
       case DataTypes.gunBuddies:
-        return "Silah Arkadaşları";
+        return LocaleKeys.home_gunBuddies.translate;
     }
   }
 }

@@ -9,13 +9,15 @@ import '../../constants/styles/styles.dart';
 class HomePageCard extends StatelessWidget {
   final String title;
   final double? height;
-  const HomePageCard({Key? key, required this.title, this.height}) : super(key: key);
+  const HomePageCard({Key? key, required this.title, this.height})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 138.5,
-      margin: EdgeInsets.symmetric(horizontal: AppSizes.titleMedium, vertical: AppSizes.bodySmall),
+      margin: EdgeInsets.symmetric(
+          horizontal: AppSizes.titleMedium, vertical: AppSizes.bodySmall),
       padding: EdgeInsets.symmetric(
         vertical: AppSizes.headlineLarge,
         horizontal: AppSizes.headlineSmall,

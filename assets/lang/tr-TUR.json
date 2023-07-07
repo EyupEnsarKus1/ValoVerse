@@ -1,5 +1,6 @@
 {
   "appTitle": "Valorant Wiki",
+  "homePage": "Ana Sayfa",
   "settings": "Ayarlar",
   "language": "Dil",
   "back": "Geri",
@@ -12,10 +13,10 @@
   "home": {
     "agents": "Ajanlar",
     "maps": "Haritalar",
-    "gunBuddies": "Silah Uğurları",
+    "gunBuddies": "Silah Ugurları",
     "weapons": "Silahlar",
     "bundles": "Silah Setleri",
-    "tiers": "Rekabetçi Aşamaları",
+    "tiers": "Dereceler",
     "gears": "Ekipmanlar",
     "playerCards": "Oyuncu Kartları",
     "sprays": "Spreyler"

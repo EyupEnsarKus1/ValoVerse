@@ -1,64 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:valorant_wiki_app/bloc/agents_bloc/agents_bloc.dart';
-import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
+import 'package:valorant_wiki_app/bloc/maps_bloc/maps_bloc.dart';
+import 'package:valorant_wiki_app/repositories/maps_repository/maps_repo.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
-import '../../../bloc/agents_bloc/agents_event.dart';
-import '../../../repositories/agents_repository/agents_repo.dart';
+MapsRepo mapsRepo = MapsRepo();
 
-AgentsRepo agentsRepo = AgentsRepo();
-
-class AgentsPage extends StatelessWidget {
-  const AgentsPage({Key? key}) : super(key: key);
+class MapsPage extends StatelessWidget {
+  const MapsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<AgentsBloc>(
+    return BlocProvider<MapsBloc>(
       create: (_) {
-        final bloc = AgentsBloc(agentsRepo);
-        bloc.add(GetAgentsEvent());
+        final bloc = MapsBloc(mapsRepo);
+        bloc.add(GetMapsEvent());
         return bloc;
       },
       child: Scaffold(
-        appBar: CustomAppBar(
+        appBar: const CustomAppBar(
           title: "Valorant",
           centerTitle: true,
           showBackButton: true,
         ),
-        body: BlocBuilder<AgentsBloc, AgentsState>(
+        body: BlocBuilder<MapsBloc, MapsState>(
           builder: (context, state) {
-            if (state is AgentsLoadingState) {
+            if (state is MapsLoadingState) {
               return ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return ShimmerBox(
+                  return const ShimmerBox(
                     width: 100,
                     height: 100,
                     borderRadius: 8.0,
                   );
                 },
               );
-            } else if (state is AgentsLoadedState) {
+            } else if (state is MapsLoadedState) {
               return ListView.builder(
-                itemCount: state.agentsData.length,
+                itemCount: state.mapList.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(
-                      state.agentsData[index].displayName!,
-                    ),
+                    title: Image.network(state.mapList[index].listViewIcon!),
                   );
                 },
               );
-            } else if (state is AgentsErrorState) {
+            } else if (state is MapsErrorState) {
               return Center(
                 child: Text(state.errorMessage),
               );
             } else {
-              return Center(
+              return const Center(
                 child: Text("Unexpected state"),
               );
             }
