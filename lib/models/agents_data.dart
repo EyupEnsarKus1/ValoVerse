@@ -2,7 +2,6 @@ class AgentsData {
   String? uuid;
   String? displayName;
   String? description;
-  String? developerName;
   String? displayIcon;
   String? displayIconSmall;
   String? bustPortrait;
@@ -10,7 +9,6 @@ class AgentsData {
   String? fullPortraitV2;
   String? killfeedPortrait;
   String? background;
-  String? assetPath;
   Role? role;
   List<Abilities>? abilities;
 
@@ -18,7 +16,6 @@ class AgentsData {
     this.uuid,
     this.displayName,
     this.description,
-    this.developerName,
     this.displayIcon,
     this.displayIconSmall,
     this.bustPortrait,
@@ -26,7 +23,6 @@ class AgentsData {
     this.fullPortraitV2,
     this.killfeedPortrait,
     this.background,
-    this.assetPath,
     this.role,
     this.abilities,
   });
@@ -36,7 +32,6 @@ class AgentsData {
       uuid: json["uuid"],
       displayName: json["displayName"],
       description: json["description"],
-      developerName: json["developerName"],
       displayIcon: json["displayIcon"],
       displayIconSmall: json["displayIconSmall"],
       bustPortrait: json["bustPortrait"],
@@ -44,27 +39,14 @@ class AgentsData {
       fullPortraitV2: json["fullPortraitV2"],
       killfeedPortrait: json["killfeedPortrait"],
       background: json["background"],
-      assetPath: json["assetPath"],
       role: json["role"] != null ? Role.fromJson(json["role"]) : null,
-      abilities: json["abilities"] == null ? [] : (json["abilities"] as List).map((e) => Abilities.fromJson(e)).toList(),
+      abilities: json["abilities"] == null
+          ? []
+          : (json["abilities"] as List)
+              .map((e) => Abilities.fromJson(e))
+              .toList(),
     );
   }
-  Map<String, dynamic> toJSON() => {
-        "uuid": uuid,
-        "displayName": displayName,
-        "description": description,
-        "developerName": developerName,
-        "displayIcon": displayIcon,
-        "displayIconSmall": displayIconSmall,
-        "bustPortrait": bustPortrait,
-        "fullPortrait": fullPortrait,
-        "fullPortraitV2": fullPortraitV2,
-        "killfeedPortrait": killfeedPortrait,
-        "background": background,
-        "assetPath": assetPath,
-        "role": role,
-        "abilities": abilities?.map((e) => e.toJSON()).toList(),
-      };
 }
 
 class Role {
@@ -72,9 +54,8 @@ class Role {
   String? displayName;
   String? description;
   String? displayIcon;
-  String? assetPath;
 
-  Role({this.uuid, this.displayName, this.description, this.displayIcon, this.assetPath});
+  Role({this.uuid, this.displayName, this.description, this.displayIcon});
 
   factory Role.fromJson(Map<String, dynamic> json) {
     return Role(
@@ -82,16 +63,8 @@ class Role {
       displayName: json["displayName"],
       description: json["description"],
       displayIcon: json["displayIcon"],
-      assetPath: json["assetPath"],
     );
   }
-  Map<String, dynamic> toJSON() => {
-        "uuid": uuid,
-        "displayName": displayName,
-        "description": description,
-        "displayIcon": displayIcon,
-        "assetPath": assetPath,
-      };
 }
 
 class Abilities {
@@ -110,11 +83,4 @@ class Abilities {
       displayIcon: json['displayIcon'],
     );
   }
-
-  Map<String, dynamic> toJSON() => {
-        "slot": slot,
-        "displayName": displayName,
-        "description": description,
-        "displayIcon": displayIcon,
-      };
 }
