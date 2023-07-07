@@ -2,14 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
-import 'package:valorant_wiki_app/core/locale_keys.g.dart';
-import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
-
-import '../../bloc/agents_bloc/agents_event.dart';
-import '../../repositories/agents_repository/agents_repo.dart';
+import '../../../bloc/agents_bloc/agents_event.dart';
+import '../../../repositories/agents_repository/agents_repo.dart';
 
 AgentsRepo agentsRepo = AgentsRepo();
 
@@ -26,7 +23,8 @@ class AgentsPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: CustomAppBar(
-          title: LocaleKeys.home_agents.translate,
+          title: "Valorant",
+          centerTitle: true,
           showBackButton: true,
         ),
         body: BlocBuilder<AgentsBloc, AgentsState>(

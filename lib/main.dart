@@ -4,12 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/theme_cubit/theme_cubit.dart';
-import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/localization/localization_constants.dart';
-import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
-import 'package:valorant_wiki_app/ui/pages/agentsPage.dart';
-
-import 'core/locale_keys.g.dart';
+import 'package:valorant_wiki_app/ui/pages/home_page/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,15 +56,15 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+/*
+class SampleHomePage extends StatefulWidget {
+  const SampleHomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _SampleHomePageState createState() => _SampleHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SampleHomePageState extends State<SampleHomePage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -83,16 +79,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: CustomAppBar(
         title: LocaleKeys.appTitle.translate,
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.map)),
-        actionWidget: Icon(Icons.apps_outage),
-        showActionIcon: true,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(LocaleKeys.agents_abilities.translate),
+            Text(
+              LocaleKeys.agents_abilities.translate,
+              style: titleNormalTextStyle(),
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -109,4 +105,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
+}*/
