@@ -6,7 +6,7 @@ import 'package:valorant_wiki_app/ui/pages/ranks_pages/ranks_page.dart';
 import 'package:valorant_wiki_app/ui/pages/spray_pages/sprays_page.dart';
 import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapons_page.dart';
 
-import '../agents_pages/agentsPage.dart';
+import '../agents_page/agentsPage.dart';
 
 enum DataTypes {
   agents,
