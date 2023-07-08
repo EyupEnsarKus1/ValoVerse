@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
+import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
@@ -22,8 +23,8 @@ class AgentsPage extends StatelessWidget {
         return bloc;
       },
       child: Scaffold(
-        appBar: CustomAppBar(
-          title: "Valorant",
+        appBar: const CustomAppBar(
+          title: LocaleKeys.home_agents,
           centerTitle: true,
           showBackButton: true,
         ),
@@ -35,7 +36,7 @@ class AgentsPage extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return ShimmerBox(
+                  return const ShimmerBox(
                     width: 100,
                     height: 100,
                     borderRadius: 8.0,
@@ -58,7 +59,7 @@ class AgentsPage extends StatelessWidget {
                 child: Text(state.errorMessage),
               );
             } else {
-              return Center(
+              return const Center(
                 child: Text("Unexpected state"),
               );
             }

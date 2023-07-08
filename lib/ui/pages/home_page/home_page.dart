@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/repositories/generic_repo.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 
 import 'home_page_card.dart';

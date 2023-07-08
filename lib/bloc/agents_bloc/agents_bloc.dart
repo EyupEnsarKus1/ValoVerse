@@ -14,7 +14,7 @@ class AgentsBloc extends Bloc<AgentsEvent, AgentsState> {
   _onLoadAgentsByAll(GetAgentsEvent event, Emitter<AgentsState> emitter) async {
     try {
       emitter(AgentsLoadingState());
-      final List<AgentsData> agentsData = await agentsRepo.getAllAgents();
+      final List<AgentsData> agentsData = await agentsRepo.getAllData();
       if (agentsData != null) {
         emitter(AgentsLoadedState(agentsData: agentsData));
       } else {
@@ -25,10 +25,11 @@ class AgentsBloc extends Bloc<AgentsEvent, AgentsState> {
     }
   }
 
-  _onLoadAgentById(GetAgentByIdEvent event, Emitter<AgentsState> emitter) async {
+  _onLoadAgentById(
+      GetAgentByIdEvent event, Emitter<AgentsState> emitter) async {
     try {
       emitter(AgentsLoadingState());
-      final AgentsData agentData = await agentsRepo.getAgentsById(event.id);
+      final AgentsData agentData = await agentsRepo.getDataById(event.id);
       if (agentData != null) {
         emitter(AgentsLoadedState(agentsData: [agentData]));
       } else {
