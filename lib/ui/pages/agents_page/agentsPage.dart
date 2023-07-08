@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
+import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
@@ -23,8 +24,8 @@ class AgentsPage extends StatelessWidget {
         return bloc;
       },
       child: Scaffold(
-        appBar: const CustomAppBar(
-          title: LocaleKeys.home_agents,
+        appBar: CustomAppBar(
+          title: LocaleKeys.home_agents.translate,
           centerTitle: true,
           showBackButton: true,
         ),
