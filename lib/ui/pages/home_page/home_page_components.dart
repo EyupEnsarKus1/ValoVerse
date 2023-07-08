@@ -34,7 +34,7 @@ extension DataTypesExtension on DataTypes {
       case DataTypes.maps:
         return "Haritalar";
       case DataTypes.gunBuddies:
-        return "Silah Arkadaşları";
+        return "Ugurlar";
     }
   }
 

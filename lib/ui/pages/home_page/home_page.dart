@@ -10,7 +10,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: "Ana Sayfa"),
+      appBar: const CustomAppBar(title: "VALORANT"),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
