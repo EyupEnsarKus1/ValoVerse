@@ -4,37 +4,65 @@ import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart'
 
 import '../../constants/colors/app_colors.dart';
 import '../../constants/styles/fonts.dart';
-import '../../constants/styles/styles.dart';
 
 class HomePageCard extends StatelessWidget {
   final String title;
   final double? height;
-  const HomePageCard({Key? key, required this.title, this.height})
-      : super(key: key);
+  final VoidCallback onTap;
+  final String imageAsset;
+  const HomePageCard({Key? key, required this.title, this.height, required this.onTap, required this.imageAsset}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 138.5,
       margin: EdgeInsets.symmetric(
-          horizontal: AppSizes.titleMedium, vertical: AppSizes.bodySmall),
-      padding: EdgeInsets.symmetric(
-        vertical: AppSizes.headlineLarge,
-        horizontal: AppSizes.headlineSmall,
+        horizontal: AppSizes.size20,
+        vertical: AppSizes.size8,
       ),
-      decoration: BoxDecoration(
+      child: InkWell(
+        onTap: onTap,
         borderRadius: RadiusEnum.normal.borderRadiusAll(),
-        border: Border.all(
-          color: AppColors.red,
-        ),
-      ),
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: headlineSmallTextStyle(),
+        child: Container(
+          height: 138.0,
+          decoration: BoxDecoration(
+            borderRadius: RadiusEnum.normal.borderRadiusAll(),
+            border: Border.all(
+              color: AppColors.red,
+            ),
           ),
-        ],
+          child: ClipRRect(
+            borderRadius: RadiusEnum.normal.borderRadiusAll(),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: AppSizes.size20,
+                    ),
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontFamily: AppFonts.valorant,
+                        fontSize: AppSizes.size20,
+                        fontWeight: AppWeights.normal,
+                        color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset(
+                    imageAsset,
+                    height: 138.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
