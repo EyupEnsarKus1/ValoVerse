@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/maps_bloc/maps_bloc.dart';
-import 'package:valorant_wiki_app/repositories/maps_repository/maps_repo.dart';
+import 'package:valorant_wiki_app/repositories/maps_repository/maps_repository.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
-MapsRepo mapsRepo = MapsRepo();
+MapsRepository mapsRepo = MapsRepository();
 
 class MapsPage extends StatelessWidget {
   const MapsPage({Key? key}) : super(key: key);

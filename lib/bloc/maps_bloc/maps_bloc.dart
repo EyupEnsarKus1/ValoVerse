@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:valorant_wiki_app/models/maps_data.dart';
-import 'package:valorant_wiki_app/repositories/maps_repository/maps_repo.dart';
+import 'package:valorant_wiki_app/repositories/maps_repository/maps_repository.dart';
 
 part 'maps_event.dart';
 part 'maps_state.dart';
 
 class MapsBloc extends Bloc<MapsEvent, MapsState> {
-  final MapsRepo mapsRepo;
+  final MapsRepository mapsRepo;
   MapsBloc(this.mapsRepo) : super(MapsLoadingState()) {
     on<GetMapsEvent>(_onGetMapsEvent);
     on<GetMapByIdEvent>(_onGetMapsById);
@@ -15,7 +15,7 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
   _onGetMapsEvent(GetMapsEvent event, Emitter<MapsState> emit) async {
     try {
       emit(MapsLoadingState());
-      final List<MapData> mapList = await mapsRepo.getAllMaps();
+      final List<MapData> mapList = await mapsRepo.getAllData();
       if (mapList == null) {
         emit(MapsErrorState(errorMessage: 'Map list is null'));
       } else {
@@ -29,7 +29,7 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
   _onGetMapsById(GetMapByIdEvent event, Emitter<MapsState> emit) async {
     try {
       emit(MapsLoadingState());
-      final MapData mapData = await mapsRepo.getMapById(event.id);
+      final MapData mapData = await mapsRepo.getDataById(event.id);
       if (mapData == null) {
         emit(MapsErrorState(errorMessage: 'Map Data is null'));
       } else {
