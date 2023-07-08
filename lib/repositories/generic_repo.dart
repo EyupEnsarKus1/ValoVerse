@@ -5,10 +5,10 @@ abstract class IGenericRepo<T> {
 
 enum Params {
   agents,
-  maps,
   weapons,
+  competitivetiers,
   sprays,
   playercards,
-  competitivetiers,
+  maps,
   buddies
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/repositories/generic_repo.dart';
 import 'package:valorant_wiki_app/ui/pages/gun_buddies_pages/gun_buddies_page.dart';
 import 'package:valorant_wiki_app/ui/pages/maps_page/maps_page.dart';
 import 'package:valorant_wiki_app/ui/pages/player_cards_pages/player_cards_page.dart';
@@ -8,51 +9,41 @@ import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapons_page.dart';
 
 import '../agents_page/agentsPage.dart';
 
-enum DataTypes {
-  agents,
-  weapons,
-  ranks,
-  sprays,
-  playerCards,
-  maps,
-  gunBuddies,
-}
-
-extension DataTypesExtension on DataTypes {
+extension DataTypesExtension on Params {
   String get title {
     switch (this) {
-      case DataTypes.agents:
+      case Params.agents:
         return "Ajanlar";
-      case DataTypes.weapons:
+      case Params.weapons:
         return "Silahlar";
-      case DataTypes.ranks:
+      case Params.competitivetiers:
         return "Rütbeler";
-      case DataTypes.sprays:
+      case Params.sprays:
         return "Spreyler";
-      case DataTypes.playerCards:
+      case Params.playercards:
         return "Oyuncu Kartları";
-      case DataTypes.maps:
+      case Params.maps:
         return "Haritalar";
-      case DataTypes.gunBuddies:
+      case Params.buddies:
         return "Ugurlar";
     }
   }
 
   String get mainCardAssets {
     switch (this) {
-      case DataTypes.agents:
+      case Params.agents:
         return "assets/images/agents.png";
-      case DataTypes.weapons:
+      case Params.weapons:
         return "assets/images/weapons.png";
-      case DataTypes.ranks:
+      case Params.competitivetiers:
         return "assets/images/ranks.png";
-      case DataTypes.sprays:
+      case Params.sprays:
         return "assets/images/sprays.png";
-      case DataTypes.playerCards:
+      case Params.playercards:
         return "assets/images/playercards.png";
-      case DataTypes.maps:
+      case Params.maps:
         return "assets/images/maps.png";
-      case DataTypes.gunBuddies:
+      case Params.buddies:
         return "assets/images/gunbuddies.png";
       default:
         return "";
@@ -61,25 +52,25 @@ extension DataTypesExtension on DataTypes {
 
   Future navigateToPage(BuildContext context) {
     switch (this) {
-      case DataTypes.agents:
+      case Params.agents:
         return Navigator.push(
             context, MaterialPageRoute(builder: (context) => AgentsPage()));
-      case DataTypes.weapons:
+      case Params.weapons:
         return Navigator.push(
             context, MaterialPageRoute(builder: (context) => WeaponsPage()));
-      case DataTypes.ranks:
+      case Params.competitivetiers:
         return Navigator.push(
             context, MaterialPageRoute(builder: (context) => RanksPage()));
-      case DataTypes.sprays:
+      case Params.sprays:
         return Navigator.push(
             context, MaterialPageRoute(builder: (context) => SpraysPage()));
-      case DataTypes.playerCards:
+      case Params.playercards:
         return Navigator.push(context,
             MaterialPageRoute(builder: (context) => PlayerCardsPage()));
-      case DataTypes.maps:
+      case Params.maps:
         return Navigator.push(
             context, MaterialPageRoute(builder: (context) => MapsPage()));
-      case DataTypes.gunBuddies:
+      case Params.buddies:
         return Navigator.push(
             context, MaterialPageRoute(builder: (context) => GunBuddiesPage()));
       default:
