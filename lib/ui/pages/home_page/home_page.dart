@@ -24,6 +24,7 @@ class HomePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final DataTypes data = DataTypes.values[index];
                   return HomePageCard(
+                    imageAsset: data.mainCardAssets,
                     title: data.title,
                     onTap: () {
                       data.navigateToPage(context);

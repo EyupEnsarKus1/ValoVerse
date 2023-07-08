@@ -9,7 +9,8 @@ class HomePageCard extends StatelessWidget {
   final String title;
   final double? height;
   final VoidCallback onTap;
-  const HomePageCard({Key? key, required this.title, this.height, required this.onTap}) : super(key: key);
+  final String imageAsset;
+  const HomePageCard({Key? key, required this.title, this.height, required this.onTap, required this.imageAsset}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +20,44 @@ class HomePageCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: RadiusEnum.normal.borderRadiusAll(),
         child: Container(
-          padding: EdgeInsets.symmetric(
-            vertical: AppSizes.headlineLarge,
-            horizontal: AppSizes.headlineSmall,
-          ),
+          height: 138.0,
           decoration: BoxDecoration(
             borderRadius: RadiusEnum.normal.borderRadiusAll(),
             border: Border.all(
               color: AppColors.red,
             ),
           ),
-          child: Row(
-            children: [
-              Text(
-                title,
-                style:
-                    TextStyle(fontFamily: AppFonts.valorant, fontSize: AppSizes.headlineSmall, fontWeight: AppWeights.normal, color: AppColors.blue),
-              ),
-            ],
+          child: ClipRRect(
+            borderRadius: RadiusEnum.normal.borderRadiusAll(),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: AppSizes.bodyLarge,
+                    ),
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontFamily: AppFonts.valorant,
+                        fontSize: AppSizes.headlineSmall,
+                        fontWeight: AppWeights.normal,
+                        color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Image.asset(
+                    imageAsset,
+                    height: 138.0,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

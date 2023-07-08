@@ -38,6 +38,27 @@ extension DataTypesExtension on DataTypes {
     }
   }
 
+  String get mainCardAssets {
+    switch (this) {
+      case DataTypes.agents:
+        return "assets/images/agents.png";
+      case DataTypes.weapons:
+        return "assets/images/weapons.png";
+      case DataTypes.ranks:
+        return "assets/images/ranks.png";
+      case DataTypes.sprays:
+        return "assets/images/sprays.png";
+      case DataTypes.playerCards:
+        return "assets/images/playercards.png";
+      case DataTypes.maps:
+        return "assets/images/maps.png";
+      case DataTypes.gunBuddies:
+        return "assets/images/gunbuddies.png";
+      default:
+        return "";
+    }
+  }
+
   Future navigateToPage(BuildContext context) {
     switch (this) {
       case DataTypes.agents:
