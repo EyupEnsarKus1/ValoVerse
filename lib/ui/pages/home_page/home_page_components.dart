@@ -9,41 +9,41 @@ import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapons_page.dart';
 
 import '../agents_page/agentsPage.dart';
 
-extension DataTypesExtension on Params {
+extension DataTypesExtension on DataTypes {
   String get title {
     switch (this) {
-      case Params.agents:
+      case DataTypes.agents:
         return "Ajanlar";
-      case Params.weapons:
+      case DataTypes.weapons:
         return "Silahlar";
-      case Params.competitivetiers:
+      case DataTypes.competitivetiers:
         return "Rütbeler";
-      case Params.sprays:
+      case DataTypes.sprays:
         return "Spreyler";
-      case Params.playercards:
+      case DataTypes.playercards:
         return "Oyuncu Kartları";
-      case Params.maps:
+      case DataTypes.maps:
         return "Haritalar";
-      case Params.buddies:
+      case DataTypes.buddies:
         return "Ugurlar";
     }
   }
 
   String get mainCardAssets {
     switch (this) {
-      case Params.agents:
+      case DataTypes.agents:
         return "assets/images/agents.png";
-      case Params.weapons:
+      case DataTypes.weapons:
         return "assets/images/weapons.png";
-      case Params.competitivetiers:
+      case DataTypes.competitivetiers:
         return "assets/images/ranks.png";
-      case Params.sprays:
+      case DataTypes.sprays:
         return "assets/images/sprays.png";
-      case Params.playercards:
+      case DataTypes.playercards:
         return "assets/images/playercards.png";
-      case Params.maps:
+      case DataTypes.maps:
         return "assets/images/maps.png";
-      case Params.buddies:
+      case DataTypes.buddies:
         return "assets/images/gunbuddies.png";
       default:
         return "";
@@ -52,27 +52,20 @@ extension DataTypesExtension on Params {
 
   Future navigateToPage(BuildContext context) {
     switch (this) {
-      case Params.agents:
-        return Navigator.push(
-            context, MaterialPageRoute(builder: (context) => AgentsPage()));
-      case Params.weapons:
-        return Navigator.push(
-            context, MaterialPageRoute(builder: (context) => WeaponsPage()));
-      case Params.competitivetiers:
-        return Navigator.push(
-            context, MaterialPageRoute(builder: (context) => RanksPage()));
-      case Params.sprays:
-        return Navigator.push(
-            context, MaterialPageRoute(builder: (context) => SpraysPage()));
-      case Params.playercards:
-        return Navigator.push(context,
-            MaterialPageRoute(builder: (context) => PlayerCardsPage()));
-      case Params.maps:
-        return Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MapsPage()));
-      case Params.buddies:
-        return Navigator.push(
-            context, MaterialPageRoute(builder: (context) => GunBuddiesPage()));
+      case DataTypes.agents:
+        return Navigator.push(context, MaterialPageRoute(builder: (context) => AgentsPage()));
+      case DataTypes.weapons:
+        return Navigator.push(context, MaterialPageRoute(builder: (context) => WeaponsPage()));
+      case DataTypes.competitivetiers:
+        return Navigator.push(context, MaterialPageRoute(builder: (context) => RanksPage()));
+      case DataTypes.sprays:
+        return Navigator.push(context, MaterialPageRoute(builder: (context) => SpraysPage()));
+      case DataTypes.playercards:
+        return Navigator.push(context, MaterialPageRoute(builder: (context) => PlayerCardsPage()));
+      case DataTypes.maps:
+        return Navigator.push(context, MaterialPageRoute(builder: (context) => MapsPage()));
+      case DataTypes.buddies:
+        return Navigator.push(context, MaterialPageRoute(builder: (context) => GunBuddiesPage()));
       default:
         return Future.error('Invalid DataType');
     }

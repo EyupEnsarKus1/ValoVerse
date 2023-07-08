@@ -9,12 +9,9 @@ class AgentsRepo implements IGenericRepo<AgentsData> {
 
   @override
   Future<List<AgentsData>> getAllData() async {
-    final ApiResponse<List<AgentsData>?> response =
-        await apiService.get<List<AgentsData>>(
-      Params.agents.name,
-      (data) => (data['data'] as List)
-          .map((agent) => AgentsData.fromJson(agent as Map<String, dynamic>))
-          .toList(),
+    final ApiResponse<List<AgentsData>?> response = await apiService.get<List<AgentsData>>(
+      DataTypes.agents.name,
+      (data) => (data['data'] as List).map((agent) => AgentsData.fromJson(agent as Map<String, dynamic>)).toList(),
     );
 
     if (response.type == ResponseType.success && response.data != null) {
@@ -27,7 +24,7 @@ class AgentsRepo implements IGenericRepo<AgentsData> {
   @override
   Future<AgentsData> getDataById(String id) async {
     final ApiResponse<AgentsData?> response = await apiService.get<AgentsData>(
-      '${Params.agents.name}/$id',
+      '${DataTypes.agents.name}/$id',
       (data) => AgentsData.fromJson(data as Map<String, dynamic>),
     );
 

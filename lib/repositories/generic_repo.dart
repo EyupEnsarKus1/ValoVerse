@@ -3,12 +3,4 @@ abstract class IGenericRepo<T> {
   Future<T> getDataById(String id);
 }
 
-enum Params {
-  agents,
-  weapons,
-  competitivetiers,
-  sprays,
-  playercards,
-  maps,
-  buddies
-}
+enum DataTypes { agents, weapons, competitivetiers, sprays, playercards, maps, buddies }

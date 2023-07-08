@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/repositories/generic_repo.dart';
-import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 
 import 'home_page_card.dart';
@@ -26,9 +24,9 @@ class HomePage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                itemCount: Params.values.length,
+                itemCount: DataTypes.values.length,
                 itemBuilder: (context, index) {
-                  final Params data = Params.values[index];
+                  final DataTypes data = DataTypes.values[index];
                   return HomePageCard(
                     imageAsset: data.mainCardAssets,
                     title: data.title,

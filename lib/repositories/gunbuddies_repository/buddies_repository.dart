@@ -8,12 +8,9 @@ class BuddiesRepository implements IGenericRepo<BuddyData> {
 
   @override
   Future<List<BuddyData>> getAllData() async {
-    final ApiResponse<List<BuddyData>?> response =
-        await apiService.get<List<BuddyData>>(
-      Params.buddies.name,
-      (data) => (data['data'] as List)
-          .map((buddy) => BuddyData.fromJson(buddy as Map<String, dynamic>))
-          .toList(),
+    final ApiResponse<List<BuddyData>?> response = await apiService.get<List<BuddyData>>(
+      DataTypes.buddies.name,
+      (data) => (data['data'] as List).map((buddy) => BuddyData.fromJson(buddy as Map<String, dynamic>)).toList(),
     );
 
     if (response.type == ResponseType.success && response.data != null) {
@@ -26,7 +23,7 @@ class BuddiesRepository implements IGenericRepo<BuddyData> {
   @override
   Future<BuddyData> getDataById(String id) async {
     final ApiResponse<BuddyData?> response = await apiService.get<BuddyData>(
-      '${Params.buddies.name}/$id',
+      '${DataTypes.buddies.name}/$id',
       (data) => BuddyData.fromJson(data as Map<String, dynamic>),
     );
 
