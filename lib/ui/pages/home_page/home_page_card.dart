@@ -15,7 +15,10 @@ class HomePageCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: AppSizes.titleMedium, vertical: AppSizes.bodySmall),
+      margin: EdgeInsets.symmetric(
+        horizontal: AppSizes.size20,
+        vertical: AppSizes.size8,
+      ),
       child: InkWell(
         onTap: onTap,
         borderRadius: RadiusEnum.normal.borderRadiusAll(),
@@ -36,13 +39,13 @@ class HomePageCard extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: EdgeInsets.only(
-                      left: AppSizes.bodyLarge,
+                      left: AppSizes.size20,
                     ),
                     child: Text(
                       title,
                       style: TextStyle(
                         fontFamily: AppFonts.valorant,
-                        fontSize: AppSizes.headlineSmall,
+                        fontSize: AppSizes.size20,
                         fontWeight: AppWeights.normal,
                         color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.white,
                       ),
