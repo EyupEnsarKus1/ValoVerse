@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:valorant_wiki_app/ui/pages/gun_buddies_pages/gun_buddies_page.dart';
-import 'package:valorant_wiki_app/ui/pages/maps_pages/maps_page.dart';
+import 'package:valorant_wiki_app/ui/pages/maps_page/maps_page.dart';
 import 'package:valorant_wiki_app/ui/pages/player_cards_pages/player_cards_page.dart';
 import 'package:valorant_wiki_app/ui/pages/ranks_pages/ranks_page.dart';
 import 'package:valorant_wiki_app/ui/pages/spray_pages/sprays_page.dart';
@@ -62,19 +62,26 @@ extension DataTypesExtension on DataTypes {
   Future navigateToPage(BuildContext context) {
     switch (this) {
       case DataTypes.agents:
-        return Navigator.push(context, MaterialPageRoute(builder: (context) => AgentsPage()));
+        return Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AgentsPage()));
       case DataTypes.weapons:
-        return Navigator.push(context, MaterialPageRoute(builder: (context) => WeaponsPage()));
+        return Navigator.push(
+            context, MaterialPageRoute(builder: (context) => WeaponsPage()));
       case DataTypes.ranks:
-        return Navigator.push(context, MaterialPageRoute(builder: (context) => RanksPage()));
+        return Navigator.push(
+            context, MaterialPageRoute(builder: (context) => RanksPage()));
       case DataTypes.sprays:
-        return Navigator.push(context, MaterialPageRoute(builder: (context) => SpraysPage()));
+        return Navigator.push(
+            context, MaterialPageRoute(builder: (context) => SpraysPage()));
       case DataTypes.playerCards:
-        return Navigator.push(context, MaterialPageRoute(builder: (context) => PlayerCardsPage()));
+        return Navigator.push(context,
+            MaterialPageRoute(builder: (context) => PlayerCardsPage()));
       case DataTypes.maps:
-        return Navigator.push(context, MaterialPageRoute(builder: (context) => MapsPage()));
+        return Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MapsPage()));
       case DataTypes.gunBuddies:
-        return Navigator.push(context, MaterialPageRoute(builder: (context) => GunBuddiesPage()));
+        return Navigator.push(
+            context, MaterialPageRoute(builder: (context) => GunBuddiesPage()));
       default:
         return Future.error('Invalid DataType');
     }
