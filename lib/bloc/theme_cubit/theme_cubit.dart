@@ -4,7 +4,7 @@ import 'package:valorant_wiki_app/ui/constants/theme/dark_theme.dart';
 import 'package:valorant_wiki_app/ui/constants/theme/light_theme.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ThemeState(themeData: AppLightTheme.lightTheme));
+  ThemeCubit() : super(ThemeState(themeData: AppDarkTheme.darkTheme));
 
   void setTheme() {
     if (state.themeData == AppLightTheme.lightTheme) {

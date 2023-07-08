@@ -5,8 +5,12 @@ class AppLightTheme {
   AppLightTheme._();
 
   static ThemeData lightTheme = ThemeData(
-    colorScheme: _colorScheme,
-  );
+      colorScheme: _colorScheme,
+      appBarTheme: AppBarTheme(
+        titleTextStyle: TextStyle(
+          color: AppColors.black,
+        ),
+      ));
 
   static ColorScheme get _colorScheme => const ColorScheme(
         brightness: AppColors.brightnessLight,
