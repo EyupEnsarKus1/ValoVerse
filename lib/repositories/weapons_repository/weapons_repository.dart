@@ -8,9 +8,12 @@ class WeaponsRepository implements IGenericRepo<WeaponsData> {
 
   @override
   Future<List<WeaponsData>> getAllData() async {
-    final ApiResponse<List<WeaponsData>?> response = await apiService.get<List<WeaponsData>>(
-      DataTypes.weapons.name,
-      (data) => (data['data'] as List).map((weapon) => WeaponsData.fromJson(weapon as Map<String, dynamic>)).toList(),
+    final ApiResponse<List<WeaponsData>?> response =
+        await apiService.get<List<WeaponsData>>(
+      PageEnums.weapons.name,
+      (data) => (data['data'] as List)
+          .map((weapon) => WeaponsData.fromJson(weapon as Map<String, dynamic>))
+          .toList(),
     );
 
     if (response.type == ResponseType.success && response.data != null) {
@@ -22,8 +25,9 @@ class WeaponsRepository implements IGenericRepo<WeaponsData> {
 
   @override
   Future<WeaponsData> getDataById(String id) async {
-    final ApiResponse<WeaponsData?> response = await apiService.get<WeaponsData>(
-      '${DataTypes.weapons.name}/$id',
+    final ApiResponse<WeaponsData?> response =
+        await apiService.get<WeaponsData>(
+      '${PageEnums.weapons.name}/$id',
       (data) => WeaponsData.fromJson(data as Map<String, dynamic>),
     );
 

@@ -8,9 +8,12 @@ class SpraysRepository implements IGenericRepo<SprayData> {
 
   @override
   Future<List<SprayData>> getAllData() async {
-    final ApiResponse<List<SprayData>?> response = await apiService.get<List<SprayData>>(
-      DataTypes.sprays.name,
-      (data) => (data['data'] as List).map((spray) => SprayData.fromJson(spray as Map<String, dynamic>)).toList(),
+    final ApiResponse<List<SprayData>?> response =
+        await apiService.get<List<SprayData>>(
+      PageEnums.sprays.name,
+      (data) => (data['data'] as List)
+          .map((spray) => SprayData.fromJson(spray as Map<String, dynamic>))
+          .toList(),
     );
 
     if (response.type == ResponseType.success && response.data != null) {
@@ -23,7 +26,7 @@ class SpraysRepository implements IGenericRepo<SprayData> {
   @override
   Future<SprayData> getDataById(String id) async {
     final ApiResponse<SprayData?> response = await apiService.get<SprayData>(
-      '${DataTypes.sprays.name}/$id',
+      '${PageEnums.sprays.name}/$id',
       (data) => SprayData.fromJson(data as Map<String, dynamic>),
     );
 

@@ -3,7 +3,7 @@ import 'package:valorant_wiki_app/repositories/generic_repo.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 
 import 'home_page_card.dart';
-import 'home_page_components.dart';
+import 'home_page_extensions.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: "VALORANT",
         backgroundColor: Colors.transparent,
       ),
@@ -24,9 +24,9 @@ class HomePage extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
                 scrollDirection: Axis.vertical,
-                itemCount: DataTypes.values.length,
+                itemCount: PageEnums.values.length,
                 itemBuilder: (context, index) {
-                  final DataTypes data = DataTypes.values[index];
+                  final PageEnums data = PageEnums.values[index];
                   return HomePageCard(
                     imageAsset: data.mainCardAssets,
                     title: data.title,
