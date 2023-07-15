@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
-import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
@@ -11,7 +10,6 @@ import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
 import '../../../bloc/agents_bloc/agents_event.dart';
 import '../../../repositories/agents_repository/agents_repo.dart';
-import '../../constants/enums/padding_enum.dart';
 import 'agents_card.dart';
 
 AgentsRepo agentsRepo = AgentsRepo();
@@ -37,19 +35,26 @@ class AgentsPage extends StatelessWidget {
           builder: (context, state) {
             if (state is AgentsLoadingState) {
               return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  maxCrossAxisExtent: 200,
-                  childAspectRatio: 3 / 4,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1 / 2,
+                  mainAxisSpacing: AppSizes.size8,
+                  crossAxisSpacing: AppSizes.size8,
                 ),
                 shrinkWrap: true,
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.size16,
+                ),
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   return ShimmerBox(
-                    width: 260,
-                    height: 155,
-                    borderRadius: 8.0,
-                    margin: PaddingEnum.low.paddingAll(),
-                  );
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      borderRadius: 8.0,
+                      margin: EdgeInsets.symmetric(
+                        horizontal: AppSizes.size4,
+                        vertical: AppSizes.size12,
+                      ));
                 },
               );
             } else if (state is AgentsLoadedState) {

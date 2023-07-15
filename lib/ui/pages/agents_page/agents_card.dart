@@ -6,6 +6,7 @@ import 'package:valorant_wiki_app/ui/constants/enums/radius_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
 import '../../constants/colors/app_colors.dart';
 
@@ -41,6 +42,12 @@ class AgentCard extends StatelessWidget {
                     imageUrl: agentsData.fullPortrait != null && agentsData.fullPortrait!.isNotEmpty
                         ? agentsData.fullPortrait!
                         : 'assets/images/placeholder.png',
+                    placeholder: (context, url) => ShimmerBox(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      borderRadius: RadiusEnum.low.radius,
+                      padding: PaddingEnum.normal.paddingVertical(),
+                    ),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
