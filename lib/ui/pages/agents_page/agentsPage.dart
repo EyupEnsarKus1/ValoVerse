@@ -3,12 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
+import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
+import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
 import '../../../bloc/agents_bloc/agents_event.dart';
 import '../../../repositories/agents_repository/agents_repo.dart';
+import '../../constants/enums/padding_enum.dart';
+import 'agents_card.dart';
 
 AgentsRepo agentsRepo = AgentsRepo();
 
@@ -32,26 +36,39 @@ class AgentsPage extends StatelessWidget {
         body: BlocBuilder<AgentsBloc, AgentsState>(
           builder: (context, state) {
             if (state is AgentsLoadingState) {
-              return ListView.builder(
+              return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  childAspectRatio: 3 / 4,
+                ),
                 shrinkWrap: true,
-                scrollDirection: Axis.vertical,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return const ShimmerBox(
-                    width: 100,
-                    height: 100,
+                  return ShimmerBox(
+                    width: 260,
+                    height: 155,
                     borderRadius: 8.0,
+                    margin: PaddingEnum.low.paddingAll(),
                   );
                 },
               );
             } else if (state is AgentsLoadedState) {
-              return ListView.builder(
+              return GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1 / 2,
+                  mainAxisSpacing: AppSizes.size8,
+                  crossAxisSpacing: AppSizes.size8,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.size16,
+                ),
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
                 itemCount: state.agentsData.length,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      state.agentsData[index].displayName!,
-                    ),
+                  return AgentCard(
+                    agentsData: state.agentsData[index],
                   );
                 },
               );
