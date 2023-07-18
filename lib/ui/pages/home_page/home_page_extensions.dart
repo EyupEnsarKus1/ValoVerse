@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:valorant_wiki_app/repositories/generic_repo.dart';
+import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/pages/gun_buddies_pages/gun_buddies_page.dart';
 import 'package:valorant_wiki_app/ui/pages/maps_page/maps_page.dart';
 import 'package:valorant_wiki_app/ui/pages/player_cards_pages/player_cards_page.dart';
@@ -8,27 +9,28 @@ import 'package:valorant_wiki_app/ui/pages/settings_page/settings_page.dart';
 import 'package:valorant_wiki_app/ui/pages/spray_pages/sprays_page.dart';
 import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapons_page.dart';
 
+import '../../../core/locale_keys.g.dart';
 import '../agents_page/agentsPage.dart';
 
 extension HomePageExtensions on PageEnums {
   String get title {
     switch (this) {
       case PageEnums.agents:
-        return "Ajanlar";
+        return LocaleKeys.home_agents.translate;
       case PageEnums.weapons:
-        return "Silahlar";
+        return LocaleKeys.home_weapons.translate;
       case PageEnums.competitivetiers:
-        return "Rütbeler";
+        return LocaleKeys.home_tiers.translate;
       case PageEnums.sprays:
-        return "Spreyler";
+        return LocaleKeys.home_sprays.translate;
       case PageEnums.playercards:
-        return "Oyuncu Kartları";
+        return LocaleKeys.home_playerCards.translate;
       case PageEnums.maps:
-        return "Haritalar";
+        return LocaleKeys.home_maps.translate;
       case PageEnums.buddies:
-        return "Ugurlar";
+        return LocaleKeys.home_gunBuddies.translate;
       case PageEnums.settings:
-        return "Ayarlar";
+        return LocaleKeys.settings.translate;
     }
   }
 
