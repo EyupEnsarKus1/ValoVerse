@@ -24,6 +24,11 @@ class AppColors {
   static const lightBlueLevel3 = Color(0xff576973);
   static const lightBlueLevel4 = Color(0xff7B919B);
 
+  static const Color lightGray = Color(0xffe0e0e0);
+
+  static Color shimmerBaseColor = lightGray.withOpacity(0.5);
+  static Color shimmerHighlightColor = lightGray.withOpacity(0.2);
+
   // Color Scheme Light
 
   static const primaryColor = Color(0xffff4655);
