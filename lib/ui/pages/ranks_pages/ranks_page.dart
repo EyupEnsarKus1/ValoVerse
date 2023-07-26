@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/tier_bloc/tier_bloc.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
-import 'package:valorant_wiki_app/models/competitive_tier_data.dart';
 import 'package:valorant_wiki_app/repositories/competitive_tier_repository/competitive_tier_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
