@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../constants/colors/app_colors.dart';
+
 class ShimmerBox extends StatelessWidget {
   final double height;
   final double width;
@@ -29,11 +31,11 @@ class ShimmerBox extends StatelessWidget {
         margin: margin,
         padding: padding,
         child: Shimmer.fromColors(
-          baseColor: Colors.grey.shade300,
-          highlightColor: Colors.grey.shade100,
+          baseColor: AppColors.shimmerBaseColor,
+          highlightColor: AppColors.shimmerHighlightColor,
           child: Container(
             decoration: BoxDecoration(
-              color: Colors.grey.shade300,
+              color: AppColors.shimmerBaseColor,
               borderRadius: BorderRadius.circular(borderRadius),
             ),
           ),

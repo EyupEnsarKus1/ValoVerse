@@ -14,6 +14,7 @@ class AppSizeConstants {
   static const double size4 = 4.0;
   static const double size8 = 8.0;
   static const double size12 = 12.0;
+  static const double size15 = 15.0;
   static const double size16 = 16.0;
   static const double size20 = 20.0;
   static const double size24 = 24.0;
@@ -27,6 +28,7 @@ class AppSizes {
   static double size4 = AppSizeConstants.size4.sp;
   static double size8 = AppSizeConstants.size8.sp;
   static double size12 = AppSizeConstants.size12.sp;
+  static double size15 = AppSizeConstants.size15.sp;
   static double size16 = AppSizeConstants.size16.sp;
   static double size20 = AppSizeConstants.size20.sp;
   static double size24 = AppSizeConstants.size24.sp;
