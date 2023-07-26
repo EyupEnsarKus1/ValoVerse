@@ -10,21 +10,12 @@ class LangCubit extends Cubit<LangState> {
   LangCubit({required this.context})
       : super(LangState(locale: EasyLocalization.of(context)!.locale));
 
-  void setEnglish() {
-    if (state.locale != LocalizationConstants.enLocale) {
-      final newLocale = LocalizationConstants.enLocale;
-      EasyLocalization.of(context)!.setLocale(newLocale).then((value) {
-        emit(LangState(locale: newLocale));
-      });
-    }
-  }
-
-  void setTurkish() {
-    if (state.locale != LocalizationConstants.trLocale) {
-      final newLocale = LocalizationConstants.trLocale;
-      EasyLocalization.of(context)!.setLocale(newLocale).then((value) {
-        emit(LangState(locale: newLocale));
-      });
+  setLang(Locale newLocale) {
+    if (state.locale != newLocale) {
+      EasyLocalization.of(context)!.setLocale(newLocale);
+      emit(LangState(locale: newLocale));
+      final engine = WidgetsFlutterBinding.ensureInitialized();
+      engine.performReassemble();
     }
   }
 }

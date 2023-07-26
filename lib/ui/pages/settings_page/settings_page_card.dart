@@ -1,22 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:valorant_wiki_app/ui/constants/enums/radius_enum.dart';
+import 'package:valorant_wiki_app/ui/constants/enums/padding_enum.dart';
+import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
 
 import '../../constants/colors/app_colors.dart';
+import '../../constants/enums/radius_enum.dart';
 import '../../constants/styles/fonts.dart';
 
-class HomePageCard extends StatelessWidget {
+class SettingsPageCard extends StatelessWidget {
   final String title;
-  final double? height;
-  final VoidCallback onTap;
-  final String imageAsset;
+  final Widget? child;
 
-  const HomePageCard({
+  const SettingsPageCard({
     Key? key,
     required this.title,
-    this.height,
-    required this.onTap,
-    required this.imageAsset,
+    this.child,
   }) : super(key: key);
 
   @override
@@ -27,10 +26,9 @@ class HomePageCard extends StatelessWidget {
         vertical: AppSizes.size8,
       ),
       child: InkWell(
-        onTap: onTap,
         borderRadius: RadiusEnum.normal.borderRadiusAll(),
         child: Container(
-          height: 138.0,
+          height: 120.0,
           decoration: BoxDecoration(
             borderRadius: RadiusEnum.normal.borderRadiusAll(),
             border: Border.all(
@@ -62,12 +60,12 @@ class HomePageCard extends StatelessWidget {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.bottomRight,
-                  child: Image.asset(
-                    imageAsset,
-                    height: 138.0,
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: PaddingEnum.high.paddingHorizontal(),
+                    child: child ?? const SizedBox.shrink(),
                   ),
-                ),
+                )
               ],
             ),
           ),

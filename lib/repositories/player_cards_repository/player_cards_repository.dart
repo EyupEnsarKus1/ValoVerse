@@ -8,9 +8,12 @@ class PlayerCardsRepository implements IGenericRepo<PlayerCardData> {
 
   @override
   Future<List<PlayerCardData>> getAllData() async {
-    final ApiResponse<List<PlayerCardData>?> response = await apiService.get<List<PlayerCardData>>(
-      DataTypes.playercards.name,
-      (data) => (data['data'] as List).map((card) => PlayerCardData.fromJson(card as Map<String, dynamic>)).toList(),
+    final ApiResponse<List<PlayerCardData>?> response =
+        await apiService.get<List<PlayerCardData>>(
+      PageEnums.playercards.name,
+      (data) => (data['data'] as List)
+          .map((card) => PlayerCardData.fromJson(card as Map<String, dynamic>))
+          .toList(),
     );
     if (response.type == ResponseType.success && response.data != null) {
       return response.data!;
@@ -21,8 +24,9 @@ class PlayerCardsRepository implements IGenericRepo<PlayerCardData> {
 
   @override
   Future<PlayerCardData> getDataById(String id) async {
-    final ApiResponse<PlayerCardData?> response = await apiService.get<PlayerCardData>(
-      '${DataTypes.playercards.name}/$id',
+    final ApiResponse<PlayerCardData?> response =
+        await apiService.get<PlayerCardData>(
+      '${PageEnums.playercards.name}/$id',
       (data) => PlayerCardData.fromJson(data as Map<String, dynamic>),
     );
 

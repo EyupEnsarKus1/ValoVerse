@@ -3,4 +3,13 @@ abstract class IGenericRepo<T> {
   Future<T> getDataById(String id);
 }
 
-enum DataTypes { agents, weapons, competitivetiers, sprays, playercards, maps, buddies }
+enum PageEnums {
+  agents,
+  weapons,
+  competitivetiers,
+  sprays,
+  playercards,
+  maps,
+  buddies,
+  settings
+}

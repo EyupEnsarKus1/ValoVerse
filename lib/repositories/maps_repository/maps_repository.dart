@@ -8,9 +8,12 @@ class MapsRepository implements IGenericRepo<MapData> {
 
   @override
   Future<List<MapData>> getAllData() async {
-    final ApiResponse<List<MapData>?> response = await apiService.get<List<MapData>>(
-      DataTypes.maps.name,
-      (data) => (data['data'] as List).map((map) => MapData.fromJson(map as Map<String, dynamic>)).toList(),
+    final ApiResponse<List<MapData>?> response =
+        await apiService.get<List<MapData>>(
+      PageEnums.maps.name,
+      (data) => (data['data'] as List)
+          .map((map) => MapData.fromJson(map as Map<String, dynamic>))
+          .toList(),
     );
 
     if (response.type == ResponseType.success && response.data != null) {
@@ -23,7 +26,7 @@ class MapsRepository implements IGenericRepo<MapData> {
   @override
   Future<MapData> getDataById(String id) async {
     final ApiResponse<MapData?> response = await apiService.get<MapData>(
-      '${DataTypes.maps.name}/$id',
+      '${PageEnums.maps.name}/$id',
       (data) => MapData.fromJson(data as Map<String, dynamic>),
     );
 
