@@ -44,6 +44,7 @@ class SettingsPage extends StatelessWidget {
                 return SettingsPageCard(
                   title: LocaleKeys.language.translate,
                   child: DropdownButton(
+                    value: context.locale,
                     items: [
                       DropdownMenuItem(
                         value: LocalizationConstants.trLocale,

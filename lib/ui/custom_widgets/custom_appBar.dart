@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -42,6 +43,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           : leadingWidget ??
               BackButton(
                 onPressed: backButtonPressed,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? AppColors.black
+                    : AppColors.white,
               ),
       actions: actionWidget != null ? [actionWidget!] : [],
     );
