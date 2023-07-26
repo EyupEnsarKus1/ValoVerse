@@ -28,13 +28,12 @@ class AgentsPage extends StatelessWidget {
       child: Scaffold(
         appBar: CustomAppBar(
           title: LocaleKeys.home_agents.translate,
-          centerTitle: true,
-          showBackButton: true,
         ),
         body: BlocBuilder<AgentsBloc, AgentsState>(
           builder: (context, state) {
             if (state is AgentsLoadingState) {
               return GridView.builder(
+                physics: const BouncingScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1 / 2,
@@ -59,6 +58,7 @@ class AgentsPage extends StatelessWidget {
               );
             } else if (state is AgentsLoadedState) {
               return GridView.builder(
+                physics: const BouncingScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 1 / 2,

@@ -39,15 +39,10 @@ class AgentCard extends StatelessWidget {
                 Expanded(
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: agentsData.fullPortrait != null && agentsData.fullPortrait!.isNotEmpty
+                    imageUrl: agentsData.fullPortrait != null &&
+                            agentsData.fullPortrait!.isNotEmpty
                         ? agentsData.fullPortrait!
                         : 'assets/images/placeholder.png',
-                    placeholder: (context, url) => ShimmerBox(
-                      height: MediaQuery.of(context).size.height,
-                      width: MediaQuery.of(context).size.width,
-                      borderRadius: RadiusEnum.low.radius,
-                      padding: PaddingEnum.normal.paddingVertical(),
-                    ),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),

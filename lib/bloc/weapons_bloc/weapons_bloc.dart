@@ -22,6 +22,7 @@ class WeaponsBloc extends Bloc<WeaponsEvent, WeaponsState> {
         WeaponsErrorState(errorMessage: 'weaponList is null');
       }
     } catch (e) {
+      print(e.toString());
       emit(WeaponsErrorState(errorMessage: e.toString()));
     }
   }
