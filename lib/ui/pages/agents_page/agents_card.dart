@@ -9,6 +9,7 @@ import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
 import '../../constants/colors/app_colors.dart';
+import 'agents_detail_page.dart';
 
 class AgentCard extends StatelessWidget {
   final AgentsData agentsData;
@@ -23,7 +24,14 @@ class AgentCard extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            //Navigator.push(context, MaterialPageRoute(builder: (context)=>AgentDetailPage()));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AgentDetailPage(
+                  data: agentsData,
+                ),
+              ),
+            );
           },
           borderRadius: RadiusEnum.lowest.borderRadiusAll(),
           child: Container(
