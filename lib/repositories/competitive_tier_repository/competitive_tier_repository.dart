@@ -10,12 +10,11 @@ class CompetitiveTierRepository implements IGenericRepo<CompetitiveTierData> {
   Future<List<CompetitiveTierData>> getAllData() async {
     final ApiResponse<List<CompetitiveTierData>?> response =
         await apiService.get<List<CompetitiveTierData>>(
-      PageEnums.competitivetiers.name,
-      (data) => (data['data'] as List)
-          .map((tier) =>
-              CompetitiveTierData.fromJson(tier as Map<String, dynamic>))
-          .toList(),
-    );
+            PageEnums.competitivetiers.name,
+            (data) => (data['data'].last['tiers'] as List<dynamic>)
+                .map((tier) =>
+                    CompetitiveTierData.fromJson(tier as Map<String, dynamic>))
+                .toList());
 
     if (response.type == ResponseType.success && response.data != null) {
       return response.data!;
