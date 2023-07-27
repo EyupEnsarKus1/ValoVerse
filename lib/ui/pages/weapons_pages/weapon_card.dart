@@ -7,6 +7,7 @@ import 'package:valorant_wiki_app/ui/constants/enums/radius_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
+import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapons_detail_page.dart';
 
 class WeaponCard extends StatelessWidget {
   final WeaponsData weaponsData;
@@ -20,7 +21,13 @@ class WeaponCard extends StatelessWidget {
         horizontal: AppSizes.size8,
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => WeaponsDetailPage(weapon: weaponsData),
+              ));
+        },
         borderRadius: RadiusEnum.lowest.borderRadiusAll(),
         child: Container(
           width: MediaQuery.of(context).size.width,
