@@ -81,5 +81,24 @@
 
   "playerCards": {
     "playerCardName": "Player Card Name"
+  },
+
+  "detailPages": {
+    "agents": {
+      "skills": "Skills"
+    },
+    "weapons": {
+      "type": "Type",
+      "creds": "Creds",
+      "magazine": "Magazine",
+      "fireMode": "Fire Mode",
+      "damage": "Damage",
+      "range": "Range",
+      "body": "Body",
+      "head": "Head",
+      "leg": "Leg",
+      "skins": "Skins"
+    },
+    "description": "Açıklama"
   }
 }

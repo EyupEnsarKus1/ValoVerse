@@ -81,5 +81,24 @@
 
   "playerCards": {
     "playerCardName": "Oyuncu Kart Adı"
+  },
+
+  "detailPages": {
+    "agents": {
+      "skills": "Yetenekler"
+    },
+    "weapons": {
+      "type": "Kategori",
+      "creds": "Fiyat",
+      "magazine": "Şarjör",
+      "fireMode": "Atış Modu",
+      "damage": "Hasar",
+      "range": "Menzil",
+      "body": "Vücut",
+      "head": "Kafa",
+      "leg": "Ayak",
+      "skins": "Kaplamalar"
+    },
+    "description": "Açıklama"
   }
 }

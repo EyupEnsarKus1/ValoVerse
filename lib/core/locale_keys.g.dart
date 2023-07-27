@@ -1,5 +1,4 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
-
 // ignore_for_file: constant_identifier_names
 
 abstract class LocaleKeys {
@@ -66,4 +65,19 @@ abstract class LocaleKeys {
   static const sprays = 'sprays';
   static const playerCards_playerCardName = 'playerCards.playerCardName';
   static const playerCards = 'playerCards';
+  static const detailPages_agents_skills = 'detailPages.agents.skills';
+  static const detailPages_agents = 'detailPages.agents';
+  static const detailPages_weapons_type = 'detailPages.weapons.type';
+  static const detailPages_weapons_creds = 'detailPages.weapons.creds';
+  static const detailPages_weapons_magazine = 'detailPages.weapons.magazine';
+  static const detailPages_weapons_fireMode = 'detailPages.weapons.fireMode';
+  static const detailPages_weapons_damage = 'detailPages.weapons.damage';
+  static const detailPages_weapons_range = 'detailPages.weapons.range';
+  static const detailPages_weapons_body = 'detailPages.weapons.body';
+  static const detailPages_weapons_head = 'detailPages.weapons.head';
+  static const detailPages_weapons_leg = 'detailPages.weapons.leg';
+  static const detailPages_weapons_skins = 'detailPages.weapons.skins';
+  static const detailPages_weapons = 'detailPages.weapons';
+  static const detailPages_description = 'detailPages.description';
+  static const detailPages = 'detailPages';
 }
