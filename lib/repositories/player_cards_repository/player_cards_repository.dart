@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:valorant_wiki_app/core/api_service.dart';
 import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/models/player_cards_data.dart';
@@ -7,10 +8,11 @@ class PlayerCardsRepository implements IGenericRepo<PlayerCardData> {
   final ApiService apiService = ApiService(baseUrl: AppConstants.baseUrl);
 
   @override
-  Future<List<PlayerCardData>> getAllData() async {
+  Future<List<PlayerCardData>> getAllData(Locale locale) async {
+    var languageCode = locale.countryCode == "TUR" ? "tr-TR" : "en-US";
     final ApiResponse<List<PlayerCardData>?> response =
         await apiService.get<List<PlayerCardData>>(
-      PageEnums.playercards.name,
+      "${PageEnums.playercards.name}?language=$languageCode",
       (data) => (data['data'] as List)
           .map((card) => PlayerCardData.fromJson(card as Map<String, dynamic>))
           .toList(),

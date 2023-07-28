@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/models/player_cards_data.dart';
 import 'package:valorant_wiki_app/repositories/player_cards_repository/player_cards_repository.dart';
 
@@ -7,7 +8,9 @@ part 'playercards_state.dart';
 
 class PlayercardsBloc extends Bloc<PlayercardsEvent, PlayercardsState> {
   final PlayerCardsRepository playerCardsRepo;
-  PlayercardsBloc(this.playerCardsRepo) : super(PlayercardsLoadingState()) {
+  final LangCubit langCubit;
+  PlayercardsBloc(this.playerCardsRepo, this.langCubit)
+      : super(PlayercardsLoadingState()) {
     on<GetPlayerCardsEvent>(_onGetPlayerCardsEvent);
     on<GetPlayerCardsByIdEvent>(_onGetPlayerCardsByIdEvent);
   }
@@ -17,7 +20,7 @@ class PlayercardsBloc extends Bloc<PlayercardsEvent, PlayercardsState> {
     try {
       emit(PlayercardsLoadingState());
       final List<PlayerCardData> playerCards =
-          await playerCardsRepo.getAllData();
+          await playerCardsRepo.getAllData(langCubit.state.locale);
       if (playerCards != null) {
         emit(PlayercardsLoadedState(playerCardList: playerCards));
       } else {

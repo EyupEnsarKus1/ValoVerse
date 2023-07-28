@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:valorant_wiki_app/core/api_service.dart';
 import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/models/sprays_data.dart';
@@ -7,10 +8,11 @@ class SpraysRepository implements IGenericRepo<SprayData> {
   final ApiService apiService = ApiService(baseUrl: AppConstants.baseUrl);
 
   @override
-  Future<List<SprayData>> getAllData() async {
+  Future<List<SprayData>> getAllData(Locale locale) async {
+    var languageCode = locale.countryCode == "TUR" ? "tr-TR" : "en-US";
     final ApiResponse<List<SprayData>?> response =
         await apiService.get<List<SprayData>>(
-      PageEnums.sprays.name,
+      "${PageEnums.sprays.name}?language=$languageCode",
       (data) => (data['data'] as List)
           .map((spray) => SprayData.fromJson(spray as Map<String, dynamic>))
           .toList(),

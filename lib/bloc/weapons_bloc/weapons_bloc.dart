@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/models/weapons_data.dart';
 import 'package:valorant_wiki_app/repositories/weapons_repository/weapons_repository.dart';
 
@@ -7,7 +8,8 @@ part 'weapons_state.dart';
 
 class WeaponsBloc extends Bloc<WeaponsEvent, WeaponsState> {
   final WeaponsRepository repo;
-  WeaponsBloc(this.repo) : super(WeaponsLoadingState()) {
+  final LangCubit langCubit;
+  WeaponsBloc(this.repo, this.langCubit) : super(WeaponsLoadingState()) {
     on<GetWeaponsEvent>(_onGetWeaponsEvent);
     on<GetWeaponsByIdEvent>(_onGetWeaponsByIdEvent);
   }
@@ -15,7 +17,8 @@ class WeaponsBloc extends Bloc<WeaponsEvent, WeaponsState> {
   _onGetWeaponsEvent(GetWeaponsEvent event, Emitter<WeaponsState> emit) async {
     try {
       emit(WeaponsLoadingState());
-      final List<WeaponsData> weaponList = await repo.getAllData();
+      final List<WeaponsData> weaponList =
+          await repo.getAllData(langCubit.state.locale);
       if (weaponList != null) {
         emit(WeaponsLoadedState(weaponList: weaponList));
       } else {

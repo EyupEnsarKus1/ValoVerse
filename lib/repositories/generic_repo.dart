@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
+
 abstract class IGenericRepo<T> {
-  Future<List<T>> getAllData();
+  Future<List<T>> getAllData(Locale locale);
   Future<T> getDataById(String id);
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/weapons_bloc/weapons_bloc.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/repositories/weapons_repository/weapons_repository.dart';
@@ -18,7 +19,7 @@ class WeaponsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<WeaponsBloc>(
       create: (_) {
-        final bloc = WeaponsBloc(weaponsRepo);
+        final bloc = WeaponsBloc(weaponsRepo, LangCubit(context: context));
         bloc.add(GetWeaponsEvent());
         return bloc;
       },

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/models/gun_buddies_data.dart';
 import 'package:valorant_wiki_app/repositories/gunbuddies_repository/buddies_repository.dart';
 
@@ -7,7 +8,9 @@ part 'gunbuddies_state.dart';
 
 class GunbuddiesBloc extends Bloc<GunbuddiesEvent, GunbuddiesState> {
   final BuddiesRepository buddiesRepo;
-  GunbuddiesBloc(this.buddiesRepo) : super(GunbuddiesLoadingState()) {
+  final LangCubit langCubit;
+  GunbuddiesBloc(this.buddiesRepo, this.langCubit)
+      : super(GunbuddiesLoadingState()) {
     on<GetGunBudiesEvent>(_onGetGunBuddiesEvent);
     on<GetGunBudiesByIdEvent>(_onGetGunBuddiesByIdEvent);
   }
@@ -16,7 +19,8 @@ class GunbuddiesBloc extends Bloc<GunbuddiesEvent, GunbuddiesState> {
       GetGunBudiesEvent event, Emitter<GunbuddiesState> emit) async {
     try {
       emit(GunbuddiesLoadingState());
-      final List<BuddyData> gunBuddiesList = await buddiesRepo.getAllData();
+      final List<BuddyData> gunBuddiesList =
+          await buddiesRepo.getAllData(langCubit.state.locale);
       if (gunBuddiesList != null) {
         emit(GunbuddiesLoadedState(gunBuddiesList: gunBuddiesList));
       } else {

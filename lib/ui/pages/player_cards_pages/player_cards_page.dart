@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/playercards_bloc/playercards_bloc.dart';
 import 'package:valorant_wiki_app/repositories/player_cards_repository/player_cards_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
@@ -19,7 +20,7 @@ class PlayerCardsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<PlayercardsBloc>(
       create: (_) {
-        final bloc = PlayercardsBloc(repo);
+        final bloc = PlayercardsBloc(repo, LangCubit(context: context));
         bloc.add(GetPlayerCardsEvent());
         return bloc;
       },

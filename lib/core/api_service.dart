@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class ApiResponse<T> {
@@ -28,7 +29,6 @@ class ApiResponseHandler {
 
 class ApiService {
   final String baseUrl;
-
   ApiService({required this.baseUrl});
 
   // Get request
@@ -37,7 +37,8 @@ class ApiService {
     T Function(dynamic data) fromJson, {
     Map<String, String>? headers,
   }) async {
-    final response = await http.get(Uri.parse('$baseUrl/$endpoint'), headers: headers);
+    final response =
+        await http.get(Uri.parse('$baseUrl/$endpoint'), headers: headers);
     return _processResponse(response, fromJson);
   }
 
@@ -58,7 +59,9 @@ class ApiService {
   }
 
   // Put request
-  Future<ApiResponse<T?>> put<T>(String endpoint, T Function(dynamic data) fromJson, {dynamic body, Map<String, String>? headers}) async {
+  Future<ApiResponse<T?>> put<T>(
+      String endpoint, T Function(dynamic data) fromJson,
+      {dynamic body, Map<String, String>? headers}) async {
     final response = await http.put(
       Uri.parse('$baseUrl/$endpoint'),
       body: jsonEncode(body),
@@ -69,7 +72,9 @@ class ApiService {
   }
 
   // Delete request
-  Future<ApiResponse<T?>> delete<T>(String endpoint, T Function(dynamic data) fromJson, {Map<String, String>? headers}) async {
+  Future<ApiResponse<T?>> delete<T>(
+      String endpoint, T Function(dynamic data) fromJson,
+      {Map<String, String>? headers}) async {
     final response = await http.delete(
       Uri.parse('$baseUrl/$endpoint'),
       headers: headers,
@@ -78,7 +83,8 @@ class ApiService {
     return _processResponse(response, fromJson);
   }
 
-  ApiResponse<T?> _processResponse<T>(http.Response response, T Function(dynamic data) fromJson) {
+  ApiResponse<T?> _processResponse<T>(
+      http.Response response, T Function(dynamic data) fromJson) {
     return ApiResponseHandler.handleResponse<T?>(
       response,
       onSuccess: (response) {

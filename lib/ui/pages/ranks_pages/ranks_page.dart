@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/tier_bloc/tier_bloc.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/repositories/competitive_tier_repository/competitive_tier_repository.dart';
@@ -18,7 +19,7 @@ class RanksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<TierBloc>(
       create: (_) {
-        final bloc = TierBloc(repo);
+        final bloc = TierBloc(repo, LangCubit(context: context));
         bloc.add(GetTierEvent());
         return bloc;
       },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/maps_bloc/maps_bloc.dart';
 import 'package:valorant_wiki_app/repositories/maps_repository/maps_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
@@ -19,7 +20,7 @@ class MapsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<MapsBloc>(
       create: (_) {
-        final bloc = MapsBloc(mapsRepo);
+        final bloc = MapsBloc(mapsRepo, LangCubit(context: context));
         bloc.add(GetMapsEvent());
         return bloc;
       },

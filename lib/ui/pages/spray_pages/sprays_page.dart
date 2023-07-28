@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/spray_bloc/spray_bloc.dart';
 import 'package:valorant_wiki_app/repositories/sprays_repository/sprays_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
@@ -19,7 +20,7 @@ class SpraysPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SprayBloc>(
       create: (_) {
-        final bloc = SprayBloc(repo);
+        final bloc = SprayBloc(repo, LangCubit(context: context));
         bloc.add(GetSpraysEvent());
         return bloc;
       },

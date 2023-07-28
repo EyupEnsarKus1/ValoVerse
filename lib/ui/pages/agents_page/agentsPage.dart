@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_bloc.dart';
 import 'package:valorant_wiki_app/bloc/agents_bloc/agents_state.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
@@ -21,7 +22,7 @@ class AgentsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<AgentsBloc>(
       create: (_) {
-        final bloc = AgentsBloc(agentsRepo);
+        final bloc = AgentsBloc(agentsRepo, LangCubit(context: context));
         bloc.add(GetAgentsEvent());
         return bloc;
       },

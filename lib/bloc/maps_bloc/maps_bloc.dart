@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/models/maps_data.dart';
 import 'package:valorant_wiki_app/repositories/maps_repository/maps_repository.dart';
 
@@ -7,7 +8,8 @@ part 'maps_state.dart';
 
 class MapsBloc extends Bloc<MapsEvent, MapsState> {
   final MapsRepository mapsRepo;
-  MapsBloc(this.mapsRepo) : super(MapsLoadingState()) {
+  final LangCubit langCubit;
+  MapsBloc(this.mapsRepo, this.langCubit) : super(MapsLoadingState()) {
     on<GetMapsEvent>(_onGetMapsEvent);
     on<GetMapByIdEvent>(_onGetMapsById);
   }
@@ -15,7 +17,8 @@ class MapsBloc extends Bloc<MapsEvent, MapsState> {
   _onGetMapsEvent(GetMapsEvent event, Emitter<MapsState> emit) async {
     try {
       emit(MapsLoadingState());
-      final List<MapData> mapList = await mapsRepo.getAllData();
+      final List<MapData> mapList =
+          await mapsRepo.getAllData(langCubit.state.locale);
       if (mapList == null) {
         emit(MapsErrorState(errorMessage: 'Map list is null'));
       } else {

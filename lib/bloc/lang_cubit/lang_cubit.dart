@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../ui/constants/localization/localization_constants.dart';
-
 class LangCubit extends Cubit<LangState> {
   final BuildContext context;
 

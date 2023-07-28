@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/models/competitive_tier_data.dart';
 import 'package:valorant_wiki_app/repositories/competitive_tier_repository/competitive_tier_repository.dart';
 
@@ -7,7 +8,8 @@ part 'tier_state.dart';
 
 class TierBloc extends Bloc<TierEvent, TierState> {
   final CompetitiveTierRepository repo;
-  TierBloc(this.repo) : super(TierLoadingState()) {
+  final LangCubit langCubit;
+  TierBloc(this.repo, this.langCubit) : super(TierLoadingState()) {
     on<GetTierEvent>(_onGetTierEvent);
     on<GetTierByIdEvent>(_onGetTierByIdEvent);
   }
@@ -15,7 +17,8 @@ class TierBloc extends Bloc<TierEvent, TierState> {
   _onGetTierEvent(GetTierEvent event, Emitter<TierState> emit) async {
     try {
       emit(TierLoadingState());
-      final List<CompetitiveTierData> tierList = await repo.getAllData();
+      final List<CompetitiveTierData> tierList =
+          await repo.getAllData(langCubit.state.locale);
       if (tierList != null) {
         emit(TierLoadedState(tierList: tierList));
       } else {
