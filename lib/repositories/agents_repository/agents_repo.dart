@@ -11,7 +11,7 @@ class AgentsRepo implements IGenericRepo<AgentsData> {
   Future<List<AgentsData>> getAllData() async {
     final ApiResponse<List<AgentsData>?> response =
         await apiService.get<List<AgentsData>>(
-      PageEnums.agents.name,
+      "${PageEnums.agents.name}?isPlayableCharacter=true",
       (data) => (data['data'] as List)
           .map((agent) => AgentsData.fromJson(agent as Map<String, dynamic>))
           .toList(),
