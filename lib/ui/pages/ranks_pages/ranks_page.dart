@@ -3,14 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/tier_bloc/tier_bloc.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
-import 'package:valorant_wiki_app/repositories/competitive_tier_repository/competitive_tier_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 import 'package:valorant_wiki_app/ui/pages/ranks_pages/rank_card.dart';
 
-CompetitiveTierRepository repo = CompetitiveTierRepository();
+import '../../repo_implementation/repo_implementation.dart';
 
 class RanksPage extends StatelessWidget {
   const RanksPage({Key? key}) : super(key: key);
@@ -19,7 +18,7 @@ class RanksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<TierBloc>(
       create: (_) {
-        final bloc = TierBloc(repo, LangCubit(context: context));
+        final bloc = TierBloc(rankRepo, LangCubit(context: context));
         bloc.add(GetTierEvent());
         return bloc;
       },

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/gunbuddies_bloc/gunbuddies_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
-import 'package:valorant_wiki_app/repositories/gunbuddies_repository/buddies_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/pages/gun_buddies_pages/gun_buddie_card.dart';
 
@@ -10,8 +9,7 @@ import '../../../core/locale_keys.g.dart';
 import '../../constants/styles/fonts.dart';
 import '../../custom_widgets/custom_appBar.dart';
 import '../../custom_widgets/shimmer_widget.dart';
-
-BuddiesRepository repo = BuddiesRepository();
+import '../../repo_implementation/repo_implementation.dart';
 
 class GunBuddiesPage extends StatelessWidget {
   const GunBuddiesPage({Key? key}) : super(key: key);
@@ -20,7 +18,7 @@ class GunBuddiesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<GunbuddiesBloc>(
       create: (_) {
-        final bloc = GunbuddiesBloc(repo, LangCubit(context: context));
+        final bloc = GunbuddiesBloc(buddiesRepo, LangCubit(context: context));
         bloc.add(GetGunBudiesEvent());
         return bloc;
       },

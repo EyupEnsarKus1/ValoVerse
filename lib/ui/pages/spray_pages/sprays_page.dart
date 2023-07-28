@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/spray_bloc/spray_bloc.dart';
-import 'package:valorant_wiki_app/repositories/sprays_repository/sprays_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/pages/spray_pages/spray_card.dart';
@@ -10,8 +9,7 @@ import 'package:valorant_wiki_app/ui/pages/spray_pages/spray_card.dart';
 import '../../../core/locale_keys.g.dart';
 import '../../constants/styles/fonts.dart';
 import '../../custom_widgets/shimmer_widget.dart';
-
-SpraysRepository repo = SpraysRepository();
+import '../../repo_implementation/repo_implementation.dart';
 
 class SpraysPage extends StatelessWidget {
   const SpraysPage({Key? key}) : super(key: key);
@@ -20,7 +18,7 @@ class SpraysPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<SprayBloc>(
       create: (_) {
-        final bloc = SprayBloc(repo, LangCubit(context: context));
+        final bloc = SprayBloc(sprayRepo, LangCubit(context: context));
         bloc.add(GetSpraysEvent());
         return bloc;
       },

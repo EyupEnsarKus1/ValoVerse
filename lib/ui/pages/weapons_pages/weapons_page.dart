@@ -3,14 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/weapons_bloc/weapons_bloc.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
-import 'package:valorant_wiki_app/repositories/weapons_repository/weapons_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapon_card.dart';
 
-WeaponsRepository weaponsRepo = WeaponsRepository();
+import '../../repo_implementation/repo_implementation.dart';
 
 class WeaponsPage extends StatelessWidget {
   const WeaponsPage({Key? key}) : super(key: key);

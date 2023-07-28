@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/maps_bloc/maps_bloc.dart';
-import 'package:valorant_wiki_app/repositories/maps_repository/maps_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
@@ -10,8 +9,7 @@ import 'package:valorant_wiki_app/ui/pages/maps_page/map_card.dart';
 
 import '../../../core/locale_keys.g.dart';
 import '../../constants/styles/fonts.dart';
-
-MapsRepository mapsRepo = MapsRepository();
+import '../../repo_implementation/repo_implementation.dart';
 
 class MapsPage extends StatelessWidget {
   const MapsPage({Key? key}) : super(key: key);

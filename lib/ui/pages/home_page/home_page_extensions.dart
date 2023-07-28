@@ -10,7 +10,7 @@ import 'package:valorant_wiki_app/ui/pages/spray_pages/sprays_page.dart';
 import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapons_page.dart';
 
 import '../../../core/locale_keys.g.dart';
-import '../agents_page/agentsPage.dart';
+import '../agents_page/agents_page.dart';
 
 extension HomePageExtensions on PageEnums {
   String get title {

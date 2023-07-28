@@ -10,10 +10,8 @@ import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
 import '../../../bloc/agents_bloc/agents_event.dart';
-import '../../../repositories/agents_repository/agents_repo.dart';
+import '../../repo_implementation/repo_implementation.dart';
 import 'agents_card.dart';
-
-AgentsRepo agentsRepo = AgentsRepo();
 
 class AgentsPage extends StatelessWidget {
   const AgentsPage({Key? key}) : super(key: key);

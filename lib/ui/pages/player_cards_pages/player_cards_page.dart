@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/playercards_bloc/playercards_bloc.dart';
-import 'package:valorant_wiki_app/repositories/player_cards_repository/player_cards_repository.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/pages/player_cards_pages/player_card.dart';
 
@@ -10,8 +9,7 @@ import '../../../core/locale_keys.g.dart';
 import '../../constants/styles/fonts.dart';
 import '../../custom_widgets/custom_appBar.dart';
 import '../../custom_widgets/shimmer_widget.dart';
-
-PlayerCardsRepository repo = PlayerCardsRepository();
+import '../../repo_implementation/repo_implementation.dart';
 
 class PlayerCardsPage extends StatelessWidget {
   const PlayerCardsPage({Key? key}) : super(key: key);
@@ -20,7 +18,8 @@ class PlayerCardsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<PlayercardsBloc>(
       create: (_) {
-        final bloc = PlayercardsBloc(repo, LangCubit(context: context));
+        final bloc =
+            PlayercardsBloc(playerCardsRepo, LangCubit(context: context));
         bloc.add(GetPlayerCardsEvent());
         return bloc;
       },
