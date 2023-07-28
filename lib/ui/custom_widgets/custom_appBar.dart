@@ -43,9 +43,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           : leadingWidget ??
               BackButton(
                 onPressed: backButtonPressed,
-                color: Theme.of(context).brightness == Brightness.light
-                    ? AppColors.black
-                    : AppColors.white,
               ),
       actions: actionWidget != null ? [actionWidget!] : [],
     );
