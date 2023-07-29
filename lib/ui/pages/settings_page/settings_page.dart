@@ -14,13 +14,8 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var themeCubit = context.read<ThemeCubit>();
-    var langCubit = context.read<LangCubit>();
     return Scaffold(
-      appBar: CustomAppBar(
-          title: LocaleKeys.settings.translate,
-          backgroundColor: Colors.transparent,
-          showBackButton: true),
+      appBar: CustomAppBar(title: LocaleKeys.settings.translate, backgroundColor: Colors.transparent, showBackButton: true),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
@@ -33,7 +28,7 @@ class SettingsPage extends StatelessWidget {
                   child: Switch.adaptive(
                     value: state.isLight,
                     onChanged: (value) {
-                      themeCubit.setTheme();
+                      context.read<ThemeCubit>().setTheme(!state.isLight);
                     },
                   ),
                 );
@@ -56,7 +51,7 @@ class SettingsPage extends StatelessWidget {
                       )
                     ],
                     onChanged: (newLocale) {
-                      langCubit.setLang(newLocale!);
+                      context.read<LangCubit>().setLang(newLocale!);
                     },
                   ),
                 );

@@ -20,6 +20,7 @@ dependencies:
   cached_network_image: ^3.2.3
   permission_handler: ^10.4.3
   flutter_cache_manager: ^3.3.1
+  shared_preferences: ^2.2.0
 
   # Localization
   easy_localization: ^3.0.2
