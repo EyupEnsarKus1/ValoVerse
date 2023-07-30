@@ -57,13 +57,15 @@ class SprayCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
-                  flex: 3,
+                  flex: 2,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: spray.fullTransparentIcon != null && spray.fullTransparentIcon!.isNotEmpty
+                    imageUrl: spray.fullTransparentIcon != null &&
+                            spray.fullTransparentIcon!.isNotEmpty
                         ? spray.fullTransparentIcon!
                         : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
                 Padding(padding: PaddingEnum.normal.paddingVertical()),
@@ -74,8 +76,8 @@ class SprayCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: AppWeights.bold,
-                      fontSize: AppSizes.size20,
-                      fontFamily: AppFonts.valorant,
+                      fontSize: AppSizes.size16,
+                      fontFamily: AppFonts.archivo,
                     ),
                   ),
                 ),

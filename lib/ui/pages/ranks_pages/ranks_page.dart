@@ -35,6 +35,7 @@ class RanksPage extends StatelessWidget {
               var groupedData = bloc.groupByDivisionName(state.tierList);
 
               return ListView.builder(
+                physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: groupedData.keys.length,
                 itemBuilder: (context, index) {
@@ -43,14 +44,18 @@ class RanksPage extends StatelessWidget {
 
                   groupedData.forEach((division, list) {
                     String hexColor = '#${list.first.color ?? 'ffffff'}';
-                    colorData[division] = Color(int.parse(hexColor.substring(1, 7), radix: 16) + 0xFF000000);
+                    colorData[division] = Color(
+                        int.parse(hexColor.substring(1, 7), radix: 16) +
+                            0xFF000000);
                   });
 
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(vertical: AppSizes.size8, horizontal: AppSizes.size20),
+                        padding: EdgeInsets.symmetric(
+                            vertical: AppSizes.size8,
+                            horizontal: AppSizes.size20),
                         child: Text(
                           divisionName,
                           style: TextStyle(
@@ -69,7 +74,8 @@ class RanksPage extends StatelessWidget {
                         crossSpacing: AppSizes.size8,
                         itemCount: groupedData[divisionName]!.length,
                         itemBuilder: (context, subIndex) {
-                          return RankCard(rank: groupedData[divisionName]![subIndex]);
+                          return RankCard(
+                              rank: groupedData[divisionName]![subIndex]);
                         },
                       ), // Rank cards for this division
                     ],

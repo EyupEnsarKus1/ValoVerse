@@ -66,8 +66,9 @@ class WeaponCard extends StatelessWidget {
             children: [
               Expanded(
                 child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: weaponsData.displayIcon != null && weaponsData.displayIcon!.isNotEmpty
+                  fit: BoxFit.contain,
+                  imageUrl: weaponsData.displayIcon != null &&
+                          weaponsData.displayIcon!.isNotEmpty
                       ? weaponsData.displayIcon!
                       : 'assets/images/placeholder.png',
                   errorWidget: (context, url, error) => const Icon(Icons.error),
@@ -79,7 +80,7 @@ class WeaponCard extends StatelessWidget {
                 style: TextStyle(
                   fontWeight: AppWeights.bold,
                   fontSize: AppSizes.size20,
-                  fontFamily: AppFonts.valorant,
+                  fontFamily: AppFonts.archivo,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),

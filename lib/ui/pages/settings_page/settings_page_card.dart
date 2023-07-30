@@ -49,7 +49,7 @@ class SettingsPageCard extends StatelessWidget {
                     child: Text(
                       title,
                       style: TextStyle(
-                        fontFamily: AppFonts.valorant,
+                        fontFamily: AppFonts.archivo,
                         fontSize: AppSizes.size20,
                         fontWeight: AppWeights.normal,
                         color: Theme.of(context).brightness == Brightness.light

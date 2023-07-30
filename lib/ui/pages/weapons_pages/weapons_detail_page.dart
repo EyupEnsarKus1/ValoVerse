@@ -33,7 +33,12 @@ class WeaponsDetailPage extends StatelessWidget {
             children: [
               Padding(
                 padding: PaddingEnum.normal.paddingVertical(),
-                child: CachedNetworkImage(height: 150, imageUrl: weapon.displayIcon ?? 'assets/images/placeholder.png'),
+                child: Align(
+                    alignment: Alignment.center,
+                    child: CachedNetworkImage(
+                        height: 150,
+                        imageUrl: weapon.displayIcon ??
+                            'assets/images/placeholder.png')),
               ),
               StatsRow(
                 stat: weapon.shopData?.category ?? '',
@@ -122,7 +127,9 @@ class StatsTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
-      border: TableBorder.all(color: AppColors.red, borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
+      border: TableBorder.all(
+          color: AppColors.red,
+          borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
       columnWidths: _getColumnWidths(),
       children: _buildTableRows(),
     );
@@ -142,10 +149,14 @@ class StatsTable extends StatelessWidget {
 
     var headerRow = TableRow(
       children: [
-        _buildTableCell(LocaleKeys.detailPages_weapons_range.translate, titleStyle),
-        _buildTableCell(LocaleKeys.detailPages_weapons_body.translate, titleStyle),
-        _buildTableCell(LocaleKeys.detailPages_weapons_head.translate, titleStyle),
-        _buildTableCell(LocaleKeys.detailPages_weapons_leg.translate, titleStyle),
+        _buildTableCell(
+            LocaleKeys.detailPages_weapons_range.translate, titleStyle),
+        _buildTableCell(
+            LocaleKeys.detailPages_weapons_body.translate, titleStyle),
+        _buildTableCell(
+            LocaleKeys.detailPages_weapons_head.translate, titleStyle),
+        _buildTableCell(
+            LocaleKeys.detailPages_weapons_leg.translate, titleStyle),
       ],
     );
 
@@ -154,10 +165,14 @@ class StatsTable extends StatelessWidget {
     for (var range in weapon.weaponStats?.damageRanges ?? []) {
       var rangeRow = TableRow(
         children: [
-          _buildTableCell('${range.rangeStartMeters}-${range.rangeEndMeters}', descriptionStyle),
-          _buildTableCell(range.headDamage!.toStringAsFixed(1), descriptionStyle),
-          _buildTableCell(range.bodyDamage!.toStringAsFixed(1), descriptionStyle),
-          _buildTableCell(range.legDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell('${range.rangeStartMeters}-${range.rangeEndMeters}',
+              descriptionStyle),
+          _buildTableCell(
+              range.headDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell(
+              range.bodyDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell(
+              range.legDamage!.toStringAsFixed(1), descriptionStyle),
         ],
       );
 
@@ -224,7 +239,7 @@ TextStyle titleStyle = TextStyle(
 );
 TextStyle descriptionStyle = TextStyle(
   fontFamily: AppFonts.roboto,
-  color: AppColors.white,
+  color: AppColors.lightBlueLevel4,
   fontSize: AppSizes.size15,
   fontWeight: AppWeights.bold,
 );

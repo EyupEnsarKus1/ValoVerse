@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/models/agents_data.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/padding_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
+import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 
@@ -22,6 +24,7 @@ class AgentDetailPage extends StatelessWidget {
         title: data.displayName ?? "",
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: AppSizes.size16,
@@ -38,7 +41,9 @@ class AgentDetailPage extends StatelessWidget {
                         imageUrl: data.background!,
                         fit: BoxFit.cover,
                         errorWidget: (context, url, error) => Icon(Icons.error),
-                        color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.white,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? AppColors.blue
+                            : AppColors.white,
                       ),
                     ),
                     Center(
@@ -58,7 +63,7 @@ class AgentDetailPage extends StatelessWidget {
               Padding(
                 padding: PaddingEnum.low.paddingOnlyBottom(),
                 child: Text(
-                  "Açıklama",
+                  LocaleKeys.agents_description.translate,
                   style: titleStyle,
                 ),
               ),
@@ -86,7 +91,7 @@ class AgentDetailPage extends StatelessWidget {
                 color: AppColors.lightBlackLevel4,
               ),
               Text(
-                "Yetenekler",
+                LocaleKeys.agents_abilities.translate,
                 style: titleStyle,
               ),
               ListView.builder(
@@ -111,7 +116,8 @@ class AgentDetailPage extends StatelessWidget {
 
 class AgentAbilityCard extends StatelessWidget {
   final Abilities abilitiesData;
-  const AgentAbilityCard({Key? key, required this.abilitiesData}) : super(key: key);
+  const AgentAbilityCard({Key? key, required this.abilitiesData})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -133,7 +139,9 @@ class AgentAbilityCard extends StatelessWidget {
             children: [
               Image.network(
                 abilitiesData.displayIcon!,
-                color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.white,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? AppColors.blue
+                    : AppColors.white,
                 width: AppSizes.size28,
                 height: AppSizes.size28,
                 fit: BoxFit.cover,

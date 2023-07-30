@@ -69,7 +69,8 @@ class AgentCard extends StatelessWidget {
                 Expanded(
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: agentsData.fullPortrait != null && agentsData.fullPortrait!.isNotEmpty
+                    imageUrl: agentsData.fullPortrait != null &&
+                            agentsData.fullPortrait!.isNotEmpty
                         ? agentsData.fullPortrait!
                         : 'assets/images/placeholder.png',
                     errorWidget: (context, url, error) => Icon(Icons.error),
@@ -81,7 +82,7 @@ class AgentCard extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: AppWeights.bold,
                     fontSize: AppSizes.size20,
-                    fontFamily: AppFonts.valorant,
+                    fontFamily: AppFonts.archivo,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),

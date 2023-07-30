@@ -62,8 +62,12 @@ class MapCard extends StatelessWidget {
                     borderRadius: RadiusEnum.lowest.borderRadiusAll(),
                     child: CachedNetworkImage(
                       fit: BoxFit.fitHeight,
-                      imageUrl: map.listViewIcon != null && map.listViewIcon!.isNotEmpty ? map.listViewIcon! : 'assets/images/placeholder.png',
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                      imageUrl: map.listViewIcon != null &&
+                              map.listViewIcon!.isNotEmpty
+                          ? map.listViewIcon!
+                          : 'assets/images/placeholder.png',
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
                 ),
@@ -73,7 +77,7 @@ class MapCard extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: AppWeights.bold,
                     fontSize: AppSizes.size20,
-                    fontFamily: AppFonts.valorant,
+                    fontFamily: AppFonts.archivo,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
