@@ -107,6 +107,7 @@ class SkinsList extends StatelessWidget {
           return Padding(
             padding: PaddingEnum.low.paddingAll(),
             child: SkinCard(
+              heroTag: "tag-$index",
               skinURL: skin.displayIcon,
             ),
           );
