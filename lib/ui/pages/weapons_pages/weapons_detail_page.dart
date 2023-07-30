@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/padding_enum.dart';
+import 'package:valorant_wiki_app/ui/constants/enums/radius_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
+import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
@@ -11,6 +12,7 @@ import 'package:valorant_wiki_app/ui/pages/weapons_pages/skin_card.dart';
 
 import '../../../models/weapons_data.dart';
 import '../../constants/colors/app_colors.dart';
+import '../../custom_widgets/custom_divider.dart';
 
 class WeaponsDetailPage extends StatelessWidget {
   final WeaponsData weapon;
@@ -27,35 +29,26 @@ class WeaponsDetailPage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: PaddingEnum.normal.paddingVertical(),
-                child: CachedNetworkImage(
-                    height: 150,
-                    imageUrl:
-                        weapon.displayIcon ?? 'assets/images/placeholder.png'),
+                child: CachedNetworkImage(height: 150, imageUrl: weapon.displayIcon ?? 'assets/images/placeholder.png'),
               ),
-              Padding(padding: PaddingEnum.highest.paddingVertical()),
               StatsRow(
                 stat: weapon.shopData?.category ?? '',
                 title: LocaleKeys.detailPages_weapons_type.translate,
-              ),
-              const Divider(
-                color: AppColors.lightBlackLevel4,
+                margin: PaddingEnum.low.paddingVertical(),
               ),
               StatsRow(
                 stat: weapon.shopData?.cost.toString() ?? '',
                 title: LocaleKeys.detailPages_weapons_creds.translate,
-              ),
-              const Divider(
-                color: AppColors.lightBlackLevel4,
+                margin: PaddingEnum.low.paddingVertical(),
               ),
               StatsRow(
                 stat: weapon.weaponStats?.magazineSize.toString() ?? '',
                 title: LocaleKeys.detailPages_weapons_magazine.translate,
-              ),
-              const Divider(
-                color: AppColors.lightBlackLevel4,
+                margin: PaddingEnum.low.paddingOnlyTop(),
               ),
               Padding(
                 padding: PaddingEnum.high.paddingVertical(),
@@ -64,8 +57,9 @@ class WeaponsDetailPage extends StatelessWidget {
                   style: titleStyle,
                 ),
               ),
-              const StatsHeadlines(),
-              StatsList(weapon: weapon),
+              StatsTable(
+                weapon: weapon,
+              ),
               Padding(
                 padding: PaddingEnum.normal.paddingVertical(),
                 child: Align(
@@ -117,106 +111,106 @@ class SkinsList extends StatelessWidget {
   }
 }
 
-class StatsHeadlines extends StatelessWidget {
-  const StatsHeadlines({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text(
-          LocaleKeys.detailPages_weapons_range.translate,
-          style: titleStyle,
-        ),
-        Text(
-          LocaleKeys.detailPages_weapons_body.translate,
-          style: titleStyle,
-        ),
-        Text(
-          LocaleKeys.detailPages_weapons_head.translate,
-          style: titleStyle,
-        ),
-        Text(
-          LocaleKeys.detailPages_weapons_leg.translate,
-          style: titleStyle,
-        ),
-      ],
-    );
-  }
-}
-
-class StatsList extends StatelessWidget {
-  const StatsList({
-    super.key,
-    required this.weapon,
-  });
-
+class StatsTable extends StatelessWidget {
   final WeaponsData weapon;
 
+  const StatsTable({
+    Key? key,
+    required this.weapon,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: PaddingEnum.high.paddingVertical(),
-      itemCount: weapon.weaponStats?.damageRanges?.length ?? 0,
-      itemBuilder: (context, index) {
-        final weaponRanges = weapon.weaponStats!.damageRanges![index];
-        return Padding(
-          padding: PaddingEnum.normal.paddingVertical(),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                '${weaponRanges.rangeStartMeters}-${weaponRanges.rangeEndMeters}',
-                style: descriptionStyle,
-              ),
-              Text(
-                weaponRanges.headDamage!.toStringAsFixed(1),
-                style: descriptionStyle,
-              ),
-              Text(
-                weaponRanges.bodyDamage!.toStringAsFixed(1),
-                style: descriptionStyle,
-              ),
-              Text(
-                weaponRanges.legDamage!.toStringAsFixed(1),
-                style: descriptionStyle,
-              ),
-            ],
-          ),
-        );
-      },
+    return Table(
+      border: TableBorder.all(color: AppColors.red, borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
+      columnWidths: _getColumnWidths(),
+      children: _buildTableRows(),
+    );
+  }
+
+  Map<int, TableColumnWidth> _getColumnWidths() {
+    return const {
+      0: FlexColumnWidth(1),
+      1: FlexColumnWidth(1),
+      2: FlexColumnWidth(1),
+      3: FlexColumnWidth(1),
+    };
+  }
+
+  List<TableRow> _buildTableRows() {
+    var tableRows = <TableRow>[];
+
+    var headerRow = TableRow(
+      children: [
+        _buildTableCell(LocaleKeys.detailPages_weapons_range.translate, titleStyle),
+        _buildTableCell(LocaleKeys.detailPages_weapons_body.translate, titleStyle),
+        _buildTableCell(LocaleKeys.detailPages_weapons_head.translate, titleStyle),
+        _buildTableCell(LocaleKeys.detailPages_weapons_leg.translate, titleStyle),
+      ],
+    );
+
+    tableRows.add(headerRow);
+
+    for (var range in weapon.weaponStats?.damageRanges ?? []) {
+      var rangeRow = TableRow(
+        children: [
+          _buildTableCell('${range.rangeStartMeters}-${range.rangeEndMeters}', descriptionStyle),
+          _buildTableCell(range.headDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell(range.bodyDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell(range.legDamage!.toStringAsFixed(1), descriptionStyle),
+        ],
+      );
+
+      tableRows.add(rangeRow);
+    }
+
+    return tableRows;
+  }
+
+  Widget _buildTableCell(String text, TextStyle style) {
+    return Padding(
+      padding: PaddingEnum.normal.paddingVertical(),
+      child: Text(text, style: style, textAlign: TextAlign.center),
     );
   }
 }
 
 class StatsRow extends StatelessWidget {
   const StatsRow({
-    super.key,
+    Key? key,
     required this.title,
     required this.stat,
-  });
+    this.showDivider = true,
+    this.margin,
+  }) : super(key: key);
+
   final String title;
   final String stat;
+  final bool showDivider;
+  final EdgeInsets? margin;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        Text(
-          title,
-          style: titleStyle,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: titleStyle,
+            ),
+            Text(
+              stat,
+              style: descriptionStyle,
+            ),
+          ],
         ),
-        Text(
-          stat,
-          style: descriptionStyle,
-        )
+        if (showDivider)
+          DividerWithoutPadding(
+            color: AppColors.lightBlackLevel4,
+            margin: margin,
+          ),
       ],
     );
   }
