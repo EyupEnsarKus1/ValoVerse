@@ -232,7 +232,7 @@ class StatsRow extends StatelessWidget {
 }
 
 TextStyle titleStyle = TextStyle(
-  fontFamily: AppFonts.roboto,
+  fontFamily: AppFonts.archivo,
   fontWeight: AppWeights.veryBold,
   fontSize: AppSizes.size20,
   color: AppColors.red,
