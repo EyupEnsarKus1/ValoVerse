@@ -9,9 +9,32 @@ import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart'
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapons_detail_page.dart';
 
+import '../../custom_widgets/shimmer_widget.dart';
+
 class WeaponCard extends StatelessWidget {
   final WeaponsData weaponsData;
   const WeaponCard({super.key, required this.weaponsData});
+  static shimmerWidget(BuildContext context) {
+    return ListView.builder(
+      physics: const BouncingScrollPhysics(),
+      shrinkWrap: true,
+      padding: EdgeInsets.symmetric(
+        vertical: AppSizes.size16,
+        horizontal: AppSizes.size16,
+      ),
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return ShimmerBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height / 4,
+            borderRadius: 8.0,
+            margin: EdgeInsets.symmetric(
+              horizontal: AppSizes.size4,
+              vertical: AppSizes.size12,
+            ));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +67,7 @@ class WeaponCard extends StatelessWidget {
               Expanded(
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl: weaponsData.displayIcon != null &&
-                          weaponsData.displayIcon!.isNotEmpty
+                  imageUrl: weaponsData.displayIcon != null && weaponsData.displayIcon!.isNotEmpty
                       ? weaponsData.displayIcon!
                       : 'assets/images/placeholder.png',
                   errorWidget: (context, url, error) => const Icon(Icons.error),

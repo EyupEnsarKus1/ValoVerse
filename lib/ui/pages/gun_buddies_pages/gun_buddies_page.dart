@@ -9,7 +9,6 @@ import 'package:valorant_wiki_app/ui/pages/gun_buddies_pages/gun_buddie_card.dar
 import '../../../core/locale_keys.g.dart';
 import '../../constants/styles/fonts.dart';
 import '../../custom_widgets/custom_appBar.dart';
-import '../../custom_widgets/shimmer_widget.dart';
 import '../../repo_implementation/repo_implementation.dart';
 
 class GunBuddiesPage extends StatelessWidget {
@@ -30,24 +29,7 @@ class GunBuddiesPage extends StatelessWidget {
         body: BlocBuilder<GunbuddiesBloc, GunbuddiesState>(
           builder: (context, state) {
             if (state is GunbuddiesLoadingState) {
-              return CustomGridView(
-                verticalAxis: true,
-                crossAxisCount: 2,
-                aspectRatio: 0.7,
-                mainSpacing: AppSizes.size8,
-                crossSpacing: AppSizes.size8,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return ShimmerBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      borderRadius: 8.0,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: AppSizes.size4,
-                        vertical: AppSizes.size12,
-                      ));
-                },
-              );
+              return GunBuddieCard.shimmerWidget(context);
             } else if (state is GunbuddiesLoadedState) {
               return CustomGridView(
                 crossAxisCount: 2,

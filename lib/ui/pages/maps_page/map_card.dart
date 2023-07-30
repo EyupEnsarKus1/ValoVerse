@@ -8,10 +8,33 @@ import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart'
 import '../../constants/enums/padding_enum.dart';
 import '../../constants/enums/radius_enum.dart';
 import '../../constants/styles/fonts.dart';
+import '../../custom_widgets/shimmer_widget.dart';
 
 class MapCard extends StatelessWidget {
   final MapData map;
   const MapCard({Key? key, required this.map}) : super(key: key);
+
+  static shimmerWidget(BuildContext context) {
+    return ListView.builder(
+      physics: const BouncingScrollPhysics(),
+      shrinkWrap: true,
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSizes.size16,
+      ),
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return ShimmerBox(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height / 5,
+          borderRadius: 8.0,
+          margin: EdgeInsets.symmetric(
+            horizontal: AppSizes.size4,
+            vertical: AppSizes.size12,
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +62,8 @@ class MapCard extends StatelessWidget {
                     borderRadius: RadiusEnum.lowest.borderRadiusAll(),
                     child: CachedNetworkImage(
                       fit: BoxFit.fitHeight,
-                      imageUrl: map.listViewIcon != null &&
-                              map.listViewIcon!.isNotEmpty
-                          ? map.listViewIcon!
-                          : 'assets/images/placeholder.png',
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                      imageUrl: map.listViewIcon != null && map.listViewIcon!.isNotEmpty ? map.listViewIcon! : 'assets/images/placeholder.png',
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
                     ),
                   ),
                 ),

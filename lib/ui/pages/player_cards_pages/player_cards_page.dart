@@ -9,7 +9,6 @@ import 'package:valorant_wiki_app/ui/pages/player_cards_pages/player_card.dart';
 import '../../../core/locale_keys.g.dart';
 import '../../constants/styles/fonts.dart';
 import '../../custom_widgets/custom_appBar.dart';
-import '../../custom_widgets/shimmer_widget.dart';
 import '../../repo_implementation/repo_implementation.dart';
 
 class PlayerCardsPage extends StatelessWidget {
@@ -30,31 +29,14 @@ class PlayerCardsPage extends StatelessWidget {
         body: BlocBuilder<PlayercardsBloc, PlayercardsState>(
           builder: (context, state) {
             if (state is PlayercardsLoadingState) {
-              return CustomGridView(
-                verticalAxis: true,
-                crossAxisCount: 2,
-                aspectRatio: 1 / 3,
-                mainSpacing: AppSizes.size8,
-                crossSpacing: AppSizes.size8,
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return ShimmerBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height,
-                      borderRadius: 8.0,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: AppSizes.size4,
-                        vertical: AppSizes.size12,
-                      ));
-                },
-              );
+              return PlayerCard.shimmerWidget(context);
             } else if (state is PlayercardsLoadedState) {
               return CustomGridView(
                 verticalAxis: true,
-                crossAxisCount: 2,
-                aspectRatio: 1 / 3,
+                crossAxisCount: 3,
+                aspectRatio: 2 / 5,
                 mainSpacing: AppSizes.size8,
-                crossSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size4,
                 itemCount: state.playerCardList.length,
                 itemBuilder: (context, index) {
                   return PlayerCard(

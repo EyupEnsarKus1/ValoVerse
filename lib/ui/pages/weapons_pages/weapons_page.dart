@@ -6,7 +6,6 @@ import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
-import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 import 'package:valorant_wiki_app/ui/pages/weapons_pages/weapon_card.dart';
 
 import '../../repo_implementation/repo_implementation.dart';
@@ -29,25 +28,7 @@ class WeaponsPage extends StatelessWidget {
         body: BlocBuilder<WeaponsBloc, WeaponsState>(
           builder: (context, state) {
             if (state is WeaponsLoadingState) {
-              return ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(
-                  vertical: AppSizes.size16,
-                  horizontal: AppSizes.size16,
-                ),
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return ShimmerBox(
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 4,
-                      borderRadius: 8.0,
-                      margin: EdgeInsets.symmetric(
-                        horizontal: AppSizes.size4,
-                        vertical: AppSizes.size12,
-                      ));
-                },
-              );
+              return WeaponCard.shimmerWidget(context);
             } else if (state is WeaponsLoadedState) {
               return ListView.builder(
                 physics: const BouncingScrollPhysics(),

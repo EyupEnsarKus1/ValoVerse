@@ -9,11 +9,33 @@ import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
 import '../../constants/colors/app_colors.dart';
+import '../../custom_widgets/custom_gridView.dart';
 import 'agents_detail_page.dart';
 
 class AgentCard extends StatelessWidget {
   final AgentsData agentsData;
   const AgentCard({Key? key, required this.agentsData}) : super(key: key);
+
+  static shimmerWidget(BuildContext context) {
+    return CustomGridView(
+      crossAxisCount: 2,
+      aspectRatio: 1 / 2,
+      mainSpacing: AppSizes.size8,
+      crossSpacing: AppSizes.size8,
+      verticalAxis: true,
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return ShimmerBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            borderRadius: 8.0,
+            margin: EdgeInsets.symmetric(
+              horizontal: AppSizes.size4,
+              vertical: AppSizes.size12,
+            ));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +69,7 @@ class AgentCard extends StatelessWidget {
                 Expanded(
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: agentsData.fullPortrait != null &&
-                            agentsData.fullPortrait!.isNotEmpty
+                    imageUrl: agentsData.fullPortrait != null && agentsData.fullPortrait!.isNotEmpty
                         ? agentsData.fullPortrait!
                         : 'assets/images/placeholder.png',
                     errorWidget: (context, url, error) => Icon(Icons.error),

@@ -8,9 +8,33 @@ import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 
+import '../../custom_widgets/custom_gridView.dart';
+import '../../custom_widgets/shimmer_widget.dart';
+
 class SprayCard extends StatelessWidget {
   final SprayData spray;
   const SprayCard({Key? key, required this.spray}) : super(key: key);
+
+  static shimmerWidget(BuildContext context) {
+    return CustomGridView(
+      verticalAxis: true,
+      crossAxisCount: 2,
+      aspectRatio: 0.7,
+      mainSpacing: AppSizes.size8,
+      crossSpacing: AppSizes.size8,
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return ShimmerBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            borderRadius: 8.0,
+            margin: EdgeInsets.symmetric(
+              horizontal: AppSizes.size4,
+              vertical: AppSizes.size12,
+            ));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +60,10 @@ class SprayCard extends StatelessWidget {
                   flex: 3,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: spray.fullTransparentIcon != null &&
-                            spray.fullTransparentIcon!.isNotEmpty
+                    imageUrl: spray.fullTransparentIcon != null && spray.fullTransparentIcon!.isNotEmpty
                         ? spray.fullTransparentIcon!
                         : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
                 Padding(padding: PaddingEnum.normal.paddingVertical()),

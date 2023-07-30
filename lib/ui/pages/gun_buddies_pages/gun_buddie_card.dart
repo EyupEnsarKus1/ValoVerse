@@ -8,10 +8,33 @@ import '../../constants/colors/app_colors.dart';
 import '../../constants/enums/padding_enum.dart';
 import '../../constants/enums/radius_enum.dart';
 import '../../constants/styles/fonts.dart';
+import '../../custom_widgets/custom_gridView.dart';
+import '../../custom_widgets/shimmer_widget.dart';
 
 class GunBuddieCard extends StatelessWidget {
   final BuddyData buddie;
   const GunBuddieCard({Key? key, required this.buddie}) : super(key: key);
+
+  static shimmerWidget(BuildContext context) {
+    return CustomGridView(
+      verticalAxis: true,
+      crossAxisCount: 2,
+      aspectRatio: 0.7,
+      mainSpacing: AppSizes.size8,
+      crossSpacing: AppSizes.size8,
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return ShimmerBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            borderRadius: 8.0,
+            margin: EdgeInsets.symmetric(
+              horizontal: AppSizes.size4,
+              vertical: AppSizes.size12,
+            ));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,12 +60,8 @@ class GunBuddieCard extends StatelessWidget {
                   flex: 3,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: buddie.displayIcon != null &&
-                            buddie.displayIcon!.isNotEmpty
-                        ? buddie.displayIcon!
-                        : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    imageUrl: buddie.displayIcon != null && buddie.displayIcon!.isNotEmpty ? buddie.displayIcon! : 'assets/images/placeholder.png',
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
                 Padding(padding: PaddingEnum.normal.paddingVertical()),
