@@ -31,16 +31,48 @@ class RanksPage extends StatelessWidget {
             if (state is TierLoadingState) {
               return RankCard.shimmerWidget(context);
             } else if (state is TierLoadedState) {
-              return CustomGridView(
-                verticalAxis: true,
-                crossAxisCount: 2,
-                aspectRatio: 1,
-                mainSpacing: AppSizes.size8,
-                crossSpacing: AppSizes.size8,
-                itemCount: state.tierList.length,
+              final bloc = BlocProvider.of<TierBloc>(context);
+              var groupedData = bloc.groupByDivisionName(state.tierList);
+
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: groupedData.keys.length,
                 itemBuilder: (context, index) {
-                  return RankCard(
-                    rank: state.tierList[index],
+                  var divisionName = groupedData.keys.elementAt(index);
+                  final Map<String, Color> colorData = {};
+
+                  groupedData.forEach((division, list) {
+                    String hexColor = '#${list.first.color ?? 'ffffff'}';
+                    colorData[division] = Color(int.parse(hexColor.substring(1, 7), radix: 16) + 0xFF000000);
+                  });
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: AppSizes.size8, horizontal: AppSizes.size20),
+                        child: Text(
+                          divisionName,
+                          style: TextStyle(
+                            fontWeight: AppWeights.normal,
+                            fontSize: AppSizes.size16,
+                            fontFamily: AppFonts.archivo,
+                            color: colorData[divisionName],
+                          ),
+                        ),
+                      ), // Title for this division
+                      CustomGridView(
+                        verticalAxis: true,
+                        crossAxisCount: 3,
+                        aspectRatio: 1,
+                        mainSpacing: AppSizes.size16,
+                        crossSpacing: AppSizes.size8,
+                        itemCount: groupedData[divisionName]!.length,
+                        itemBuilder: (context, subIndex) {
+                          return RankCard(rank: groupedData[divisionName]![subIndex]);
+                        },
+                      ), // Rank cards for this division
+                    ],
                   );
                 },
               );

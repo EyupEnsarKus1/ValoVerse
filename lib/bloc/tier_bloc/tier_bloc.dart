@@ -14,11 +14,20 @@ class TierBloc extends Bloc<TierEvent, TierState> {
     on<GetTierByIdEvent>(_onGetTierByIdEvent);
   }
 
+  Map<String, List<CompetitiveTierData>> groupByDivisionName(List<CompetitiveTierData> tiers) {
+    return tiers.fold(<String, List<CompetitiveTierData>>{}, (Map<String, List<CompetitiveTierData>> map, tier) {
+      if (!map.containsKey(tier.divisionName)) {
+        map[tier.divisionName!] = <CompetitiveTierData>[];
+      }
+      map[tier.divisionName]!.add(tier);
+      return map;
+    });
+  }
+
   _onGetTierEvent(GetTierEvent event, Emitter<TierState> emit) async {
     try {
       emit(TierLoadingState());
-      final List<CompetitiveTierData> tierList =
-          await repo.getAllData(langCubit.state.locale);
+      final List<CompetitiveTierData> tierList = await repo.getAllData(langCubit.state.locale);
       if (tierList != null) {
         emit(TierLoadedState(tierList: tierList));
       } else {

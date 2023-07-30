@@ -14,23 +14,47 @@ class RankCard extends StatelessWidget {
   final CompetitiveTierData rank;
   const RankCard({Key? key, required this.rank}) : super(key: key);
 
-  static shimmerWidget(BuildContext context) {
-    return CustomGridView(
-      verticalAxis: true,
-      crossAxisCount: 2,
-      aspectRatio: 1,
-      mainSpacing: AppSizes.size8,
-      crossSpacing: AppSizes.size8,
-      itemCount: 10,
+  static Widget shimmerWidget(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: 3,
       itemBuilder: (context, index) {
-        return ShimmerBox(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 5,
-            borderRadius: 8.0,
-            margin: EdgeInsets.symmetric(
-              horizontal: AppSizes.size4,
-              vertical: AppSizes.size12,
-            ));
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: AppSizes.size8, horizontal: AppSizes.size20),
+              child: ShimmerBox(
+                width: MediaQuery.of(context).size.width * .3,
+                height: MediaQuery.of(context).size.height * .05,
+                borderRadius: 8.0,
+                margin: EdgeInsets.symmetric(
+                  horizontal: AppSizes.size4,
+                  vertical: AppSizes.size12,
+                ),
+              ),
+            ), // DivisionName için Shimmer
+            CustomGridView(
+              verticalAxis: true,
+              crossAxisCount: 3,
+              aspectRatio: 1,
+              mainSpacing: AppSizes.size8,
+              crossSpacing: AppSizes.size8,
+              itemCount: 3,
+              itemBuilder: (context, subIndex) {
+                return ShimmerBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 5,
+                  borderRadius: 8.0,
+                  margin: EdgeInsets.symmetric(
+                    horizontal: AppSizes.size4,
+                    vertical: AppSizes.size12,
+                  ),
+                );
+              },
+            ), // Rank cards için Shimmer
+          ],
+        );
       },
     );
   }
@@ -53,7 +77,7 @@ class RankCard extends StatelessWidget {
             height: MediaQuery.of(context).size.height / 4,
             padding: PaddingEnum.normal.paddingVertical(),
             decoration: BoxDecoration(
-              border: Border.all(color: color),
+              border: Border.all(color: color, width: 2),
               borderRadius: RadiusEnum.lowest.borderRadiusAll(),
             ),
             child: Column(
@@ -72,8 +96,8 @@ class RankCard extends StatelessWidget {
                   rank.tierName ?? '',
                   style: TextStyle(
                     fontWeight: AppWeights.bold,
-                    fontSize: AppSizes.size20,
-                    fontFamily: AppFonts.valorant,
+                    fontSize: AppSizes.size16,
+                    fontFamily: AppFonts.archivo,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),

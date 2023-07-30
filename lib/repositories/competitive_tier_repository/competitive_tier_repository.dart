@@ -10,13 +10,10 @@ class CompetitiveTierRepository implements IGenericRepo<CompetitiveTierData> {
   @override
   Future<List<CompetitiveTierData>> getAllData(Locale locale) async {
     var languageCode = locale.countryCode == "TUR" ? "tr-TR" : "en-US";
-    final ApiResponse<List<CompetitiveTierData>?> response =
-        await apiService.get<List<CompetitiveTierData>>(
-            "${PageEnums.competitivetiers.name}?language=$languageCode",
-            (data) => (data['data'].last['tiers'] as List<dynamic>)
-                .map((tier) =>
-                    CompetitiveTierData.fromJson(tier as Map<String, dynamic>))
-                .toList());
+    final ApiResponse<List<CompetitiveTierData>?> response = await apiService.get<List<CompetitiveTierData>>(
+      "${PageEnums.competitivetiers.name}?language=$languageCode",
+      (data) => (data['data'].last['tiers'] as List<dynamic>).map((tier) => CompetitiveTierData.fromJson(tier as Map<String, dynamic>)).toList(),
+    );
 
     if (response.type == ResponseType.success && response.data != null) {
       return response.data!;
@@ -27,8 +24,7 @@ class CompetitiveTierRepository implements IGenericRepo<CompetitiveTierData> {
 
   @override
   Future<CompetitiveTierData> getDataById(String id) async {
-    final ApiResponse<CompetitiveTierData?> response =
-        await apiService.get<CompetitiveTierData>(
+    final ApiResponse<CompetitiveTierData?> response = await apiService.get<CompetitiveTierData>(
       '${PageEnums.competitivetiers.name}/$id',
       (data) => CompetitiveTierData.fromJson(data as Map<String, dynamic>),
     );
