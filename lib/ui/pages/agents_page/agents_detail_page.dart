@@ -129,6 +129,7 @@ class AgentAbilityCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
                 abilitiesData.displayIcon!,
@@ -138,13 +139,17 @@ class AgentAbilityCard extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
               Padding(padding: PaddingEnum.lowest.paddingAll()),
-              Text(
-                abilitiesData.displayName!,
-                style: TextStyle(
-                  fontFamily: AppFonts.roboto,
-                  fontWeight: AppWeights.bold,
-                  fontSize: AppSizes.size20,
-                  color: AppColors.red,
+              Expanded(
+                child: Text(
+                  abilitiesData.displayName!,
+                  style: TextStyle(
+                    fontFamily: AppFonts.roboto,
+                    fontWeight: AppWeights.bold,
+                    fontSize: AppSizes.size20,
+                    color: AppColors.red,
+                  ),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
             ],
