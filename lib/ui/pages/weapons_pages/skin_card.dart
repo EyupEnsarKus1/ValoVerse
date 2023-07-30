@@ -10,26 +10,26 @@ import '../../constants/enums/radius_enum.dart';
 class SkinCard extends StatelessWidget {
   final String? skinURL;
   final String heroTag;
-  const SkinCard({Key? key, required this.skinURL, required this.heroTag})
-      : super(key: key);
+  final Function(String) onTap;
+  const SkinCard({Key? key, required this.skinURL, required this.heroTag, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(PageRouteBuilder(
-            opaque: false,
-            barrierDismissible: false,
-            barrierLabel: "",
-            pageBuilder: (BuildContext context, _, __) {
-              return Hero(
-                transitionOnUserGestures: true,
-                tag: heroTag,
-                child: skinURL == null
-                    ? const Placeholder()
-                    : CachedNetworkImage(imageUrl: skinURL!),
-              );
-            }));
+        onTap(skinURL!);
+
+        // Navigator.of(context).push(PageRouteBuilder(
+        //     opaque: false,
+        //     barrierDismissible: false,
+        //     barrierLabel: "",
+        //     pageBuilder: (BuildContext context, _, __) {
+        //       return Hero(
+        //         transitionOnUserGestures: true,
+        //         tag: heroTag,
+        //         child: skinURL == null ? const Placeholder() : CachedNetworkImage(imageUrl: skinURL!),
+        //       );
+        //     }));
       },
       child: Container(
         width: MediaQuery.of(context).size.width / 2,

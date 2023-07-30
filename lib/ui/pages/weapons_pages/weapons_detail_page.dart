@@ -14,14 +14,27 @@ import '../../../models/weapons_data.dart';
 import '../../constants/colors/app_colors.dart';
 import '../../custom_widgets/custom_divider.dart';
 
-class WeaponsDetailPage extends StatelessWidget {
+class WeaponsDetailPage extends StatefulWidget {
   final WeaponsData weapon;
   const WeaponsDetailPage({Key? key, required this.weapon}) : super(key: key);
 
   @override
+  State<WeaponsDetailPage> createState() => _WeaponsDetailPageState();
+}
+
+class _WeaponsDetailPageState extends State<WeaponsDetailPage> {
+  String? currentIcon;
+
+  void updateIcon(String newIcon) {
+    setState(() {
+      currentIcon = newIcon;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: weapon.displayName ?? ''),
+      appBar: CustomAppBar(title: widget.weapon.displayName ?? ''),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
@@ -34,24 +47,25 @@ class WeaponsDetailPage extends StatelessWidget {
               Padding(
                 padding: PaddingEnum.normal.paddingVertical(),
                 child: Align(
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                        height: 150,
-                        imageUrl: weapon.displayIcon ??
-                            'assets/images/placeholder.png')),
+                  alignment: Alignment.center,
+                  child: CachedNetworkImage(
+                    height: 150,
+                    imageUrl: currentIcon ?? widget.weapon.displayIcon ?? 'assets/images/placeholder.png',
+                  ),
+                ),
               ),
               StatsRow(
-                stat: weapon.shopData?.category ?? '',
+                stat: widget.weapon.shopData?.category ?? '',
                 title: LocaleKeys.detailPages_weapons_type.translate,
                 margin: PaddingEnum.low.paddingVertical(),
               ),
               StatsRow(
-                stat: weapon.shopData?.cost.toString() ?? '',
+                stat: widget.weapon.shopData?.cost.toString() ?? '',
                 title: LocaleKeys.detailPages_weapons_creds.translate,
                 margin: PaddingEnum.low.paddingVertical(),
               ),
               StatsRow(
-                stat: weapon.weaponStats?.magazineSize.toString() ?? '',
+                stat: widget.weapon.weaponStats?.magazineSize.toString() ?? '',
                 title: LocaleKeys.detailPages_weapons_magazine.translate,
                 margin: PaddingEnum.low.paddingOnlyTop(),
               ),
@@ -63,7 +77,7 @@ class WeaponsDetailPage extends StatelessWidget {
                 ),
               ),
               StatsTable(
-                weapon: weapon,
+                weapon: widget.weapon,
               ),
               Padding(
                 padding: PaddingEnum.normal.paddingVertical(),
@@ -75,7 +89,7 @@ class WeaponsDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-              SkinsList(weapon: weapon),
+              SkinsList(weapon: widget.weapon, onSkinTap: updateIcon),
             ],
           ),
         ),
@@ -88,9 +102,11 @@ class SkinsList extends StatelessWidget {
   const SkinsList({
     super.key,
     required this.weapon,
+    required this.onSkinTap,
   });
 
   final WeaponsData weapon;
+  final Function(String) onSkinTap;
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +125,7 @@ class SkinsList extends StatelessWidget {
             child: SkinCard(
               heroTag: "tag-$index",
               skinURL: skin.displayIcon,
+              onTap: onSkinTap,
             ),
           );
         },
@@ -128,9 +145,7 @@ class StatsTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Table(
-      border: TableBorder.all(
-          color: AppColors.red,
-          borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
+      border: TableBorder.all(color: AppColors.red, borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
       columnWidths: _getColumnWidths(),
       children: _buildTableRows(),
     );
@@ -150,14 +165,10 @@ class StatsTable extends StatelessWidget {
 
     var headerRow = TableRow(
       children: [
-        _buildTableCell(
-            LocaleKeys.detailPages_weapons_range.translate, titleStyle),
-        _buildTableCell(
-            LocaleKeys.detailPages_weapons_body.translate, titleStyle),
-        _buildTableCell(
-            LocaleKeys.detailPages_weapons_head.translate, titleStyle),
-        _buildTableCell(
-            LocaleKeys.detailPages_weapons_leg.translate, titleStyle),
+        _buildTableCell(LocaleKeys.detailPages_weapons_range.translate, titleStyle),
+        _buildTableCell(LocaleKeys.detailPages_weapons_body.translate, titleStyle),
+        _buildTableCell(LocaleKeys.detailPages_weapons_head.translate, titleStyle),
+        _buildTableCell(LocaleKeys.detailPages_weapons_leg.translate, titleStyle),
       ],
     );
 
@@ -166,14 +177,10 @@ class StatsTable extends StatelessWidget {
     for (var range in weapon.weaponStats?.damageRanges ?? []) {
       var rangeRow = TableRow(
         children: [
-          _buildTableCell('${range.rangeStartMeters}-${range.rangeEndMeters}',
-              descriptionStyle),
-          _buildTableCell(
-              range.headDamage!.toStringAsFixed(1), descriptionStyle),
-          _buildTableCell(
-              range.bodyDamage!.toStringAsFixed(1), descriptionStyle),
-          _buildTableCell(
-              range.legDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell('${range.rangeStartMeters}-${range.rangeEndMeters}', descriptionStyle),
+          _buildTableCell(range.headDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell(range.bodyDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell(range.legDamage!.toStringAsFixed(1), descriptionStyle),
         ],
       );
 
