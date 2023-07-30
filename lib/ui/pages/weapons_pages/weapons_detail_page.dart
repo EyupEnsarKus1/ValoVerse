@@ -37,61 +37,58 @@ class _WeaponsDetailPageState extends State<WeaponsDetailPage> {
       appBar: CustomAppBar(title: widget.weapon.displayName ?? ''),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
-        child: Padding(
-          padding: PaddingEnum.high.paddingHorizontal(),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: PaddingEnum.normal.paddingVertical(),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: CachedNetworkImage(
-                    height: 150,
-                    imageUrl: currentIcon ?? widget.weapon.displayIcon ?? 'assets/images/placeholder.png',
-                  ),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: PaddingEnum.high.paddingVertical() + PaddingEnum.high.paddingHorizontal(),
+              child: Align(
+                alignment: Alignment.center,
+                child: CachedNetworkImage(
+                  height: 150,
+                  imageUrl: currentIcon ?? widget.weapon.displayIcon ?? 'assets/images/placeholder.png',
                 ),
               ),
-              StatsRow(
-                stat: widget.weapon.shopData?.category ?? '',
-                title: LocaleKeys.detailPages_weapons_type.translate,
-                margin: PaddingEnum.low.paddingVertical(),
+            ),
+            StatsRow(
+              stat: widget.weapon.shopData?.category ?? '',
+              title: LocaleKeys.detailPages_weapons_type.translate,
+              margin: PaddingEnum.low.paddingVertical(),
+            ),
+            StatsRow(
+              stat: widget.weapon.shopData?.cost.toString() ?? '',
+              title: LocaleKeys.detailPages_weapons_creds.translate,
+              margin: PaddingEnum.low.paddingVertical(),
+            ),
+            StatsRow(
+              stat: widget.weapon.weaponStats?.magazineSize.toString() ?? '',
+              title: LocaleKeys.detailPages_weapons_magazine.translate,
+              margin: PaddingEnum.low.paddingOnlyTop(),
+            ),
+            Padding(
+              padding: PaddingEnum.normal.paddingVertical() + PaddingEnum.high.paddingHorizontal(),
+              child: Text(
+                LocaleKeys.detailPages_weapons_damage.translate,
+                style: titleStyle,
               ),
-              StatsRow(
-                stat: widget.weapon.shopData?.cost.toString() ?? '',
-                title: LocaleKeys.detailPages_weapons_creds.translate,
-                margin: PaddingEnum.low.paddingVertical(),
-              ),
-              StatsRow(
-                stat: widget.weapon.weaponStats?.magazineSize.toString() ?? '',
-                title: LocaleKeys.detailPages_weapons_magazine.translate,
-                margin: PaddingEnum.low.paddingOnlyTop(),
-              ),
-              Padding(
-                padding: PaddingEnum.high.paddingVertical(),
+            ),
+            StatsTable(
+              weapon: widget.weapon,
+            ),
+            Padding(
+              padding: PaddingEnum.high.paddingVertical() + PaddingEnum.high.paddingHorizontal(),
+              child: Align(
+                alignment: Alignment.centerLeft,
                 child: Text(
-                  LocaleKeys.detailPages_weapons_damage.translate,
+                  LocaleKeys.detailPages_weapons_skins.translate,
                   style: titleStyle,
                 ),
               ),
-              StatsTable(
-                weapon: widget.weapon,
-              ),
-              Padding(
-                padding: PaddingEnum.normal.paddingVertical(),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    LocaleKeys.detailPages_weapons_skins.translate,
-                    style: titleStyle,
-                  ),
-                ),
-              ),
-              SkinsList(weapon: widget.weapon, onSkinTap: updateIcon),
-            ],
-          ),
+            ),
+            SkinsList(weapon: widget.weapon, onSkinTap: updateIcon),
+          ],
         ),
       ),
     );
@@ -115,18 +112,15 @@ class SkinsList extends StatelessWidget {
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
+        padding: PaddingEnum.high.paddingOnlyLeft(),
         scrollDirection: Axis.horizontal,
-        padding: PaddingEnum.high.paddingVertical(),
         itemCount: weapon.skins?.length ?? 0,
         itemBuilder: (context, index) {
           final skin = weapon.skins![index];
-          return Padding(
-            padding: PaddingEnum.low.paddingAll(),
-            child: SkinCard(
-              heroTag: "tag-$index",
-              skinURL: skin.displayIcon,
-              onTap: onSkinTap,
-            ),
+          return SkinCard(
+            heroTag: "tag-$index",
+            skinURL: skin.displayIcon,
+            onTap: onSkinTap,
           );
         },
       ),
@@ -144,10 +138,13 @@ class StatsTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Table(
-      border: TableBorder.all(color: AppColors.red, borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
-      columnWidths: _getColumnWidths(),
-      children: _buildTableRows(),
+    return Padding(
+      padding: PaddingEnum.high.paddingHorizontal(),
+      child: Table(
+        border: TableBorder.all(color: AppColors.red, borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
+        columnWidths: _getColumnWidths(),
+        children: _buildTableRows(),
+      ),
     );
   }
 
@@ -214,27 +211,32 @@ class StatsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              title,
-              style: titleStyle,
-            ),
-            Text(
-              stat,
-              style: descriptionStyle,
-            ),
-          ],
-        ),
-        if (showDivider)
-          DividerWithoutPadding(
-            color: AppColors.lightBlackLevel4,
-            margin: margin,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSizes.size16,
+      ),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: titleStyle,
+              ),
+              Text(
+                stat,
+                style: descriptionStyle,
+              ),
+            ],
           ),
-      ],
+          if (showDivider)
+            DividerWithoutPadding(
+              color: AppColors.lightBlackLevel4,
+              margin: margin,
+            ),
+        ],
+      ),
     );
   }
 }

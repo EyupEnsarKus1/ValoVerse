@@ -16,6 +16,7 @@ class SkinCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: RadiusEnum.lowest.borderRadiusAll(),
       onTap: () {
         onTap(skinURL!);
 
@@ -38,6 +39,7 @@ class SkinCard extends StatelessWidget {
           border: Border.all(color: AppColors.red),
           borderRadius: RadiusEnum.lowest.borderRadiusAll(),
         ),
+        margin: PaddingEnum.normal.paddingOnlyRight(),
         child: Padding(
           padding: PaddingEnum.low.paddingAll(),
           child: skinURL == null
