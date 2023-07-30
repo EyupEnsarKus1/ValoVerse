@@ -93,6 +93,7 @@ class AgentDetailPage extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
+                  padding: PaddingEnum.highest.paddingOnlyBottom(),
                   itemCount: data.abilities!.length,
                   itemBuilder: (context, index) {
                     final Abilities abilitiesData = data.abilities![index];
