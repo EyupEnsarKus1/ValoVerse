@@ -6,6 +6,7 @@ import 'package:valorant_wiki_app/core/locale_keys.g.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/custom_gridView.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 import 'package:valorant_wiki_app/ui/pages/ranks_pages/rank_card.dart';
 
@@ -29,18 +30,12 @@ class RanksPage extends StatelessWidget {
         body: BlocBuilder<TierBloc, TierState>(
           builder: (context, state) {
             if (state is TierLoadingState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
+              return CustomGridView(
+                verticalAxis: true,
+                crossAxisCount: 2,
+                aspectRatio: 1,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return ShimmerBox(
@@ -54,19 +49,12 @@ class RanksPage extends StatelessWidget {
                 },
               );
             } else if (state is TierLoadedState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
+              return CustomGridView(
+                verticalAxis: true,
+                crossAxisCount: 2,
+                aspectRatio: 1,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
                 itemCount: state.tierList.length,
                 itemBuilder: (context, index) {
                   return RankCard(

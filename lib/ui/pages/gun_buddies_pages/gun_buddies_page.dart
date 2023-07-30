@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/gunbuddies_bloc/gunbuddies_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/custom_gridView.dart';
 import 'package:valorant_wiki_app/ui/pages/gun_buddies_pages/gun_buddie_card.dart';
 
 import '../../../core/locale_keys.g.dart';
@@ -29,18 +30,12 @@ class GunBuddiesPage extends StatelessWidget {
         body: BlocBuilder<GunbuddiesBloc, GunbuddiesState>(
           builder: (context, state) {
             if (state is GunbuddiesLoadingState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
+              return CustomGridView(
+                verticalAxis: true,
+                crossAxisCount: 2,
+                aspectRatio: 0.7,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return ShimmerBox(
@@ -54,19 +49,12 @@ class GunBuddiesPage extends StatelessWidget {
                 },
               );
             } else if (state is GunbuddiesLoadedState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
+              return CustomGridView(
+                crossAxisCount: 2,
+                aspectRatio: 0.7,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
+                verticalAxis: true,
                 itemCount: state.gunBuddiesList.length,
                 itemBuilder: (context, index) {
                   return GunBuddieCard(

@@ -10,6 +10,7 @@ import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/shimmer_widget.dart';
 
 import '../../../bloc/agents_bloc/agents_event.dart';
+import '../../custom_widgets/custom_gridView.dart';
 import '../../repo_implementation/repo_implementation.dart';
 import 'agents_card.dart';
 
@@ -31,18 +32,12 @@ class AgentsPage extends StatelessWidget {
         body: BlocBuilder<AgentsBloc, AgentsState>(
           builder: (context, state) {
             if (state is AgentsLoadingState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 2,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
+              return CustomGridView(
+                crossAxisCount: 2,
+                aspectRatio: 1 / 2,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
+                verticalAxis: true,
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   return ShimmerBox(
@@ -56,19 +51,12 @@ class AgentsPage extends StatelessWidget {
                 },
               );
             } else if (state is AgentsLoadedState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 2,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
+              return CustomGridView(
+                crossAxisCount: 2,
+                aspectRatio: 1 / 2,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
+                verticalAxis: true,
                 itemCount: state.agentsData.length,
                 itemBuilder: (context, index) {
                   return AgentCard(

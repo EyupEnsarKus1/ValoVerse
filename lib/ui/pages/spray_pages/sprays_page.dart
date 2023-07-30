@@ -4,6 +4,7 @@ import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/spray_bloc/spray_bloc.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/custom_gridView.dart';
 import 'package:valorant_wiki_app/ui/pages/spray_pages/spray_card.dart';
 
 import '../../../core/locale_keys.g.dart';
@@ -29,18 +30,12 @@ class SpraysPage extends StatelessWidget {
         body: BlocBuilder<SprayBloc, SprayState>(
           builder: (context, state) {
             if (state is SprayLoadingState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
+              return CustomGridView(
+                verticalAxis: true,
+                crossAxisCount: 2,
+                aspectRatio: 0.7,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return ShimmerBox(
@@ -54,19 +49,12 @@ class SpraysPage extends StatelessWidget {
                 },
               );
             } else if (state is SprayLoadedState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 0.7,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
+              return CustomGridView(
+                crossAxisCount: 2,
+                aspectRatio: 0.7,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
+                verticalAxis: true,
                 itemCount: state.sprayList.length,
                 itemBuilder: (context, index) {
                   return SprayCard(

@@ -34,6 +34,7 @@ class WeaponsPage extends StatelessWidget {
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(
                   vertical: AppSizes.size16,
+                  horizontal: AppSizes.size16,
                 ),
                 itemCount: 5,
                 itemBuilder: (context, index) {
@@ -53,6 +54,7 @@ class WeaponsPage extends StatelessWidget {
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(
                   vertical: AppSizes.size16,
+                  horizontal: AppSizes.size16,
                 ),
                 itemCount: state.weaponList.length,
                 itemBuilder: (context, index) {

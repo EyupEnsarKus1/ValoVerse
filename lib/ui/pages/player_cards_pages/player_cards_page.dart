@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/playercards_bloc/playercards_bloc.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/custom_gridView.dart';
 import 'package:valorant_wiki_app/ui/pages/player_cards_pages/player_card.dart';
 
 import '../../../core/locale_keys.g.dart';
@@ -18,8 +19,7 @@ class PlayerCardsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<PlayercardsBloc>(
       create: (_) {
-        final bloc =
-            PlayercardsBloc(playerCardsRepo, LangCubit(context: context));
+        final bloc = PlayercardsBloc(playerCardsRepo, LangCubit(context: context));
         bloc.add(GetPlayerCardsEvent());
         return bloc;
       },
@@ -30,18 +30,12 @@ class PlayerCardsPage extends StatelessWidget {
         body: BlocBuilder<PlayercardsBloc, PlayercardsState>(
           builder: (context, state) {
             if (state is PlayercardsLoadingState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 3,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                shrinkWrap: true,
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
+              return CustomGridView(
+                verticalAxis: true,
+                crossAxisCount: 2,
+                aspectRatio: 1 / 3,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   return ShimmerBox(
@@ -55,19 +49,12 @@ class PlayerCardsPage extends StatelessWidget {
                 },
               );
             } else if (state is PlayercardsLoadedState) {
-              return GridView.builder(
-                physics: const BouncingScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 3,
-                  mainAxisSpacing: AppSizes.size8,
-                  crossAxisSpacing: AppSizes.size8,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size16,
-                ),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
+              return CustomGridView(
+                verticalAxis: true,
+                crossAxisCount: 2,
+                aspectRatio: 1 / 3,
+                mainSpacing: AppSizes.size8,
+                crossSpacing: AppSizes.size8,
                 itemCount: state.playerCardList.length,
                 itemBuilder: (context, index) {
                   return PlayerCard(
