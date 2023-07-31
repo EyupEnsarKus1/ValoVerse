@@ -66,40 +66,32 @@ class MapCard extends StatelessWidget {
           ),
           borderRadius: RadiusEnum.lowest.borderRadiusAll(),
           child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height / 5,
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.red),
               borderRadius: RadiusEnum.lowest.borderRadiusAll(),
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: ClipRRect(
-                    borderRadius: RadiusEnum.lowest.borderRadiusAll(),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.fitHeight,
-                      imageUrl: map.listViewIcon != null &&
-                              map.listViewIcon!.isNotEmpty
-                          ? map.listViewIcon!
-                          : 'assets/images/placeholder.png',
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                ClipRRect(
+                  borderRadius: RadiusEnum.lowest.borderRadiusAll(),
+                  child: CachedNetworkImage(
+                    imageUrl: map.splash != null && map.splash!.isNotEmpty
+                        ? map.splash!
+                        : 'assets/images/placeholder.png',
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
+                ),
+                Padding(
+                  padding: PaddingEnum.low.paddingAll(),
+                  child: Text(
+                    map.displayName ?? '',
+                    style: TextStyle(
+                      fontFamily: AppFonts.archivo,
+                      fontSize: AppSizes.size20,
                     ),
                   ),
-                ),
-                Padding(padding: PaddingEnum.normal.paddingVertical()),
-                Text(
-                  map.displayName ?? '',
-                  style: TextStyle(
-                    fontWeight: AppWeights.bold,
-                    fontSize: AppSizes.size20,
-                    fontFamily: AppFonts.archivo,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
+                )
               ],
             ),
           ),
