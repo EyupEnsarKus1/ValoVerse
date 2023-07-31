@@ -26,8 +26,8 @@ class MapCard extends StatelessWidget {
       itemCount: 10,
       itemBuilder: (context, index) {
         return ShimmerBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height / 5,
+          width: MediaQuery.of(context).size.width - 2 * AppSizes.size4,
+          height: MediaQuery.of(context).size.height / 5 + (AppSizes.size16 + 2 * AppSizes.size20),
           borderRadius: 8.0,
           margin: EdgeInsets.symmetric(
             horizontal: AppSizes.size4,
@@ -75,11 +75,16 @@ class MapCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: RadiusEnum.lowest.borderRadiusAll(),
                   child: CachedNetworkImage(
-                    imageUrl: map.splash != null && map.splash!.isNotEmpty
-                        ? map.splash!
-                        : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    imageUrl: map.splash != null && map.splash!.isNotEmpty ? map.splash! : 'assets/images/placeholder.png',
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    placeholder: (context, string) {
+                      return ShimmerBox(
+                        height: MediaQuery.of(context).size.height / 5,
+                        width: MediaQuery.of(context).size.width - 2 * AppSizes.size4,
+                        borderRadius: 8.0,
+                        margin: EdgeInsets.zero,
+                      );
+                    },
                   ),
                 ),
                 Padding(
