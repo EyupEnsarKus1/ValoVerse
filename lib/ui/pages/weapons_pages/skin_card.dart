@@ -3,15 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/padding_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
+import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 
 import '../../constants/colors/app_colors.dart';
 import '../../constants/enums/radius_enum.dart';
 
 class SkinCard extends StatelessWidget {
   final String? skinURL;
+  final String? skinName;
   final String heroTag;
   final Function(String) onTap;
-  const SkinCard({Key? key, required this.skinURL, required this.heroTag, required this.onTap}) : super(key: key);
+  const SkinCard(
+      {Key? key,
+      required this.skinURL,
+      required this.heroTag,
+      required this.onTap,
+      this.skinName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,44 +27,40 @@ class SkinCard extends StatelessWidget {
       borderRadius: RadiusEnum.lowest.borderRadiusAll(),
       onTap: () {
         onTap(skinURL!);
-
-        // Navigator.of(context).push(PageRouteBuilder(
-        //     opaque: false,
-        //     barrierDismissible: false,
-        //     barrierLabel: "",
-        //     pageBuilder: (BuildContext context, _, __) {
-        //       return Hero(
-        //         transitionOnUserGestures: true,
-        //         tag: heroTag,
-        //         child: skinURL == null ? const Placeholder() : CachedNetworkImage(imageUrl: skinURL!),
-        //       );
-        //     }));
       },
-      child: Container(
-        width: MediaQuery.of(context).size.width / 2,
-        height: MediaQuery.of(context).size.height / 4.5,
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.red),
-          borderRadius: RadiusEnum.lowest.borderRadiusAll(),
-        ),
-        margin: PaddingEnum.normal.paddingOnlyRight(),
-        child: Padding(
-          padding: PaddingEnum.low.paddingAll(),
-          child: skinURL == null
-              ? Hero(
-                  tag: heroTag,
-                  transitionOnUserGestures: true,
-                  child: Placeholder(
-                    fallbackHeight: MediaQuery.of(context).size.height / 4,
-                    fallbackWidth: MediaQuery.of(context).size.width / 3,
-                  ),
-                )
-              : Hero(
-                  tag: heroTag,
-                  child: CachedNetworkImage(
-                    imageUrl: skinURL!,
+      child: Padding(
+        padding: PaddingEnum.low.paddingAll(),
+        child: Container(
+          width: MediaQuery.of(context).size.width / 1.7,
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.red),
+            borderRadius: RadiusEnum.lowest.borderRadiusAll(),
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: PaddingEnum.low.paddingAll(),
+                  child: Hero(
+                    tag: heroTag,
+                    child: CachedNetworkImage(
+                      imageUrl: skinURL!,
+                    ),
                   ),
                 ),
+              ),
+              Padding(
+                padding: PaddingEnum.low.paddingAll(),
+                child: Text(
+                  skinName ?? '',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontFamily: AppFonts.archivo,
+                      fontSize: AppSizeConstants.size16),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -43,12 +43,15 @@ class _WeaponsDetailPageState extends State<WeaponsDetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: PaddingEnum.high.paddingVertical() + PaddingEnum.high.paddingHorizontal(),
+              padding: PaddingEnum.high.paddingVertical() +
+                  PaddingEnum.high.paddingHorizontal(),
               child: Align(
                 alignment: Alignment.center,
                 child: CachedNetworkImage(
                   height: 150,
-                  imageUrl: currentIcon ?? widget.weapon.displayIcon ?? 'assets/images/placeholder.png',
+                  imageUrl: currentIcon ??
+                      widget.weapon.displayIcon ??
+                      'assets/images/placeholder.png',
                 ),
               ),
             ),
@@ -68,7 +71,8 @@ class _WeaponsDetailPageState extends State<WeaponsDetailPage> {
               margin: PaddingEnum.low.paddingOnlyTop(),
             ),
             Padding(
-              padding: PaddingEnum.normal.paddingVertical() + PaddingEnum.high.paddingHorizontal(),
+              padding: PaddingEnum.normal.paddingVertical() +
+                  PaddingEnum.high.paddingHorizontal(),
               child: Text(
                 LocaleKeys.detailPages_weapons_damage.translate,
                 style: titleStyle,
@@ -78,7 +82,8 @@ class _WeaponsDetailPageState extends State<WeaponsDetailPage> {
               weapon: widget.weapon,
             ),
             Padding(
-              padding: PaddingEnum.high.paddingVertical() + PaddingEnum.high.paddingHorizontal(),
+              padding: PaddingEnum.high.paddingVertical() +
+                  PaddingEnum.high.paddingHorizontal(),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -120,6 +125,7 @@ class SkinsList extends StatelessWidget {
           return SkinCard(
             heroTag: "tag-$index",
             skinURL: skin.displayIcon,
+            skinName: skin.displayName,
             onTap: onSkinTap,
           );
         },
@@ -141,7 +147,9 @@ class StatsTable extends StatelessWidget {
     return Padding(
       padding: PaddingEnum.high.paddingHorizontal(),
       child: Table(
-        border: TableBorder.all(color: AppColors.red, borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
+        border: TableBorder.all(
+            color: AppColors.red,
+            borderRadius: RadiusEnum.lowest.borderRadiusCircular()),
         columnWidths: _getColumnWidths(),
         children: _buildTableRows(),
       ),
@@ -162,10 +170,14 @@ class StatsTable extends StatelessWidget {
 
     var headerRow = TableRow(
       children: [
-        _buildTableCell(LocaleKeys.detailPages_weapons_range.translate, titleStyle),
-        _buildTableCell(LocaleKeys.detailPages_weapons_body.translate, titleStyle),
-        _buildTableCell(LocaleKeys.detailPages_weapons_head.translate, titleStyle),
-        _buildTableCell(LocaleKeys.detailPages_weapons_leg.translate, titleStyle),
+        _buildTableCell(
+            LocaleKeys.detailPages_weapons_range.translate, titleStyle),
+        _buildTableCell(
+            LocaleKeys.detailPages_weapons_body.translate, titleStyle),
+        _buildTableCell(
+            LocaleKeys.detailPages_weapons_head.translate, titleStyle),
+        _buildTableCell(
+            LocaleKeys.detailPages_weapons_leg.translate, titleStyle),
       ],
     );
 
@@ -174,10 +186,14 @@ class StatsTable extends StatelessWidget {
     for (var range in weapon.weaponStats?.damageRanges ?? []) {
       var rangeRow = TableRow(
         children: [
-          _buildTableCell('${range.rangeStartMeters}-${range.rangeEndMeters}', descriptionStyle),
-          _buildTableCell(range.headDamage!.toStringAsFixed(1), descriptionStyle),
-          _buildTableCell(range.bodyDamage!.toStringAsFixed(1), descriptionStyle),
-          _buildTableCell(range.legDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell('${range.rangeStartMeters}-${range.rangeEndMeters}',
+              descriptionStyle),
+          _buildTableCell(
+              range.headDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell(
+              range.bodyDamage!.toStringAsFixed(1), descriptionStyle),
+          _buildTableCell(
+              range.legDamage!.toStringAsFixed(1), descriptionStyle),
         ],
       );
 
