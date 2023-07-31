@@ -56,7 +56,7 @@ class _WeaponsDetailPageState extends State<WeaponsDetailPage> {
               ),
             ),
             StatsRow(
-              stat: widget.weapon.shopData?.category ?? '',
+              stat: widget.weapon.shopData?.categoryText ?? '',
               title: LocaleKeys.detailPages_weapons_type.translate,
               margin: PaddingEnum.low.paddingVertical(),
             ),
