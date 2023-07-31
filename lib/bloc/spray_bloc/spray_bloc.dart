@@ -19,6 +19,7 @@ class SprayBloc extends Bloc<SprayEvent, SprayState> {
       emit(SprayLoadingState());
       final List<SprayData> sprayList =
           await repo.getAllData(langCubit.state.locale);
+      sprayList.removeWhere((spray) => spray.fullTransparentIcon == null);
       if (sprayList != null) {
         emit(SprayLoadedState(sprayList: sprayList));
       } else {

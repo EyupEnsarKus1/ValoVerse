@@ -21,6 +21,7 @@ class GunbuddiesBloc extends Bloc<GunbuddiesEvent, GunbuddiesState> {
       emit(GunbuddiesLoadingState());
       final List<BuddyData> gunBuddiesList =
           await buddiesRepo.getAllData(langCubit.state.locale);
+      gunBuddiesList.removeWhere((gunBuddie) => gunBuddie.displayIcon == null);
       if (gunBuddiesList != null) {
         emit(GunbuddiesLoadedState(gunBuddiesList: gunBuddiesList));
       } else {

@@ -19,6 +19,10 @@ class WeaponsBloc extends Bloc<WeaponsEvent, WeaponsState> {
       emit(WeaponsLoadingState());
       final List<WeaponsData> weaponList =
           await repo.getAllData(langCubit.state.locale);
+      for (var weapon in weaponList) {
+        weapon.skins?.removeWhere((skin) => skin.displayIcon == null);
+      }
+
       if (weaponList != null) {
         emit(WeaponsLoadedState(weaponList: weaponList));
       } else {
