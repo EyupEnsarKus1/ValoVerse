@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/theme_cubit/theme_cubit.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
-import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/radius_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
@@ -20,9 +19,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-          title: LocaleKeys.settings.translate,
-          backgroundColor: Colors.transparent,
-          showBackButton: true),
+          title: LocaleKeys.settings.translate, showBackButton: true),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(

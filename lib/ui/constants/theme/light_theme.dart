@@ -10,6 +10,7 @@ class AppLightTheme {
   );
 
   static AppBarTheme get _appBarTheme => const AppBarTheme(
+        backgroundColor: AppColors.surfaceColor,
         iconTheme: IconThemeData(color: AppColors.black),
         titleTextStyle: TextStyle(color: AppColors.black),
       );

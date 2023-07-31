@@ -12,6 +12,7 @@ class AppDarkTheme {
   );
 
   static AppBarTheme get _appBarTheme => const AppBarTheme(
+        backgroundColor: AppColors.blue,
         iconTheme: IconThemeData(color: AppColors.white),
       );
 

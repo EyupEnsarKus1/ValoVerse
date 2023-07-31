@@ -13,7 +13,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "VALORANT",
-        backgroundColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),

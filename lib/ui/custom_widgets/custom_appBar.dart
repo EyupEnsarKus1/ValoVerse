@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -10,7 +9,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? titleWidget;
   final Widget? leadingWidget;
   final VoidCallback? backButtonPressed;
-  final Color? backgroundColor;
   final double? elevation;
   const CustomAppBar({
     Key? key,
@@ -21,14 +19,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.centerTitle = true,
     this.actionWidget,
     this.backButtonPressed,
-    this.backgroundColor,
     this.elevation,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: backgroundColor ?? Colors.transparent,
       centerTitle: centerTitle,
       elevation: elevation ?? 0,
       title: titleWidget ??
