@@ -23,13 +23,13 @@ class SkinCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: RadiusEnum.lowest.borderRadiusAll(),
-      onTap: () {
-        onTap(skinURL!);
-      },
-      child: Padding(
-        padding: PaddingEnum.low.paddingAll(),
+    return Padding(
+      padding: PaddingEnum.low.paddingAll(),
+      child: InkWell(
+        borderRadius: RadiusEnum.lowest.borderRadiusAll(),
+        onTap: () {
+          onTap(skinURL!);
+        },
         child: Container(
           width: MediaQuery.of(context).size.width / 1.7,
           decoration: BoxDecoration(
