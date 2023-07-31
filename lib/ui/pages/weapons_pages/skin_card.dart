@@ -13,18 +13,12 @@ class SkinCard extends StatelessWidget {
   final String? skinName;
   final String heroTag;
   final Function(String) onTap;
-  const SkinCard(
-      {Key? key,
-      required this.skinURL,
-      required this.heroTag,
-      required this.onTap,
-      this.skinName})
-      : super(key: key);
+  const SkinCard({Key? key, required this.skinURL, required this.heroTag, required this.onTap, this.skinName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: PaddingEnum.low.paddingAll(),
+      padding: PaddingEnum.lowest.paddingAll() + PaddingEnum.normal.paddingOnlyRight(),
       child: InkWell(
         borderRadius: RadiusEnum.lowest.borderRadiusAll(),
         onTap: () {
@@ -54,9 +48,7 @@ class SkinCard extends StatelessWidget {
                 child: Text(
                   skinName ?? '',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontFamily: AppFonts.archivo,
-                      fontSize: AppSizeConstants.size16),
+                  style: const TextStyle(fontFamily: AppFonts.archivo, fontSize: AppSizeConstants.size16),
                 ),
               )
             ],
