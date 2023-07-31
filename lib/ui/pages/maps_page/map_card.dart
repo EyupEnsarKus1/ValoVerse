@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:valorant_wiki_app/models/maps_data.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 
 import '../../constants/enums/padding_enum.dart';
 import '../../constants/enums/radius_enum.dart';
@@ -44,7 +46,24 @@ class MapCard extends StatelessWidget {
           horizontal: AppSizes.size4,
         ),
         child: InkWell(
-          onTap: () {},
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return Scaffold(
+                  appBar: CustomAppBar(title: map.displayName ?? ''),
+                  body: map.displayIcon == null
+                      ? const Placeholder()
+                      : PhotoView(
+                          backgroundDecoration: const BoxDecoration(
+                            color: Colors.transparent,
+                          ),
+                          imageProvider: NetworkImage(map.displayIcon!),
+                        ),
+                );
+              },
+            ),
+          ),
           borderRadius: RadiusEnum.lowest.borderRadiusAll(),
           child: Container(
             width: MediaQuery.of(context).size.width,
