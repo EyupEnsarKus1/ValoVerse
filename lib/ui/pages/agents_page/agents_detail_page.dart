@@ -137,15 +137,17 @@ class AgentAbilityCard extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                abilitiesData.displayIcon!,
-                color: Theme.of(context).brightness == Brightness.light
-                    ? AppColors.blue
-                    : AppColors.white,
-                width: AppSizes.size28,
-                height: AppSizes.size28,
-                fit: BoxFit.cover,
-              ),
+              abilitiesData.displayIcon != null
+                  ? Image.network(
+                      abilitiesData.displayIcon!,
+                      color: Theme.of(context).brightness == Brightness.light
+                          ? AppColors.blue
+                          : AppColors.white,
+                      width: AppSizes.size28,
+                      height: AppSizes.size28,
+                      fit: BoxFit.cover,
+                    )
+                  : const Icon(Icons.error),
               Padding(padding: PaddingEnum.lowest.paddingAll()),
               Expanded(
                 child: Text(
