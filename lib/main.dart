@@ -7,6 +7,8 @@ import 'package:valorant_wiki_app/bloc/theme_cubit/theme_cubit.dart';
 import 'package:valorant_wiki_app/ui/constants/localization/localization_constants.dart';
 import 'package:valorant_wiki_app/ui/pages/home_page/home_page.dart';
 
+import 'bloc/connection_cubit/connection_cubit.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<LangCubit>(
           create: (_) => LangCubit(context: context),
         ),
+        BlocProvider<ConnectionCubit>(create: (_) => ConnectionCubit()),
       ],
       child: BlocBuilder<LangCubit, LangState>(
         builder: (context, langState) {
@@ -45,7 +48,32 @@ class MyApp extends StatelessWidget {
                     locale: langState.locale,
                     supportedLocales: context.supportedLocales,
                     localizationsDelegates: context.localizationDelegates,
-                    home: const HomePage(),
+                    home: BlocBuilder<ConnectionCubit, ConnectionStatus>(
+                      builder: (context, state) {
+                        if (state is ConnectionFailure) {
+                          WidgetsBinding.instance!.addPostFrameCallback((_) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Please check your internet connectivity'),
+                                duration: Duration(seconds: 3),
+                                backgroundColor: Colors.red,
+                              ),
+                            );
+                          });
+                        } else if (state is ConnectionSuccess && !(state is ConnectionInitial)) {
+                          WidgetsBinding.instance!.addPostFrameCallback((_) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Internet connection restored'),
+                                duration: Duration(seconds: 3),
+                                backgroundColor: Colors.green,
+                              ),
+                            );
+                          });
+                        }
+                        return const HomePage();
+                      },
+                    ),
                   );
                 },
               );
