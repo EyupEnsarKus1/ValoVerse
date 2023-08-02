@@ -22,18 +22,7 @@ class RankCard extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: AppSizes.size8, horizontal: AppSizes.size20),
-              child: ShimmerBox(
-                width: MediaQuery.of(context).size.width * .3,
-                height: MediaQuery.of(context).size.height * .05,
-                borderRadius: 8.0,
-                margin: EdgeInsets.symmetric(
-                  horizontal: AppSizes.size4,
-                  vertical: AppSizes.size12,
-                ),
-              ),
-            ), // DivisionName için Shimmer
+            // DivisionName için Shimmer
             CustomGridView(
               verticalAxis: true,
               crossAxisCount: 3,
@@ -62,7 +51,8 @@ class RankCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String hexColor = '#${rank.color ?? 'ffffff'}';
-    Color color = Color(int.parse(hexColor.substring(1, 7), radix: 16) + 0xFF000000);
+    Color color =
+        Color(int.parse(hexColor.substring(1, 7), radix: 16) + 0xFF000000);
     return Container(
         margin: EdgeInsets.symmetric(
           vertical: AppSizes.size4,
@@ -87,8 +77,12 @@ class RankCard extends StatelessWidget {
                 Expanded(
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: rank.largeIcon != null && rank.largeIcon!.isNotEmpty ? rank.largeIcon! : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    imageUrl:
+                        rank.largeIcon != null && rank.largeIcon!.isNotEmpty
+                            ? rank.largeIcon!
+                            : 'assets/images/placeholder.png',
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
                 Padding(padding: PaddingEnum.normal.paddingVertical()),
