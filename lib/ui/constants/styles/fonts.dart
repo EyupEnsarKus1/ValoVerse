@@ -5,7 +5,6 @@ class AppFonts {
   static const String rubik = 'Rubik';
   static const String archivo = 'Archivo';
   static const String roboto = 'Roboto';
-  static const String valorant = 'Valorant';
 }
 
 class AppSizeConstants {
