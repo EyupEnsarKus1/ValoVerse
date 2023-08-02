@@ -49,11 +49,11 @@ class HomePageCard extends StatelessWidget {
                       left: AppSizes.size20,
                     ),
                     child: Text(
-                      title,
+                      title.toUpperCase(),
                       style: TextStyle(
-                        fontFamily: AppFonts.valorant,
+                        fontFamily: AppFonts.roboto,
                         fontSize: AppSizes.size20,
-                        fontWeight: AppWeights.normal,
+                        fontWeight: AppWeights.bold,
                         color: Theme.of(context).brightness == Brightness.light
                             ? AppColors.blue
                             : AppColors.white,
