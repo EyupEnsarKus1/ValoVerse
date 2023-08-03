@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/theme_cubit/theme_cubit.dart';
+import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/ui/constants/localization/localization_constants.dart';
 import 'package:valorant_wiki_app/ui/pages/home_page/home_page.dart';
 
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
               return ScreenUtilInit(
                 builder: (context, child) {
                   return MaterialApp(
-                    title: 'ValorantWikiApp',
+                    title: AppConstants.appTitle,
                     debugShowCheckedModeBanner: false,
                     theme: themeState.themeData,
                     locale: langState.locale,
@@ -54,13 +55,15 @@ class MyApp extends StatelessWidget {
                           WidgetsBinding.instance!.addPostFrameCallback((_) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text('Please check your internet connectivity'),
+                                content: Text(
+                                    'Please check your internet connectivity'),
                                 duration: Duration(seconds: 3),
                                 backgroundColor: Colors.red,
                               ),
                             );
                           });
-                        } else if (state is ConnectionSuccess && !(state is ConnectionInitial)) {
+                        } else if (state is ConnectionSuccess &&
+                            !(state is ConnectionInitial)) {
                           WidgetsBinding.instance!.addPostFrameCallback((_) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

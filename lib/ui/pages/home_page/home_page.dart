@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/repositories/generic_repo.dart';
 
 import '../../custom_widgets/custom_appBar.dart';
@@ -12,7 +13,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-        title: "VALOVERSE",
+        title: AppConstants.appTitle,
       ),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
