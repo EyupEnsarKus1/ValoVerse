@@ -49,7 +49,7 @@ class HomePageCard extends StatelessWidget {
                       left: AppSizes.size20,
                     ),
                     child: Text(
-                      title.toUpperCase(),
+                      title,
                       style: TextStyle(
                         fontFamily: AppFonts.roboto,
                         fontSize: AppSizes.size20,
