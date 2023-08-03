@@ -47,7 +47,7 @@ class GunBuddieCard extends StatelessWidget {
           onTap: () {},
           borderRadius: RadiusEnum.lowest.borderRadiusAll(),
           child: Container(
-            padding: PaddingEnum.normal.paddingVertical(),
+            padding: PaddingEnum.normal.paddingVertical() + PaddingEnum.normal.paddingHorizontal(),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.red),
               borderRadius: RadiusEnum.lowest.borderRadiusAll(),
@@ -56,16 +56,12 @@ class GunBuddieCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Flexible(
+                Expanded(
                   flex: 2,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: buddie.displayIcon != null &&
-                            buddie.displayIcon!.isNotEmpty
-                        ? buddie.displayIcon!
-                        : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    imageUrl: buddie.displayIcon != null && buddie.displayIcon!.isNotEmpty ? buddie.displayIcon! : 'assets/images/placeholder.png',
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
                 Padding(padding: PaddingEnum.normal.paddingVertical()),

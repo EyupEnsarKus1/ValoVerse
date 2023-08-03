@@ -41,21 +41,15 @@ class RanksPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var divisionName = groupedData.keys.elementAt(index);
                   final Map<String, Color> colorData = {};
-
                   groupedData.forEach((division, list) {
                     String hexColor = '#${list.first.color ?? 'ffffff'}';
-                    colorData[division] = Color(
-                        int.parse(hexColor.substring(1, 7), radix: 16) +
-                            0xFF000000);
+                    colorData[division] = Color(int.parse(hexColor.substring(1, 7), radix: 16) + 0xFF000000);
                   });
-
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: AppSizes.size8,
-                            horizontal: AppSizes.size20),
+                        padding: EdgeInsets.symmetric(vertical: AppSizes.size8, horizontal: AppSizes.size20),
                         child: Text(
                           divisionName,
                           style: TextStyle(
@@ -69,13 +63,12 @@ class RanksPage extends StatelessWidget {
                       CustomGridView(
                         verticalAxis: true,
                         crossAxisCount: 3,
-                        aspectRatio: 1,
+                        aspectRatio: 2 / 3,
                         mainSpacing: AppSizes.size16,
                         crossSpacing: AppSizes.size8,
                         itemCount: groupedData[divisionName]!.length,
                         itemBuilder: (context, subIndex) {
-                          return RankCard(
-                              rank: groupedData[divisionName]![subIndex]);
+                          return RankCard(rank: groupedData[divisionName]![subIndex]);
                         },
                       ), // Rank cards for this division
                     ],

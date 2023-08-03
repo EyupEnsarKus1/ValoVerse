@@ -112,7 +112,7 @@ class SkinsList extends StatelessWidget {
       child: ListView.builder(
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
-        padding: PaddingEnum.normal.paddingOnlyLeft(),
+        padding: PaddingEnum.normal.paddingOnlyLeft() + PaddingEnum.high.paddingOnlyBottom(),
         scrollDirection: Axis.horizontal,
         itemCount: weapon.skins?.length ?? 0,
         itemBuilder: (context, index) {
