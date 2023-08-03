@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
                     supportedLocales: context.supportedLocales,
                     localizationsDelegates: context.localizationDelegates,
                     home: BlocListener<ConnectionCubit, ConnectionStatus>(
-                      listener: (context, state) {
+                      listener: (context, state) async {
                         if (state is ConnectionFailure) {
                           showDialog(
                             context: context,
@@ -62,23 +62,20 @@ class MyApp extends StatelessWidget {
                             builder: (_) => WillPopScope(
                               onWillPop: () async => false,
                               child: const CustomAlertDialog(
-                                  title:
-                                      LocaleKeys.connectivity_connectionError,
-                                  content:
-                                      LocaleKeys.connectivity_checkConnection),
+                                title: LocaleKeys.connectivity_connectionError,
+                                content: LocaleKeys.connectivity_checkConnection,
+                              ),
                             ),
                           );
-                        } else if (state is ConnectionSuccess &&
-                            !(state is ConnectionInitial)) {
-                          Navigator.of(context).pop();
+                        } else if (state is ConnectionSuccess && state is! ConnectionInitial) {
+                          if (Navigator.of(context).canPop()) {
+                            Navigator.of(context).pop();
+                          }
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                LocaleKeys
-                                    .connectivity_connectionRestored.translate,
-                                style: TextStyle(
-                                    fontFamily: AppFonts.roboto,
-                                    fontSize: AppSizes.size12),
+                                LocaleKeys.connectivity_connectionRestored.translate,
+                                style: TextStyle(fontFamily: AppFonts.roboto, fontSize: AppSizes.size12),
                               ),
                             ),
                           );

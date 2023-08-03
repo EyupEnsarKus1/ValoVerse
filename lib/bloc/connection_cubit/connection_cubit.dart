@@ -14,21 +14,31 @@ class ConnectionFailure extends ConnectionStatus {}
 
 class ConnectionCubit extends Cubit<ConnectionStatus> {
   late StreamSubscription subscription;
+  bool _initialState = true;
 
   ConnectionCubit() : super(ConnectionInitial()) {
     checkConnection();
   }
 
-  void checkConnection() {
+  Future<void> checkConnection() async {
     subscription = Connectivity().onConnectivityChanged.listen(
       (ConnectivityResult result) async {
-        if (await InternetConnectionChecker().hasConnection) {
-          emit(ConnectionSuccess());
-        } else {
-          emit(ConnectionFailure());
-        }
+        await _updateConnectionStatus();
       },
     );
+    // Also check connection status immediately on startup
+    await _updateConnectionStatus();
+    _initialState = false;
+  }
+
+  Future<void> _updateConnectionStatus() async {
+    if (await InternetConnectionChecker().hasConnection) {
+      if (!_initialState) {
+        emit(ConnectionSuccess());
+      }
+    } else {
+      emit(ConnectionFailure());
+    }
   }
 
   @override
