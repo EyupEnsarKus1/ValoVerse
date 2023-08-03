@@ -100,5 +100,10 @@
       "skins": "Skins"
     },
     "description": "Açıklama"
+  },
+  "connectivity": {
+    "connectionError": "Connection Error",
+    "checkConnection": "Please check your connection.",
+    "connectionRestored": "Connection restored."
   }
 }

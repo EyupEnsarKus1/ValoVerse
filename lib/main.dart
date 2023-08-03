@@ -5,7 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/theme_cubit/theme_cubit.dart';
 import 'package:valorant_wiki_app/core/constants/app_constants.dart';
+import 'package:valorant_wiki_app/core/locale_keys.g.dart';
+import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/localization/localization_constants.dart';
+import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
+import 'package:valorant_wiki_app/ui/custom_widgets/custom_alertDialog.dart';
 import 'package:valorant_wiki_app/ui/pages/home_page/home_page.dart';
 
 import 'bloc/connection_cubit/connection_cubit.dart';
@@ -57,19 +61,25 @@ class MyApp extends StatelessWidget {
                             barrierDismissible: false,
                             builder: (_) => WillPopScope(
                               onWillPop: () async => false,
-                              child: AlertDialog(
-                                title: Text('Connection Error'),
-                                content: Text('Please check your internet connectivity'),
-                              ),
+                              child: const CustomAlertDialog(
+                                  title:
+                                      LocaleKeys.connectivity_connectionError,
+                                  content:
+                                      LocaleKeys.connectivity_checkConnection),
                             ),
                           );
-                        } else if (state is ConnectionSuccess && !(state is ConnectionInitial)) {
+                        } else if (state is ConnectionSuccess &&
+                            !(state is ConnectionInitial)) {
                           Navigator.of(context).pop();
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: Text('Internet connection restored'),
-                              duration: Duration(seconds: 3),
-                              backgroundColor: Colors.green,
+                              content: Text(
+                                LocaleKeys
+                                    .connectivity_connectionRestored.translate,
+                                style: TextStyle(
+                                    fontFamily: AppFonts.roboto,
+                                    fontSize: AppSizes.size12),
+                              ),
                             ),
                           );
                         }

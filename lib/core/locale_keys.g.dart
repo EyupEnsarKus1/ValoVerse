@@ -79,5 +79,9 @@ abstract class  LocaleKeys {
   static const detailPages_weapons = 'detailPages.weapons';
   static const detailPages_description = 'detailPages.description';
   static const detailPages = 'detailPages';
+  static const connectivity_connectionError = 'connectivity.connectionError';
+  static const connectivity_checkConnection = 'connectivity.checkConnection';
+  static const connectivity_connectionRestored = 'connectivity.connectionRestored';
+  static const connectivity = 'connectivity';
 
 }

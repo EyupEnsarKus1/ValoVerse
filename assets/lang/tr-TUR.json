@@ -100,5 +100,10 @@
       "skins": "Kaplamalar"
     },
     "description": "Açıklama"
+  },
+  "connectivity": {
+    "connectionError": "Bağlantı Hatası",
+    "checkConnection": "Lütfen internet bağlantınızı kontrol ediniz.",
+    "connectionRestored": "Yeniden bağlandı."
   }
 }
