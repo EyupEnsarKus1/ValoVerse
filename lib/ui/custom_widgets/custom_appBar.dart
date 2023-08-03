@@ -30,7 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: titleWidget ??
           Text(title,
               style: TextStyle(
-                fontFamily: AppFonts.roboto,
+                fontFamily: AppFonts.valorant,
                 fontWeight: AppWeights.bold,
                 fontSize: AppSizes.size24,
               )),
