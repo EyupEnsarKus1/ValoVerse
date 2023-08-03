@@ -49,33 +49,32 @@ class MyApp extends StatelessWidget {
                     locale: langState.locale,
                     supportedLocales: context.supportedLocales,
                     localizationsDelegates: context.localizationDelegates,
-                    home: BlocBuilder<ConnectionCubit, ConnectionStatus>(
-                      builder: (context, state) {
+                    home: BlocListener<ConnectionCubit, ConnectionStatus>(
+                      listener: (context, state) {
                         if (state is ConnectionFailure) {
-                          WidgetsBinding.instance!.addPostFrameCallback((_) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    'Please check your internet connectivity'),
-                                duration: Duration(seconds: 3),
-                                backgroundColor: Colors.red,
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (_) => WillPopScope(
+                              onWillPop: () async => false,
+                              child: AlertDialog(
+                                title: Text('Connection Error'),
+                                content: Text('Please check your internet connectivity'),
                               ),
-                            );
-                          });
-                        } else if (state is ConnectionSuccess &&
-                            !(state is ConnectionInitial)) {
-                          WidgetsBinding.instance!.addPostFrameCallback((_) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Internet connection restored'),
-                                duration: Duration(seconds: 3),
-                                backgroundColor: Colors.green,
-                              ),
-                            );
-                          });
+                            ),
+                          );
+                        } else if (state is ConnectionSuccess && !(state is ConnectionInitial)) {
+                          Navigator.of(context).pop();
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Internet connection restored'),
+                              duration: Duration(seconds: 3),
+                              backgroundColor: Colors.green,
+                            ),
+                          );
                         }
-                        return const HomePage();
                       },
+                      child: const HomePage(),
                     ),
                   );
                 },
