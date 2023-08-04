@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/models/player_cards_data.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
@@ -56,8 +57,12 @@ class PlayerCard extends StatelessWidget {
                 Expanded(
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: playerCard.largeArt != null && playerCard.largeArt!.isNotEmpty ? playerCard.largeArt! : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    imageUrl: playerCard.largeArt != null &&
+                            playerCard.largeArt!.isNotEmpty
+                        ? playerCard.largeArt!
+                        : AppConstants.placeHolderURL,
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
               ],

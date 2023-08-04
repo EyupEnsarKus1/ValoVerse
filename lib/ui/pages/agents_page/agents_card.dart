@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/models/agents_data.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/padding_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/radius_enum.dart';
@@ -72,8 +73,9 @@ class AgentCard extends StatelessWidget {
                     imageUrl: agentsData.fullPortrait != null &&
                             agentsData.fullPortrait!.isNotEmpty
                         ? agentsData.fullPortrait!
-                        : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                        : AppConstants.placeHolderURL,
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
                 Padding(padding: PaddingEnum.normal.paddingVertical()),

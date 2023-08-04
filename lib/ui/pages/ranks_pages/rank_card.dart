@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/models/competitive_tier_data.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/padding_enum.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/radius_enum.dart';
@@ -53,7 +54,8 @@ class RankCard extends StatelessWidget {
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 4,
-                    padding: PaddingEnum.normal.paddingVertical() + PaddingEnum.low.paddingHorizontal(),
+                    padding: PaddingEnum.normal.paddingVertical() +
+                        PaddingEnum.low.paddingHorizontal(),
                     decoration: BoxDecoration(
                       border: Border.all(color: Colors.grey, width: 2),
                       borderRadius: RadiusEnum.lowest.borderRadiusAll(),
@@ -91,7 +93,8 @@ class RankCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String hexColor = '#${rank.color ?? 'ffffff'}';
-    Color color = Color(int.parse(hexColor.substring(1, 7), radix: 16) + 0xFF000000);
+    Color color =
+        Color(int.parse(hexColor.substring(1, 7), radix: 16) + 0xFF000000);
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: AppSizes.size4,
@@ -104,7 +107,8 @@ class RankCard extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height / 4,
-          padding: PaddingEnum.normal.paddingVertical() + PaddingEnum.low.paddingHorizontal(),
+          padding: PaddingEnum.normal.paddingVertical() +
+              PaddingEnum.low.paddingHorizontal(),
           decoration: BoxDecoration(
             border: Border.all(color: color, width: 2),
             borderRadius: RadiusEnum.lowest.borderRadiusAll(),
@@ -116,7 +120,9 @@ class RankCard extends StatelessWidget {
               Expanded(
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl: rank.largeIcon != null && rank.largeIcon!.isNotEmpty ? rank.largeIcon! : 'assets/images/placeholder.png',
+                  imageUrl: rank.largeIcon != null && rank.largeIcon!.isNotEmpty
+                      ? rank.largeIcon!
+                      : AppConstants.placeHolderURL,
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),

@@ -1,6 +1,8 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class  LocaleKeys {
+// ignore_for_file: constant_identifier_names
+
+abstract class LocaleKeys {
   static const appTitle = 'appTitle';
   static const homePage = 'homePage';
   static const settings = 'settings';
@@ -81,7 +83,7 @@ abstract class  LocaleKeys {
   static const detailPages = 'detailPages';
   static const connectivity_connectionError = 'connectivity.connectionError';
   static const connectivity_checkConnection = 'connectivity.checkConnection';
-  static const connectivity_connectionRestored = 'connectivity.connectionRestored';
+  static const connectivity_connectionRestored =
+      'connectivity.connectionRestored';
   static const connectivity = 'connectivity';
-
 }

@@ -26,7 +26,6 @@ class ConnectionCubit extends Cubit<ConnectionStatus> {
         await _updateConnectionStatus();
       },
     );
-    // Also check connection status immediately on startup
     await _updateConnectionStatus();
     _initialState = false;
   }

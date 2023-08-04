@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/models/gun_buddies_data.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/radius_extension.dart';
@@ -47,7 +48,8 @@ class GunBuddieCard extends StatelessWidget {
           onTap: () {},
           borderRadius: RadiusEnum.lowest.borderRadiusAll(),
           child: Container(
-            padding: PaddingEnum.normal.paddingVertical() + PaddingEnum.normal.paddingHorizontal(),
+            padding: PaddingEnum.normal.paddingVertical() +
+                PaddingEnum.normal.paddingHorizontal(),
             decoration: BoxDecoration(
               border: Border.all(color: AppColors.red),
               borderRadius: RadiusEnum.lowest.borderRadiusAll(),
@@ -60,8 +62,12 @@ class GunBuddieCard extends StatelessWidget {
                   flex: 2,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
-                    imageUrl: buddie.displayIcon != null && buddie.displayIcon!.isNotEmpty ? buddie.displayIcon! : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    imageUrl: buddie.displayIcon != null &&
+                            buddie.displayIcon!.isNotEmpty
+                        ? buddie.displayIcon!
+                        : AppConstants.placeHolderURL,
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
                 Padding(padding: PaddingEnum.normal.paddingVertical()),

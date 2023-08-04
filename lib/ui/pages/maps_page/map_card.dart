@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/models/maps_data.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/extensions/padding_extension.dart';
@@ -27,7 +28,8 @@ class MapCard extends StatelessWidget {
       itemBuilder: (context, index) {
         return ShimmerBox(
           width: MediaQuery.of(context).size.width - 2 * AppSizes.size4,
-          height: MediaQuery.of(context).size.height / 6 + (AppSizes.size16 + 2 * AppSizes.size20),
+          height: MediaQuery.of(context).size.height / 6 +
+              (AppSizes.size16 + 2 * AppSizes.size20),
           borderRadius: 8.0,
           margin: EdgeInsets.symmetric(
             horizontal: AppSizes.size4,
@@ -62,7 +64,8 @@ class MapCard extends StatelessWidget {
                           minScale: PhotoViewComputedScale.contained,
                           maxScale: 0.5,
                           enableRotation: true,
-                          imageProvider: CachedNetworkImageProvider(map.displayIcon!),
+                          imageProvider:
+                              CachedNetworkImageProvider(map.displayIcon!),
                         ),
                 );
               },
@@ -79,12 +82,17 @@ class MapCard extends StatelessWidget {
                 ClipRRect(
                   borderRadius: RadiusEnum.lowest.borderRadiusAll(),
                   child: CachedNetworkImage(
-                    imageUrl: map.splash != null && map.splash!.isNotEmpty ? map.splash! : 'assets/images/placeholder.png',
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    imageUrl: map.splash != null && map.splash!.isNotEmpty
+                        ? map.splash!
+                        : AppConstants.placeHolderURL,
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                     placeholder: (context, string) {
                       return ShimmerBox(
-                        width: MediaQuery.of(context).size.width - 2 * AppSizes.size4,
-                        height: MediaQuery.of(context).size.height / 6 + (AppSizes.size16 + 2 * AppSizes.size20),
+                        width: MediaQuery.of(context).size.width -
+                            2 * AppSizes.size4,
+                        height: MediaQuery.of(context).size.height / 6 +
+                            (AppSizes.size16 + 2 * AppSizes.size20),
                         borderRadius: 8.0,
                         margin: EdgeInsets.zero,
                       );

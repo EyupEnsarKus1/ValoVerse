@@ -6,9 +6,7 @@ import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
 import 'package:valorant_wiki_app/bloc/theme_cubit/theme_cubit.dart';
 import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/core/locale_keys.g.dart';
-import 'package:valorant_wiki_app/ui/constants/extensions/string_extension.dart';
 import 'package:valorant_wiki_app/ui/constants/localization/localization_constants.dart';
-import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_alertDialog.dart';
 import 'package:valorant_wiki_app/ui/pages/home_page/home_page.dart';
 
@@ -35,9 +33,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
-        BlocProvider<LangCubit>(
-          create: (_) => LangCubit(context: context),
-        ),
+        BlocProvider<LangCubit>(create: (_) => LangCubit(context: context)),
         BlocProvider<ConnectionCubit>(create: (_) => ConnectionCubit()),
       ],
       child: BlocBuilder<LangCubit, LangState>(
@@ -63,19 +59,8 @@ class MyApp extends StatelessWidget {
                               onWillPop: () async => false,
                               child: const CustomAlertDialog(
                                 title: LocaleKeys.connectivity_connectionError,
-                                content: LocaleKeys.connectivity_checkConnection,
-                              ),
-                            ),
-                          );
-                        } else if (state is ConnectionSuccess && state is! ConnectionInitial) {
-                          if (Navigator.of(context).canPop()) {
-                            Navigator.of(context).pop();
-                          }
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                LocaleKeys.connectivity_connectionRestored.translate,
-                                style: TextStyle(fontFamily: AppFonts.roboto, fontSize: AppSizes.size12),
+                                content:
+                                    LocaleKeys.connectivity_checkConnection,
                               ),
                             ),
                           );

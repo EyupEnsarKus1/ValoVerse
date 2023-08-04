@@ -40,7 +40,8 @@ class AgentDetailPage extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: data.background!,
                         fit: BoxFit.cover,
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                         color: Theme.of(context).brightness == Brightness.light
                             ? AppColors.blue
                             : AppColors.white,
@@ -50,7 +51,8 @@ class AgentDetailPage extends StatelessWidget {
                       child: CachedNetworkImage(
                         imageUrl: data.bustPortrait!,
                         alignment: Alignment.center,
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                     ),
                   ],

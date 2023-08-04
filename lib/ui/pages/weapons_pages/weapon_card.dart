@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:valorant_wiki_app/core/constants/app_constants.dart';
 import 'package:valorant_wiki_app/models/weapons_data.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 import 'package:valorant_wiki_app/ui/constants/enums/padding_enum.dart';
@@ -70,7 +71,7 @@ class WeaponCard extends StatelessWidget {
                   imageUrl: weaponsData.displayIcon != null &&
                           weaponsData.displayIcon!.isNotEmpty
                       ? weaponsData.displayIcon!
-                      : 'assets/images/placeholder.png',
+                      : AppConstants.placeHolderURL,
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),

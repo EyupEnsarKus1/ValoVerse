@@ -52,9 +52,11 @@ class HomePageCard extends StatelessWidget {
                       title,
                       style: TextStyle(
                         fontFamily: AppFonts.roboto,
-                        fontSize: AppSizes.size24,
+                        fontSize: AppSizes.size20,
                         fontWeight: AppWeights.bold,
-                        color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.white,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? AppColors.blue
+                            : AppColors.white,
                       ),
                     ),
                   ),
