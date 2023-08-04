@@ -17,21 +17,23 @@ class CustomAlertDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ConnectionCubit, ConnectionStatus>(
       listener: (context, state) {
-        if (Navigator.of(context).canPop()) {
-          Navigator.of(context).pop();
-        }
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.green,
-            content: Text(
-              LocaleKeys.connectivity_connectionRestored.translate,
-              style: TextStyle(
-                fontFamily: AppFonts.roboto,
-                fontSize: AppSizes.size12,
+        if (state is ConnectionSuccess) {
+          if (Navigator.of(context).canPop()) {
+            Navigator.of(context).pop();
+          }
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Colors.green,
+              content: Text(
+                LocaleKeys.connectivity_connectionRestored.translate,
+                style: TextStyle(
+                  fontFamily: AppFonts.roboto,
+                  fontSize: AppSizes.size12,
+                ),
               ),
             ),
-          ),
-        );
+          );
+        }
       },
       child: AlertDialog(
         title: Text(
