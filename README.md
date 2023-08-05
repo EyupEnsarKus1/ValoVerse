@@ -49,12 +49,12 @@
   </tr>
   
   <tr align='center'>
-   <td colspan='2'>Weapon Detail</td>
-   <td colspan='2'>Weapon Skins Detail</td>
+   <td colspan='4'>Weapon Detail</td>
+   <td colspan='4'>Weapon Skins Detail</td>
   </tr>
   
   <tr align='center'>
-   <td colspan='2'><img width='250' src='screenshots/weaponDetail.jpg'></td>
-   <td colspan='2'><img width='250' src='screenshots/weaponSkinsDetail.jpg'></td>
+   <td colspan='4'><img width='250' src='screenshots/weaponDetail.jpg'></td>
+   <td colspan='4'><img width='250' src='screenshots/weponSkinsDetail.jpg'></td>
   </tr>
  </table>
