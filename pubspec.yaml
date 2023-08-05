@@ -16,7 +16,6 @@ dependencies:
   # Responsive
   flutter_screenutil: ^5.7.0
 
-
   # Network
   http: ^0.13.6
 
@@ -51,6 +50,14 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.2
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  image_path_android: "assets/icons/logo.png"
+  adaptive_icon_background: "assets/icons/logo.png"
+  adaptive_icon_foreground: "assets/icons/logo.png"
+  min_sdk_android: 21
 
 flutter:
   uses-material-design: true
