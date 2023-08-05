@@ -17,33 +17,33 @@ class RankCard extends StatelessWidget {
   const RankCard({Key? key, required this.rank}) : super(key: key);
 
   static Widget shimmerWidget(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Shimmer.fromColors(
-          baseColor: AppColors.shimmerBaseColor,
-          highlightColor: AppColors.shimmerHighlightColor,
-          child: Container(
-            margin: EdgeInsets.only(
-              left: AppSizes.size20,
-              bottom: AppSizes.size16,
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Shimmer.fromColors(
+            baseColor: AppColors.shimmerBaseColor,
+            highlightColor: AppColors.shimmerHighlightColor,
+            child: Container(
+              margin: EdgeInsets.only(
+                left: AppSizes.size20,
+                bottom: AppSizes.size16,
+              ),
+              alignment: Alignment.centerLeft,
+              height: 20.0,
+              width: MediaQuery.of(context).size.width / 4,
+              color: AppColors.shimmerBaseColor,
             ),
-            alignment: Alignment.centerLeft,
-            height: 20.0,
-            width: MediaQuery.of(context).size.width / 4,
-            color: AppColors.shimmerBaseColor,
           ),
-        ),
-        CustomGridView(
-          verticalAxis: true,
-          crossAxisCount: 3,
-          aspectRatio: 2 / 3,
-          mainSpacing: AppSizes.size8,
-          crossSpacing: AppSizes.size8,
-          itemCount: 6,
-          itemBuilder: (context, subIndex) {
-            return Expanded(
-              child: Container(
+          CustomGridView(
+            verticalAxis: true,
+            crossAxisCount: 3,
+            aspectRatio: 2 / 3,
+            mainSpacing: AppSizes.size8,
+            crossSpacing: AppSizes.size8,
+            itemCount: 9,
+            itemBuilder: (context, subIndex) {
+              return Container(
                 margin: EdgeInsets.symmetric(
                   vertical: AppSizes.size4,
                   horizontal: AppSizes.size4,
@@ -82,11 +82,11 @@ class RankCard extends StatelessWidget {
                     ),
                   ),
                 ),
-              ),
-            );
-          },
-        ),
-      ],
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 
