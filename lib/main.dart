@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:valorant_wiki_app/bloc/lang_cubit/lang_cubit.dart';
@@ -16,7 +15,6 @@ import 'bloc/connection_cubit/connection_cubit.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(
     EasyLocalization(
       path: LocalizationConstants.path,
@@ -61,8 +59,7 @@ class MyApp extends StatelessWidget {
                               onWillPop: () async => false,
                               child: const CustomAlertDialog(
                                 title: LocaleKeys.connectivity_connectionError,
-                                content:
-                                    LocaleKeys.connectivity_checkConnection,
+                                content: LocaleKeys.connectivity_checkConnection,
                               ),
                             ),
                           );
