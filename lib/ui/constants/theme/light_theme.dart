@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:valorant_wiki_app/ui/constants/colors/app_colors.dart';
 
 class AppLightTheme {
@@ -13,6 +14,9 @@ class AppLightTheme {
         backgroundColor: AppColors.surfaceColor,
         iconTheme: IconThemeData(color: AppColors.black),
         titleTextStyle: TextStyle(color: AppColors.black),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          systemNavigationBarColor: Colors.transparent,
+        ),
       );
 
   static ColorScheme get _colorScheme => const ColorScheme(

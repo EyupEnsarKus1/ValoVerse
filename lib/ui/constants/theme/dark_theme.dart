@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../colors/app_colors.dart';
 
@@ -14,6 +15,9 @@ class AppDarkTheme {
   static AppBarTheme get _appBarTheme => const AppBarTheme(
         backgroundColor: AppColors.blue,
         iconTheme: IconThemeData(color: AppColors.white),
+        systemOverlayStyle: SystemUiOverlayStyle(
+          systemNavigationBarColor: Colors.transparent,
+        ),
       );
 
   static ColorScheme get _colorScheme => const ColorScheme(
