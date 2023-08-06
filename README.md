@@ -22,6 +22,9 @@
 
  <table>
   <tr align='center'>
+   <td colspan='8'><img src='screenshots/valoVerse.png'></td>
+  </tr>
+  <tr align='center'>
    <td colspan='2'>Home Page</td>
    <td colspan='2'>Agent Detail</td>
    <td colspan='2'>Maps</td>
