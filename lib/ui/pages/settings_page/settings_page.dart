@@ -12,14 +12,15 @@ import 'package:valorant_wiki_app/ui/constants/styles/fonts.dart';
 import 'package:valorant_wiki_app/ui/custom_widgets/custom_appBar.dart';
 import 'package:valorant_wiki_app/ui/pages/settings_page/settings_page_card.dart';
 
+import '../../constants/colors/app_colors.dart';
+
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
-          title: LocaleKeys.settings.translate, showBackButton: true),
+      appBar: CustomAppBar(title: LocaleKeys.settings.translate, showBackButton: true),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Column(
@@ -49,6 +50,7 @@ class SettingsPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: AppSizes.size12,
                       fontFamily: AppFonts.archivo,
+                      color: Theme.of(context).brightness == Brightness.light ? AppColors.blue : AppColors.white,
                     ),
                     items: [
                       DropdownMenuItem(
