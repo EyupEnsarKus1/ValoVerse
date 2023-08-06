@@ -1,4 +1,4 @@
-package com.example.valorant_wiki_app
+package com.valoverse.valorant_wiki
 
 import io.flutter.embedding.android.FlutterActivity
 
