@@ -3,7 +3,7 @@
 ### ValoVerse is a unofficial wiki app for Valorant game. You can find informations about the game like agents, weapons, skins and maps etc.
 
 # Google Play Store
-<a href="#" target="_blank"><img src="screenshots/googleplay.png" width="250"></a>
+<a href="#https://play.google.com/store/apps/details?id=com.valoverse.valorant_wiki" target="_blank"><img src="screenshots/googleplay.png" width="250"></a>
 
  # Tech Stack
 
